@@ -1,0 +1,104 @@
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+
+  &:visited {
+    color: #666;
+  }
+
+  &:hover {
+    color: black;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors>input{
+  border-width: 2px;
+  box-shadow: 0px 0px 5px 1px #DC143C;
+  color: black;
+  border-color: #DC143C;
+  border-radius: 5px;
+  display: table;
+  width: 100%;
+}
+
+#error_explanation {
+  display: none;
+  // width: 450px;
+  // border: 2px solid red;
+  // padding: 7px;
+  // padding-bottom: 0;
+  // margin-bottom: 20px;
+  // background-color: #f0f0f0;
+  //
+  // h2 {
+  //   text-align: left;
+  //   font-weight: bold;
+  //   padding: 5px 5px 5px 15px;
+  //   font-size: 12px;
+  //   margin: -7px;
+  //   margin-bottom: 0px;
+  //   background-color: #c00;
+  //   color: #fff;
+  // }
+  //
+  // ul li {
+  //   font-size: 12px;
+  //   list-style: square;
+  // }
+}
+.bar1change{
+  transform: rotate(-45deg) translate(-5px, 6px) scale(1.2);
+  transition: 0.4s;
+}
+.bar2change{
+  opacity: 0;
+  transition: 0.4s;
+}
+.bar3change{
+  transform: rotate(45deg) translate(-2px, -4px) scale(1.2);
+  transition: 0.4s;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url(pic.jpg);
+
+    /* Set a specific height */
+    // min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+}

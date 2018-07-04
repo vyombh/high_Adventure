@@ -1,0 +1,43 @@
+<%= form_for(@pricing) do |f| %>
+  <% if @pricing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pricing.errors.count, "error") %> prohibited this pricing from being saved:</h2>
+
+      <ul>
+      <% @pricing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :baseprice %><br>
+    <%= f.text_field :baseprice %>
+  </div>
+  <div class="field">
+    <%= f.label :lunch %><br>
+    <%= f.text_field :lunch %>
+  </div>
+  <div class="field">
+    <%= f.label :dinner %><br>
+    <%= f.text_field :dinner %>
+  </div>
+  <div class="field">
+    <%= f.label :breakfast %><br>
+    <%= f.text_field :breakfast %>
+  </div>
+  <div class="field">
+    <%= f.label :select_food_scheme %><br>
+    <%= f.select :scheme, [['No food','0'],['Only Breakfast','1'],['Only Lunch','2'],['Only Dinner','3'],['Breakfast and Lunch','4'],['Lunch and Dinner','5'],['Breakfast and Dinner','6'],['Breakfast and Lunch and Dinner','7']] %>
+  </div>
+  <div class="field">
+   
+    <%=f.hidden_field :roomtype_id , value:params[:room_id]%>
+    
+  </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

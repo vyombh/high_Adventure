@@ -1,0 +1,568 @@
+<%= form_for(@hotel) do |f| %>
+  <% if @hotel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+
+      <ul>
+      <% @hotel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hotelname %><sup>*</sup><br>
+    <%= f.text_field :hotelname, :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :hoteltype %><sup>*</sup><br>
+    <%= f.text_field :hoteltype , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :chainname %><sup>*</sup><br>
+    <%= f.text_field :chainname , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :floor %><sup>*</sup><br>
+    <%= f.number_field :floor , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :currency %><sup>*</sup><br>
+    <%= f.text_field :currency , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :rating %><sup>*</sup><br>
+    <%= f.text_field :rating , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :year %><sup>*</sup><br>
+    <%= f.number_field :year , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :checkinhrsfrom %><br>
+    <%= f.number_field :checkinhrsfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkinminfrom %><br>
+    <%= f.number_field :checkinminfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkinampmfrom %><br>
+    <%= f.text_field :checkinampmfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkinhrsto %><br>
+    <%= f.number_field :checkinhrsto %>
+  </div>
+  <div class="field">
+    <%= f.label :checkinminto %><br>
+    <%= f.number_field :checkinminto %>
+  </div>
+  <div class="field">
+    <%= f.label :checkinampmto %><br>
+    <%= f.text_field :checkinampmto %>
+  </div>
+  <div class="field">
+    <%= f.label :checkouthrsfrom %><br>
+    <%= f.number_field :checkouthrsfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkoutminfrom %><br>
+    <%= f.number_field :checkoutminfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkoutampmfrom %><br>
+    <%= f.text_field :checkoutampmfrom %>
+  </div>
+  <div class="field">
+    <%= f.label :checkouthrsto %><br>
+    <%= f.number_field :checkouthrsto %>
+  </div>
+  <div class="field">
+    <%= f.label :checkoutminto %><br>
+    <%= f.number_field :checkoutminto %>
+  </div>
+  <div class="field">
+    <%= f.label :checkoutampmto %><br>
+    <%= f.text_field :checkoutampmto %>
+  </div>
+   <div class="field">
+    <%= f.label :city %><sup>*</sup><br>
+    <%= f.text_field :city, :disabled=>true%>
+  </div>
+
+  </div>
+    <%= f.label :streetname %><sup>*</sup><br>
+    <%= f.text_field :streetname, :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :buildingname%><sup>*</sup><br>
+    <%= f.text_field :buildingname , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :state%><sup>*</sup><br>
+    <%= f.text_field :state , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :country%><sup>*</sup><br>
+    <%= f.text_field :country , :disabled=>true%>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><sup>*</sup><br>
+    <%= f.text_field :zipcode , :disabled=>true%>
+  </div>
+   ---------basic---------
+  <%= f.fields_for :basic do |f1|%>
+    <div class="field">
+    <%= f1.label :parking %>
+    <% if @hotel.basic[:parking] == '1'%>
+      <%= f1.check_box :parking,checked: true%>
+    <%else%>
+      <%= f1.check_box :parking %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :gym %>
+    <% if @hotel.basic[:gym] == '1'%>
+      <%= f1.check_box :gym,checked: true%>
+    <%else%>
+      <%= f1.check_box :gym %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :spa %>
+    <% if @hotel.basic[:spa] == '1'%>
+      <%= f1.check_box :spa,checked: true%>
+    <%else%>
+      <%= f1.check_box :spa %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :pool %>
+     <% if @hotel.basic[:pool] == '1'%>
+      <%= f1.check_box :pool,checked: true%>
+    <%else%>
+      <%= f1.check_box :pool %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :bar %>
+     <% if @hotel.basic[:bar] == '1'%>
+      <%= f1.check_box :bar,checked: true%>
+    <%else%>
+      <%= f1.check_box :bar %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :restaurant %>
+     <% if @hotel.basic[:restaurant] == '1'%>
+      <%= f1.check_box :restaurant,checked: true%>
+    <%else%>
+      <%= f1.check_box :restaurant %>
+    <% end %>
+    </div>
+    <div class="field">
+    <%= f1.label :lift %>
+     <% if @hotel.basic[:lift] == '1'%>
+      <%= f1.check_box :lift,checked: true%>
+    <%else%>
+      <%= f1.check_box :lift %>
+    <% end %>
+    </div>
+  <%end%>
+    ----------media and technology----------
+  <%= f.fields_for :media do |f1|%>
+    <div class="field">
+      <%= f1.label 'computer' %>
+        <% if @hotel.media[:computer] == '1'%>
+          <%= f1.check_box :computer,checked: true%>
+        <%else%>
+          <%= f1.check_box :computer %>
+        <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console' %>
+      <% if @hotel.media[:gameconsole] == '1'%>
+          <%= f1.check_box :gameconsole,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsole %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console nintendro wii' %>
+      <% if @hotel.media[:gameconsolenintendrowii] == '1'%>
+          <%= f1.check_box :gameconsolenintendrowii,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsolenintendrowii %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console ps2' %>
+      <% if @hotel.media[:gameconsoleps2] == '1'%>
+          <%= f1.check_box :gameconsoleps2,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsoleps2 %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console ps3' %>
+      <% if @hotel.media[:gameconsoleps3] == '1'%>
+          <%= f1.check_box :gameconsoleps3,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsoleps3 %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console ps4' %>
+      <% if @hotel.media[:gameconsoleps4] == '1'%>
+          <%= f1.check_box :gameconsoleps4,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsoleps4 %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'game console xbox 360' %>
+      <% if @hotel.media[:gameconsolexbox360] == '1'%>
+          <%= f1.check_box :gameconsolexbox360,checked: true%>
+      <%else%>
+        <%= f1.check_box :gameconsolexbox360 %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'laptop' %>
+      <% if @hotel.media[:laptop] == '1'%>
+          <%= f1.check_box :laptop,checked: true%>
+      <%else%>
+        <%= f1.check_box :laptop %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'ipad' %>
+      <% if @hotel.media[:ipad] == '1'%>
+          <%= f1.check_box :ipad,checked: true%>
+      <%else%>
+        <%= f1.check_box :ipad %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'cable channels' %>
+      <% if @hotel.media[:cablechannels] == '1'%>
+          <%= f1.check_box :cablechannels,checked: true%>
+      <%else%>
+        <%= f1.check_box :cablechannels %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'CD player' %>
+      <% if @hotel.media[:cdplayer] == '1'%>
+          <%= f1.check_box :cdplayer,checked: true%>
+      <%else%>
+        <%= f1.check_box :cdplayer %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'dvd player' %>
+      <% if @hotel.media[:dvdplayer] == '1'%>
+          <%= f1.check_box :dvdplayer,checked: true%>
+      <%else%>
+        <%= f1.check_box :dvdplayer %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'fax' %>
+      <% if @hotel.media[:fax] == '1'%>
+          <%= f1.check_box :fax,checked: true%>
+       <%else%>
+        <%= f1.check_box :fax %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'laptop safe' %>
+      <% if @hotel.media[:laptopsafe] == '1'%>
+          <%= f1.check_box :laptopsafe,checked: true%>
+      <%else%>
+        <%= f1.check_box :laptopsafe %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'flat screen TV' %>
+      <% if @hotel.media[:flatscreentv] == '1'%>
+          <%= f1.check_box :flatscreentv,checked: true%>
+      <%else%>
+        <%= f1.check_box :flatscreentv %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'pay per video channels' %>
+      <% if @hotel.media[:paypervideochannels] == '1'%>
+          <%= f1.check_box :paypervideochannels,checked: true%>
+      <%else%>
+        <%= f1.check_box :paypervideochannels %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'radio' %>
+      <% if @hotel.media[:radio] == '1'%>
+          <%= f1.check_box :radio,checked: true%>
+      <%else%>
+        <%= f1.check_box :radio %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'satellite channels' %>
+      <% if @hotel.media[:satellitechannels] == '1'%>
+          <%= f1.check_box :satellitechannels,checked: true%>
+      <%else%>
+        <%= f1.check_box :satellitechannels %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'telephone' %>
+      <% if @hotel.media[:telephone] == '1'%>
+          <%= f1.check_box :telephone,checked: true%>
+      <%else%>
+        <%= f1.check_box :telephone %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'tv' %>
+      <% if @hotel.media[:tv] == '1'%>
+          <%= f1.check_box :tv,checked: true%>
+      <%else%>
+        <%= f1.check_box :tv %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'video' %>
+      <% if @hotel.media[:video] == '1'%>
+          <%= f1.check_box :video,checked: true%>
+      <%else%>
+        <%= f1.check_box :video %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'video games' %>
+      <% if @hotel.media[:videogames] == '1'%>
+          <%= f1.check_box :videogames,checked: true%>
+      <%else%>
+        <%= f1.check_box :videogames %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'blu ray player' %>
+      <% if @hotel.media[:blurayplayer] == '1'%>
+          <%= f1.check_box :blurayplayer,checked: true%>
+      <%else%>
+        <%= f1.check_box :blurayplayer %>
+      <% end %>
+    </div>
+  <%end%>
+
+    ---------food and drink--------
+  <%= f.fields_for :food do |f1|%>
+    <div class="field">
+      <%= f1.label 'dining area' %>
+      <% if @hotel.food[:diningarea] == '1'%>
+          <%= f1.check_box :diningarea,checked: true%>
+      <%else%>
+        <%= f1.check_box :diningarea %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f1.label 'dining table' %>
+      <% if @hotel.food[:diningtable] == '1'%>
+          <%= f1.check_box :diningtable,checked: true%>
+      <%else%>
+        <%= f1.check_box :diningtable %>
+       <% end %> 
+    </div>
+
+    <div class="field">
+      <%= f1.label 'barbecue' %>
+      <% if @hotel.food[:barbecue] == '1'%>
+          <%= f1.check_box :barbecue,checked: true%>
+      <%else%>
+        <%= f1.check_box :barbecue %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'stovetop' %>
+      <% if @hotel.food[:stovetop] == '1'%>
+          <%= f1.check_box :stovetop,checked: true%>
+      <%else%>
+        <%= f1.check_box :stovetop %>
+      <% end %>  
+    </div>
+    
+    <div class="field">
+      <%= f1.label 'toaster' %>
+      <% if @hotel.food[:toaster] == '1'%>
+          <%= f1.check_box :toaster,checked: true%>
+      <%else%>
+        <%= f1.check_box :toaster %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'outdoor dining area' %>
+      <% if @hotel.food[:outdoordiningarea] == '1'%>
+          <%= f1.check_box :outdoordiningarea,checked: true%>
+      <%else%>
+        <%= f1.check_box :outdoordiningarea %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'outdoor furniture' %>
+      <% if @hotel.food[:outdoorfurniture] == '1'%>
+          <%= f1.check_box :outdoorfurniture,checked: true%>
+      <%else%>
+        <%= f1.check_box :outdoorfurniture %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'kitchenette' %>
+      <% if @hotel.food[:kitchenette] == '1'%>
+          <%= f1.check_box :kitchenette,checked: true%>
+      <%else%>
+        <%= f1.check_box :kitchenette %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'kitchenware' %>
+      <% if @hotel.food[:kitchenware] == '1'%>
+          <%= f1.check_box :kitchenware,checked: true%>
+      <%else%>
+        <%= f1.check_box :kitchenware %>
+      <% end %>  
+    </div>
+
+    <div class="field">
+      <%= f1.label 'microwave' %>
+      <% if @hotel.food[:microwave] == '1'%>
+          <%= f1.check_box :microwave,checked: true%>
+      <%else%>
+        <%= f1.check_box :microwave %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label 'refrigerator' %>
+      <% if @hotel.food[:refrigerator] == '1'%>
+          <%= f1.check_box :refrigerator,checked: true%>
+      <%else%>
+       <%= f1.check_box :refrigerator %>
+      <% end %> 
+    </div>
+    <div class="field">
+      <%= f1.label 'tea coffee machine' %>
+      <% if @hotel.food[:teacoffeemachine] == '1'%>
+          <%= f1.check_box :teacoffeemachine,checked: true%>
+      <%else%>
+        <%= f1.check_box :teacoffeemachine %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label 'coffee machine' %>
+      <% if @hotel.food[:coffeemachine] == '1'%>
+          <%= f1.check_box :coffeemachine,checked: true%>
+      <%else%>
+        <%= f1.check_box :coffeemachine %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label 'high chair' %>
+      <% if @hotel.food[:highchair] == '1'%>
+          <%= f1.check_box :highchair,checked: true%>
+      <%else%>
+        <%= f1.check_box :highchair %>
+      <% end %>  
+    </div>
+  <%end%>
+    -----accessibilities for pwd--------
+  <%= f.fields_for :disability do |f1|%>
+    <div class="field">
+      <%= f1.label 'Room is located the ground floor' %>
+      <% if @hotel.disability[:groundfloor] == '1'%>
+          <%= f1.check_box :groundfloor,checked: true%>
+      <%else%>
+        <%= f1.check_box :groundfloor %>
+      <% end %>    
+    </div>
+    <div class="field">
+      <%= f1.label 'Room is completely wheelchair accessible' %>
+      <% if @hotel.disability[:wheelchair] == '1'%>
+          <%= f1.check_box :wheelchair,checked: true%>
+      <%else%>
+        <%= f1.check_box :wheelchair %>
+      <% end %>    
+    </div>
+    <div class="field">
+      <%= f1.label 'upper floor accessible by elevator' %>
+      <% if @hotel.disability[:elevator] == '1'%>
+          <%= f1.check_box :elevator,checked: true%>
+      <%else%>
+        <%= f1.check_box :elevator %>
+      <% end %>    
+    </div>
+    <div class="field">
+      <%= f1.label 'upper floor accessible by stairs only' %>
+      <% if @hotel.disability[:staircaseonly] == '1'%>
+          <%= f1.check_box :staircaseonly,checked: true%>
+      <%else%>
+        <%= f1.check_box :staircaseonly %>
+      <% end %>    
+    </div>
+    <div class="field">
+      <%= f1.label 'toilets with grab rails' %>
+      <% if @hotel.disability[:grabrailstoilet] == '1'%>
+          <%= f1.check_box :grabrailstoilet,checked: true%>
+      <%else%>
+        <%= f1.check_box :grabrailstoilet %>
+      <% end %>    
+    </div>
+  <%end%>
+  ---------entertainment and facilities--------
+  <%= f.fields_for :entertainment do |f1|%>
+
+    <div class="field">
+      <%= f1.label 'baby safety gates' %>
+      <% if @hotel.entertainment[:babysafetygases] == '1'%>
+        <%= f1.check_box :babysafetygases,checked: true%>
+      <%else%>
+        <%= f1.check_box :babysafetygases %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'Board Games/ Puzzles' %>
+      <% if @hotel.entertainment[:boardgamespuzzles] == '1'%>
+        <%= f1.check_box :boardgamespuzzles,checked: true%>
+      <%else%>
+        <%= f1.check_box :boardgamespuzzles %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label 'Books/ DVD/ Music' %>
+      <% if @hotel.entertainment[:books] == '1'%>
+        <%= f1.check_box :books,checked: true%>
+      <%else%>
+        <%= f1.check_box :books %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label ' Child safety sockets' %>
+      <% if @hotel.entertainment[:safetysockets] == '1'%>
+        <%= f1.check_box :safetysockets,checked: true%>
+      <%else%>
+        <%= f1.check_box :safetysockets %>
+      <% end %>  
+    </div>
+  <%end%> 
+  <div class="actions">
+    <%= f.submit %>
+  </div>    
+  <% end %>

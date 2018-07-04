@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Baseprice:</strong>
+  <%= @pricing.baseprice %>
+</p>
+
+<p>
+  <strong>Lunch:</strong>
+  <%= @pricing.lunch %>
+</p>
+
+<p>
+  <strong>Dinner:</strong>
+  <%= @pricing.dinner %>
+</p>
+
+<p>
+  <strong>Breakfast:</strong>
+  <%= @pricing.breakfast %>
+</p>
+
+<p>
+  <strong>Scheme:</strong>
+  <%= @pricing.scheme %>
+</p>
+
+<p>
+  <strong>Roomtype:</strong>
+  <%= @pricing.roomtype %>
+</p>
+
+<%= link_to 'Edit', edit_pricing_path(@pricing) %> |
+<%= link_to 'Back', pricings_path %>

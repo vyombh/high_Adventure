@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotelname: MyString
+  hoteltype: MyString
+  chainname: MyString
+  floor: 1
+  currency: MyString
+  rating: 1.5
+  year: 1
+  checkinhrsfrom: 1
+  checkinminfrom: 1
+  checkinampmfrom: MyString
+  checkinhrsto: 1
+  checkinminto: 1
+  checkinampmto: MyString
+  checkouthrsfrom: 1
+  checkoutminfrom: 1
+  checkoutampmfrom: MyString
+  checkouthrsto: 1
+  checkoutminto: 1
+  checkoutampmto: MyString
+  streetname: MyString
+  buildingname: MyString
+  parking: false
+  gym: false
+  spa: false
+  pool: false
+  bar: false
+  restaurant: false
+  lift: false
+  user_id: 
+
+two:
+  hotelname: MyString
+  hoteltype: MyString
+  chainname: MyString
+  floor: 1
+  currency: MyString
+  rating: 1.5
+  year: 1
+  checkinhrsfrom: 1
+  checkinminfrom: 1
+  checkinampmfrom: MyString
+  checkinhrsto: 1
+  checkinminto: 1
+  checkinampmto: MyString
+  checkouthrsfrom: 1
+  checkoutminfrom: 1
+  checkoutampmfrom: MyString
+  checkouthrsto: 1
+  checkoutminto: 1
+  checkoutampmto: MyString
+  streetname: MyString
+  buildingname: MyString
+  parking: false
+  gym: false
+  spa: false
+  pool: false
+  bar: false
+  restaurant: false
+  lift: false
+  user_id: 

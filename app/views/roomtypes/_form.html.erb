@@ -1,0 +1,453 @@
+<%= form_for(@roomtype) do |f| %>
+  <% if @roomtype.errors.any? %>
+    <div>
+      <%= pluralize(@roomtype.errors.count, "error") %> prohibited this roomtype from being saved:>
+
+      <ul>
+      <% @roomtype.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :room_type %><br>
+    <%= f.text_field :typename %>
+  </div>
+  <div class="field">
+    <%= f.label :Number_of_rooms %><br>
+    <%= f.number_field :rooms %>
+  </div>
+  <div class="field">
+    <%= f.label :bed_type %><br>
+    <%= f.text_field :beds %>
+  </div>
+  <div class="field">
+    <%= f.label 'Adults( base )'%><br>
+    <%= f.number_field :baseadults %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Adults( maximum )' %><br>
+    <%= f.number_field :maximumadults %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Infants' %><br>
+    <%= f.number_field :infants %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Children( base )'%><br>
+    <%= f.number_field :basechildren %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Children( Maximum )' %><br>
+    <%= f.number_field :maximumchildren %>
+  </div>
+
+  
+  
+  <div class="field">
+    <%= f.label 'Total Guests' %><br>
+    <%= f.number_field :maximumguests %>
+  </div>
+  
+  ----basic-----
+  <%= f.fields_for :basic do |f1|%>
+    <div class="field">
+      <%= f1.label 'clothes rack' %>
+      <% if @roomtype.basic[:clothesracks] == '1'%>
+        <%= f1.check_box :clothesracks,checked: true%>
+      <%else%>
+        <%= f1.check_box :clothesracks%>
+      <%end%>
+    </div>
+    <div class="field">
+      <%= f1.label 'drying racking' %>
+      <% if @roomtype.basic[:dryingracking] == '1'%>
+        <%= f1.check_box :dryingracking,checked: true%>
+      <%else%>
+        <%= f1.check_box :dryingracking %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'fold up bed' %>
+      <% if @roomtype.basic[:foldupbed] == '1'%>
+        <%= f1.check_box :foldupbed,checked: true%>
+      <%else%>
+        <%= f1.check_box :foldupbed %>
+      <% end %>  
+    </div>
+    <div class="field">
+      <%= f1.label 'sofabed' %>
+      <% if @roomtype.basic[:sofabed] == '1'%>
+        <%= f1.check_box :sofabed,checked: true%>
+      <%else%>
+        <%= f1.check_box :sofabed %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'wardrobe' %>
+      <% if @roomtype.basic[:wardrobe] == '1'%>
+        <%= f1.check_box :wardrobe,checked: true%>
+      <%else%>
+        <%= f1.check_box :wardrobe %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'carpeted' %>
+      <% if @roomtype.basic[:carpeted] == '1'%>
+        <%= f1.check_box :carpeted,checked: true%>
+      <%else%>
+        <%= f1.check_box :carpeted %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'walking closet' %>
+      <% if @roomtype.basic[:walkingcloset] == '1'%>
+        <%= f1.check_box :walkingcloset,checked: true%>
+      <%else%>
+        <%= f1.check_box :walkingcloset %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'extra long beds' %>
+      <% if @roomtype.basic[:extralongbeds] == '1'%>
+        <%= f1.check_box :extralongbeds,checked: true%>
+      <%else%>
+        <%= f1.check_box :extralongbeds %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'fireplace' %>
+      <% if @roomtype.basic[:fireplace] == '1'%>
+        <%= f1.check_box :fireplace,checked: true%>
+      <%else%>
+        <%= f1.check_box :fireplace %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'heater' %>
+      <% if @roomtype.basic[:heater] == '1'%>
+        <%= f1.check_box :heater,checked: true%>
+      <%else%>
+        <%= f1.check_box :heater %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'interconnecting rooms' %>
+      <% if @roomtype.basic[:interconnectingrooms] == '1'%>
+        <%= f1.check_box :interconnectingrooms,checked: true%>
+      <%else%>
+        <%= f1.check_box :interconnectingrooms %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'iron' %>
+      <% if @roomtype.basic[:iron] == '1'%>
+        <%= f1.check_box :iron,checked: true%>
+      <%else%>
+        <%= f1.check_box :iron %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'desk' %>
+      <% if @roomtype.basic[:desk] == '1'%>
+        <%= f1.check_box :desk,checked: true%>
+      <%else%>
+        <%= f1.check_box :desk %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'wifi' %>
+      <% if @roomtype.basic[:wifi] == '1'%>
+        <%= f1.check_box :wifi,checked: true%>
+      <%else%>
+        <%= f1.check_box :wifi %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f1.label 'smoking' %>
+      <% if @roomtype.basic[:smoking] == '1'%>
+        <%= f1.check_box :smoking,checked: true%>
+      <%else%>
+        <%= f1.check_box :smoking %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f1.label 'TV' %>
+      <% if @roomtype.basic[:tv] == '1'%>
+        <%= f1.check_box :tv,checked: true%>
+      <%else%>
+        <%= f1.check_box :tv %>
+      <% end %>
+    </div>
+    
+  <%end%>
+
+    -----------bathroom------------
+  <%= f.fields_for :restroom do |f2| %>
+    <div class="field">
+      <%= f2.label 'bathroom' %>
+      <% if @roomtype.restroom[:bathroom] == '1'%>
+        <%= f2.check_box :bathroom,checked: true%>
+      <%else%>
+      <%= f2.check_box :bathroom %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f2.label 'toiletpaper' %>
+      <% if @roomtype.restroom[:toiletpaper] == '1'%>
+        <%= f2.check_box :toiletpaper,checked: true%>
+      <%else%>
+      <%= f2.check_box :toiletpaper %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'bathtub' %>
+      <% if @roomtype.restroom[:bathtub] == '1'%>
+        <%= f2.check_box :bathtub,checked: true%>
+      <%else%>
+      <%= f2.check_box :bathtub %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'shower' %>
+      <% if @roomtype.restroom[:shower] == '1'%>
+        <%= f2.check_box :shower,checked: true%>
+      <%else%>
+      <%= f2.check_box :shower %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'bathrobe' %>
+      <% if @roomtype.restroom[:bathrobe] == '1'%>
+        <%= f2.check_box :bathrobe,checked: true%>
+      <%else%>
+      <%= f2.check_box :bathrobe %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'free toiletries' %>
+      <% if @roomtype.restroom[:freetoiletries] == '1'%>
+        <%= f2.check_box :freetoiletries,checked: true%>
+      <%else%>
+      <%= f2.check_box :freetoiletries %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'hair dryer' %>
+      <% if @roomtype.restroom[:hairdryer] == '1'%>
+        <%= f2.check_box :hairdryer,checked: true%>
+      <%else%>
+      <%= f2.check_box :hairdryer %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'spa tub' %>
+      <% if @roomtype.restroom[:spatub] == '1'%>
+        <%= f2.check_box :spatub,checked: true%>
+      <%else%>
+      <%= f2.check_box :spatub %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'shared bathroom' %>
+      <% if @roomtype.restroom[:sharedbathroom] == '1'%>
+        <%= f2.check_box :sharedbathroom,checked: true%>
+      <%else%>
+      <%= f2.check_box :sharedbathroom %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'slippers' %>
+      <% if @roomtype.restroom[:slippers] == '1'%>
+        <%= f2.check_box :slippers,checked: true%>
+      <%else%>
+      <%= f2.check_box :slippers %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'toilets' %>
+      <% if @roomtype.restroom[:toilets] == '1'%>
+        <%= f2.check_box :toilets,checked: true%>
+      <%else%>
+      <%= f2.check_box :toilets %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f2.label 'geyser' %>
+      <% if @roomtype.restroom[:geyser] == '1'%>
+        <%= f2.check_box :geyser,checked: true%>
+      <%else%>
+      <%= f2.check_box :geyser %>
+      <% end %>
+    </div>
+  <%end%>
+  -------------services-------------
+  <%= f.fields_for :services do |f3| %>
+    <div class="field">
+      <%= f3.label 'executive lounge access' %>
+      <% if @roomtype.services[:executiveloungeaccess] == '1'%>
+        <%= f3.check_box :executiveloungeaccess,checked: true%>
+      <%else%>
+        <%= f3.check_box :executiveloungeaccess %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'alarm clock' %>
+      <% if @roomtype.services[:alarmclock] == '1'%>
+        <%= f3.check_box :alarmclock,checked: true%>
+      <%else%>
+        <%= f3.check_box :alarmclock %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'wake up service' %>
+      <% if @roomtype.services[:wakeupservice] == '1'%>
+        <%= f3.check_box :wakeupservice,checked: true%>
+      <%else%>
+        <%= f3.check_box :wakeupservice %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'linens' %>
+      <% if @roomtype.services[:linens] == '1'%>
+        <%= f3.check_box :linens,checked: true%>
+      <%else%>
+        <%= f3.check_box :linens %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'sheets' %>
+      <% if @roomtype.services[:sheets] == '1'%>
+        <%= f3.check_box :sheets,checked: true%>
+      <%else%>
+        <%= f3.check_box :sheets %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'ac' %>
+      <% if @roomtype.services[:ac] == '1'%>
+        <%= f3.check_box :ac,checked: true%>
+      <%else%>
+        <%= f3.check_box :ac %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'cooler' %>
+      <% if @roomtype.services[:cooler] == '1'%>
+        <%= f3.check_box :cooler,checked: true%>
+      <%else%>
+        <%= f3.check_box :cooler %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'fan' %>
+      <% if @roomtype.services[:fan] == '1'%>
+        <%= f3.check_box :fan,checked: true%>
+      <%else%>
+        <%= f3.check_box :fan %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'kettle' %>
+      <% if @roomtype.services[:kettle] == '1'%>
+        <%= f3.check_box :kettle,checked: true%>
+      <%else%>
+        <%= f3.check_box :kettle %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f3.label 'laundry' %>
+      <% if @roomtype.services[:laundry] == '1'%>
+        <%= f3.check_box :laundry,checked: true%>
+      <%else%>
+        <%= f3.check_box :laundry %>
+      <% end %>
+    </div>
+  <%end%>
+  --------------views---------------
+  <%= f.fields_for :view do |f4| %>
+
+    <div class="field">
+      <%= f4.label 'balcony' %>
+      <% if @roomtype.view[:balcony] == '1'%>
+        <%= f4.check_box :balcony,checked: true%>
+      <%else%>
+      <%= f4.check_box :balcony %>
+      <% end %>
+    </div>
+    
+    <div class="field">
+      <%= f4.label 'terrace' %>
+      <% if @roomtype.view[:terrace] == '1'%>
+        <%= f4.check_box :terrace,checked: true%>
+      <%else%>
+        <%= f4.check_box :terrace %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'city view' %>
+      <% if @roomtype.view[:cityview] == '1'%>
+        <%= f4.check_box :cityview,checked: true%>
+      <%else%>
+        <%= f4.check_box :cityview %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'lake view' %>
+      <% if @roomtype.view[:lakeview] == '1'%>
+        <%= f4.check_box :lakeview,checked: true%>
+      <%else%>
+        <%= f4.check_box :lakeview %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'landmark view' %>
+      <% if @roomtype.view[:landmarkview] == '1'%>
+        <%= f4.check_box :landmarkview,checked: true%>
+      <%else%>
+        <%= f4.check_box :landmarkview %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'pool view' %>
+      <% if @roomtype.view[:poolview] == '1'%>
+        <%= f4.check_box :poolview,checked: true%>
+      <%else%>
+        <%= f4.check_box :poolview %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'river view' %>
+      <% if @roomtype.view[:riverview] == '1'%>
+        <%= f4.check_box :riverview,checked: true%>
+      <%else%>
+        <%= f4.check_box :riverview %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f4.label 'ocean view' %>
+      <% if @roomtype.view[:oceanview] == '1'%>
+        <%= f4.check_box :oceanview,checked: true%>
+      <%else%>
+        <%= f4.check_box :oceanview %> 
+      <% end %>
+    </div>
+  <%end%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+
+
+
+
+

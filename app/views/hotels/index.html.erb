@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Hotels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hotelname</th>
+      <th>Hoteltype</th>
+      <th>Chainname</th>
+      <th>Floor</th>
+      <th>Currency</th>
+      <th>Rating</th>
+      <th>Year</th>
+      <th>Checkinhrsfrom</th>
+      <th>Checkinminfrom</th>
+      <th>Checkinampmfrom</th>
+      <th>Checkinhrsto</th>
+      <th>Checkinminto</th>
+      <th>Checkinampmto</th>
+      <th>Checkouthrsfrom</th>
+      <th>Checkoutminfrom</th>
+      <th>Checkoutampmfrom</th>
+      <th>Checkouthrsto</th>
+      <th>Checkoutminto</th>
+      <th>Checkoutampmto</th>
+      <th>Streetname</th>
+      <th>Buildingname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <td><%= hotel.hotelname %></td>
+        <td><%= hotel.hoteltype %></td>
+        <td><%= hotel.chainname %></td>
+        <td><%= hotel.floor %></td>
+        <td><%= hotel.currency %></td>
+        <td><%= hotel.rating %></td>
+        <td><%= hotel.year %></td>
+        <td><%= hotel.checkinhrsfrom %></td>
+        <td><%= hotel.checkinminfrom %></td>
+        <td><%= hotel.checkinampmfrom %></td>
+        <td><%= hotel.checkinhrsto %></td>
+        <td><%= hotel.checkinminto %></td>
+        <td><%= hotel.checkinampmto %></td>
+        <td><%= hotel.checkouthrsfrom %></td>
+        <td><%= hotel.checkoutminfrom %></td>
+        <td><%= hotel.checkoutampmfrom %></td>
+        <td><%= hotel.checkouthrsto %></td>
+        <td><%= hotel.checkoutminto %></td>
+        <td><%= hotel.checkoutampmto %></td>
+        <td><%= hotel.streetname %></td>
+        <td><%= hotel.buildingname %></td>
+        <td><%= link_to 'Show', hotel %></td>
+        <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>
+        <td><%= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hotel', new_hotel_path %>

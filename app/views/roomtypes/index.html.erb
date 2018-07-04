@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Roomtypes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Typename</th>
+      <th>Rooms</th>
+      <th>Beds</th>
+      <th>Adults</th>
+      <th>Children</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+    <%@roomtypes = current_user.hotel.roomtypes.all%>
+  <tbody>
+    <% @roomtypes.each do |roomtype| %>
+      <tr>
+        <td><%= roomtype.typename %></td>
+        <td><%= roomtype.rooms %></td>
+        <td><%= roomtype.beds %></td>
+        <td><%= roomtype.baseadults %></td>
+        <td><%= roomtype.basechildren %></td>
+        
+        <td><%= link_to 'Show', roomtype %></td>
+        <td><%= link_to 'Edit', edit_roomtype_path(roomtype) %></td>
+        <%if current_user&&roomtype.pricing == nil%>
+          <td><%= link_to 'add price scheme', new_pricing_path(room_id: roomtype.id) %></td>
+
+        <%else%>
+          <td><%= link_to 'edit price scheme', edit_pricing_path(id: roomtype.pricing.id,room_id: roomtype.id) %></td>
+        <%end%>
+
+
+
+        <td><%= link_to 'Destroy', roomtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Roomtype', new_roomtype_path %>

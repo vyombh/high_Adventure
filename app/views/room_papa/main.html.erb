@@ -1,0 +1,143 @@
+
+<!-- top navbar -->
+
+<div class="row">
+  <div class="container-fluid NavbarTwoTop" style="background:#f9f9f9;">
+    <div class="container">
+      <div class="col-sm-12">
+        <h3>Find Deals for Any Season</h3>
+        <h5>From cozy country homes to funky city apartments</h5>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-default NavbarTwo" id="NavbarTwo">
+    <form class="container"  action="/room_papa/search">
+      <ul class="nav navbar-nav NavbarStyle">
+        <li class="col-md-3 FontSize">
+          <div class="form">
+            <div class="input-group ">
+            <span class="input-group-addon EdgesSharp"><i id="DestinationSymbol" class="glyphicon glyphicon-map-marker"></i></span>
+            <input id="Destination" type="text" class="form-control EdgesSharp input-lg FontForInput" placeholder="Destination" name = "city" required="true">
+            </div>
+          </div>
+        </li>
+        <li class="col-md-4 FontSize">
+          <div class="form">
+            <div class="input-group">
+              <span class="input-group-addon EdgesSharp"><i class="glyphicon glyphicon-calendar"></i></span>
+              <%starting = Date.today + 1%>
+              <%starting = starting.to_s.split('-')[1] + '/' + starting.to_s.split('-')[2] + '/' + starting.to_s.split('-')[0]%>
+              <%ending = Date.today + 2%>
+              <%ending = ending.to_s.split('-')[1] + '/' + ending.to_s.split('-')[2] + '/' + ending.to_s.split('-')[0]%>
+              <input class="form-control EdgesSharp input-lg FontForInput" id="Calendar" type="text" name="daterange" required="true" value="<%= starting + ' ' + '-' + ' ' + ending%>"/>
+            </div>
+          </div>
+        </li>
+        <li class="col-md-3 Font FontSize">
+
+          <div class="form-inline" style="background:white">
+            <div class="input-group" style="">
+              <span class="input-group-addon" >
+                <i id="DestinationSymbol" class="glyphicon glyphicon-bed"></i>
+              </span>
+              <div class="col-sm-11 " style="background:white">
+                <span id="myBtn" class="btn EdgesSharp input-lg FontForInput pull-left"  data-toggle="dropdown"></span>
+                <ul class="dropdown-menu EdgesSharp" style="background:white">
+                  <div class="DropdownTriangleOne"></div>
+                  <div class="DropdownTriangleTwo"></div>
+                  <li class="LeftPadding TopPadding EdgesSharp"><label>Rooms</label><input id="Rooms" class="RightPadding" type="number" min="1" max="5" value="1" name="rooms"></li>
+                 <hr>
+                  <li class="LeftPadding EdgesSharp"><label>Adults</label><input id="Adults" class="RightPadding" type="number" min="1" max="30" value="2" name="adults"></li>
+                  <hr>
+                  <li class="LeftPadding BottomPadding EdgesSharp"><label>Children</label><input id="Children" class="RightPadding" type="number" min="0" max="30" value="0" name="children"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+        </li>
+        <li class="col-md-2">
+          <div class="form">
+            
+            <input type="submit" value="Search" class="btn btn-primary btn-block EdgesSharp btn-lg">
+            
+          </div>
+        </li>
+      </ul>
+    </form>
+  </nav>
+</div>
+<!-- top navbar end -->
+
+<div class="container" >
+  <div class="col-sm-2 col-sm-offset-5 text-center Destination" >
+    <h3 id="DestinationHeading">Destinations</h3>
+  </div>
+</div>
+<div class="container">
+  <div class="col-sm-6">
+    <div class="box">
+      <h3>Manali</h3>
+      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
+      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="box">
+      <h3>Manali</h3>
+      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
+      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="box">
+      <h3>Manali</h3>
+      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
+      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <button class="accordion">Taste Of India <span class="label label-primary">Restaurant</span></button>
+  <div class="panel">
+    <div class="row">
+      <div class="col-sm-7">
+        <h3>Taste of India</h3>
+          It is a quirky, chic, modern Indian restaurant, where guests enjoy a sensory experience through the finest, Modern Indian and Global cuisines, with a high energy ambiance.
+          Infusing delights of the Bollywood tadka.
+          On the top we present Indian, Italian & Chinese range of cuisines. where culinary art meets the alchemy of modern presentations
+          and cooking techniques. Flowing smoke, pebble like smooth spheres,
+          Bollywood theatrics and culinary illusion are a few aspects which describe Taste of India Restaurant experience.
+          Elements of traditional & modern day cooking techniques, customized equipments, Mud Oven Baked Pizzas and ambience theatrics transform flavours for a unique, high energy,
+          modernist and genre defining dining experience.
+          <strong>
+            <ul>
+              <li>Quirky, Chic, Modern Bollywood Style Arena.</li>
+              <li>Indian, south Indian, Italian & Chinese range of cuisines.</li>
+              <li>Mud Oven Baked Pizzas.</li>
+              <li>Cooking techniques:- Flowing smoke, pebble like smooth spheres.</li>
+              <li>Bollywood theatrics and culinary illusion are a few aspects.</li>
+            </ul>
+          </strong>
+
+          Located at 1.5 km far from Mall Road, Near Indian Oil Pump, Vashishth Chowk Manali.
+      </div>
+      <div class="col-sm-5">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18084.434135276973!2d77.18083456185036!3d32.25843393626809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390487f1326ece2d%3A0x8ab396486c45aed0!2sTaste+of+India!5e0!3m2!1sen!2sin!4v1528975242837" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <button class="accordion">Section 2</button>
+  <div class="panel">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+
+  <button class="accordion">Section 3</button>
+  <div class="panel">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</div> -->

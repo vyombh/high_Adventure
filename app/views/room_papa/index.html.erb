@@ -1,0 +1,222 @@
+<div class="container" style="background-color: #f9f9f9;">
+	<form class="form-horizontal">
+    	<%if current_user && !current_user.hotel%>
+	
+	Your have not filled your details yet!!
+	<BR><BR>
+	Kindly fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%>	
+
+<%else%>
+
+
+<p id="notice"><%= notice %></p>
+
+<%if current_user.hotel.roomtypes.count>0%>
+
+	
+	 
+	<button class="btn btn-warning pull-right btn-md"><%@hotel = current_user.hotel%><%= link_to 'Edit', edit_hotel_path(@hotel) %></button>
+		<h1 align="center" style="text-decoration: underline;">Hotel Info</h1>
+	<h2 class="col-sm-offset-2">Basic Info</h2>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="HotelName">Hotel Name:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.hotelname %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="HotelType">Hoteltype:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.hoteltype %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Chainname">Chainname:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.chainname %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Floor">Floor:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.floor %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Currency">Currency:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.currency %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Rating">Rating:</label>
+		<div class="col-sm-4">
+          <input type="range" class="form-control" id="StarRatingSlider" min="0" max="7" step="0.1" name="StarRating" value=<%= @hotel.rating %> disabled="">
+        </div>
+		 	<label class="col-sm-1" style="padding-top: 5px;" disabled><%= @hotel.rating %></label>	
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Year">Year:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.year %></div>	
+		</div>
+	</div>
+		
+
+	<div class="row">
+		<div class="col-sm-2">
+			<label class="control-label pull-right" for="CheckInTime" >Check In Time:</label>
+		</div>
+		<div class="col-sm-4">
+			<div class="row" >
+				<label class="control-label col-sm-offset-5" for="CheckInTimeFrom">From</label>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinhrsfrom %>:</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinminfrom %><span>0</span></div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinampmfrom %></div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="row" >
+				<label class="control-label col-sm-offset-5" for="CheckInTimeFrom">To</label>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinhrsto %>:</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinminto %><span>0</span></div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-control" disabled><%= @hotel.checkinampmto %></div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+			<div class="col-sm-2" >
+				<label class="control-label pull-right" for="CheckOutTime">Check Out Time:</label>
+			</div>
+			<div class="col-sm-4" >
+				<div class="row">
+					<label class="control-label col-sm-offset-5" for="CheckOutTimeFrom">From</label>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-control" disabled><%= @hotel.checkouthrsfrom %>:</div>
+					</div>
+					<div class="col-sm-4">
+						<%if @hotel.checkoutminfrom<10%>
+							<%c = '0' + @hotel.checkoutminfrom.to_s%>
+						<%else%>
+							<%c = @hotel.checkoutminfrom.to_s%>
+						 <%end%>
+						<div class="form-control" disabled><%=c%></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-control" disabled><%= @hotel.checkoutampmfrom %></div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="row">
+					<label class="control-label col-sm-offset-5" for="CheckOutTimeFrom">To</label>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<%if @hotel.checkouthrsto<10%>
+							<%c = '0' + @hotel.checkouthrsto.to_s%>
+						<%else%>
+							<%c = @hotel.checkouthrsto.to_s%>
+						 <%end%>
+						<div class="form-control" disabled><%=c%>:</div>
+					</div>
+					<div class="col-sm-4">
+						<%if @hotel.checkoutminto<10%>
+							<%c = '0' + @hotel.checkoutminto.to_s%>
+						<%else%>
+							<%c = @hotel.checkoutminto.to_s%>
+						 <%end%>
+						<div class="form-control" disabled><%=c%></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-control" disabled><%= @hotel.checkoutampmto %></div>
+					</div>
+					
+				</div>
+			</div>
+	</div>
+	</form>
+	<div class="col-sm-offset-2"><h2>Address</h2></div>
+	<form class="form-horizontal">
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Buildingname">Buildingname:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.buildingname %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Streetname">Streetname:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.streetname %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="City">City:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.city %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="State">State:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.state %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Country">Country:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.country %></div>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Zipcode">Zipcode:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.zipcode %></div>	
+		</div>
+	</div>
+	</form>
+
+	
+<%else%>
+	Congratulations!! your have moved one step towards completion<br>
+	kindly fill  <%=link_to "Room Types",new_roomtype_path(id: current_user.hotel.id),method: :get%>
+<%end%>
+<%end%>
+</form>
+</div>

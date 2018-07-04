@@ -1,0 +1,92 @@
+<%room = Roomtype.find_by_id(params[:id])%>
+<%if room%>
+
+	<h1><%=room.typename.downcase.capitalize%></h1>
+	<%hotel = Hotel.find_by_id(room.hotel_id)%>
+
+	<h3><%=hotel.hotelname.downcase.titleize%></h3>
+
+	(<%=hotel.buildingname.downcase.capitalize%> <%=hotel.streetname.downcase.capitalize%>	,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - <%=hotel.zipcode%>)<br>
+	Number of rooms :
+	<%if room.rooms == 1%> 
+		<%=room.rooms%> Room <br> 
+	<%else%>
+		<%=room.rooms%> Rooms <br>
+	<%end%>
+
+
+	Capacity : 
+	<%if room.adults == 1%> 
+		<%=room.adults%> Adult , 
+	<%else%>
+		<%=room.adults%> Adults , 
+	<%end%>
+
+	<%if room.children == 1%>
+		<%=room.children%> Child <br>
+	<%else%>
+		<%=room.children%> Children <br> 
+	<%end%>
+
+	Bed type: <%=room.beds%><br>
+
+	Extra Bedding:
+	<%if room.extrabed == true%>
+		Available!!<br>
+	<%else%>
+		Not Available!!<br>
+	<%end%>
+
+	<h4>Facilites:</h4>
+	<%string = ''%>
+	<%if room.wifi%>
+		<%string = string + 'WiFi '%>
+	<%end%>
+	<%if room.ac%>
+		<%string = string + 'AC '%>
+	<%end%>
+	<%if room.geyser%>
+		<%string = string + 'Geyser '%>
+	<%end%>
+	<%if room.cooler%>
+		<%string = string + 'Cooler '%>
+	<%end%>
+	<%if room.fan%>
+		<%string = string + 'Fan '%>
+	<%end%>
+	<%if room.smoking%>
+		<%string = string + 'Smoking'%>
+	<%end%>
+	<%if room.balcony%>
+		<%string = string + 'Balcony '%>
+	<%end%>
+	<%if room.bathroom%>
+		<%string = string + 'Bathroom '%>
+	<%end%>
+	<%if room.tv%>
+		<%string = string + 'TV '%>
+	<%end%>
+	<%if room.familyrooms%>
+		<%string = string + 'Family Room '%>
+	<%end%>
+	<%if room.pwd%>
+		<%string = string + 'Facilites for Phyically Disabled '%>
+	<%end%>
+	<%if room.laundry%>
+		<%string = string + 'Laundry '%>
+	<%end%>
+
+	<%if room.kettle%>
+		<%string = string + 'Kettle'%>
+	<%end%>
+	
+	<%string = string.split(' ')%>
+	<ul>
+		<%string.each do |s|%>
+			<li><%=s%></li>
+		<%end%>
+	</ul>
+	
+<%else%>
+	NO ROOM FOUND
+<%end%>

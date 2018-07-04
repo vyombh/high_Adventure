@@ -1,0 +1,48 @@
+<%hotel = Hotel.find_by_id(params[:id])%>
+<%if hotel%>
+	<h1><%=hotel.hotelname.titleize%></h1>
+	<%=hotel.buildingname.downcase.capitalize%><br>
+	<%=hotel.streetname.downcase.capitalize%>
+	,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - <%=hotel.zipcode%>
+	<br><%=hotel.rating%>
+	<br>photo
+	<br>description
+	<br> <h4>Facilites : </h4>
+	<%string = ''%>
+
+	<%if hotel.parking%>
+		<%string = string + 'Parking '%>
+	<%end%>
+	<%if hotel.gym%>
+		<%string = string + 'Gym '%>
+	<%end%>
+	<%if hotel.spa%>
+		<%string = string + 'Spa '%>
+	<%end%>
+	<%if hotel.bar%>
+		<%string = string + 'Bar '%>
+	<%end%>
+	<%if hotel.pool%>
+		<%string = string + 'Swimming Pool '%>
+
+	<%end%>
+	<%if hotel.restaurant%>
+		<%string = string + 'Restaurant '%>
+	<%end%>
+	<%string = string.split(' ')%>
+	<ul>
+	<%string.each do |s|%>
+		<li><%=s%></li>
+	<%end%>
+	</ul>
+
+	<br><%rooms = hotel.roomtypes%>
+	<br>ROOM LIST:<br>
+	<%rooms.each do |room|%>
+		<%=link_to room.typename.downcase.capitalize,room_papa_room_page_path(id: room.id)%><br>
+	<%end%>
+<%else%>
+
+	No such  hotel found.
+
+<%end%>

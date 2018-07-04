@@ -1,0 +1,212 @@
+<!-- filter  -->
+<div style="border: 1px solid black;width: 24%;position: fixed;right: 0;background-color: white;padding: 1.5%">
+	<!-- pricing -->
+	<form action = "/room_papa/filters">
+		pricing<br>
+		min: <input type="number" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000">	
+		 max: <input type="number" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">	<br>
+		<!-- hotel -->
+		hotel facilities<br>
+		Parking:
+		<%if params[:parking] == 'on'%>
+			<input type="checkbox" name="parking" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="parking"><br>
+		<%end%>
+		Gym:
+		<%if params[:gym] == 'on'%>
+			<input type="checkbox" name="gym" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="gym"><br>
+		<%end%>
+		Spa:
+		<%if params[:spa] == 'on'%>
+			<input type="checkbox" name="spa" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="spa"><br>
+		<%end%>
+		Pool:		
+		<%if params[:pool] == 'on'%>
+			<input type="checkbox"  name="pool" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="pool"><br>
+		<%end%>
+		Bar:		
+		<%if params[:bar] == 'on'%>
+			<input type="checkbox" name="bar" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="bar"><br>
+		<%end%>
+		Lift:	
+		<%if params[:lift] == 'on'%>
+			<input type="checkbox"  name="lift" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="lift"><br>
+		<%end%>
+		Restaurant:	
+		<%if params[:restaurant] == 'on'%>
+			<input type="checkbox"  name="restaurant" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="restaurant"><br>
+		<%end%>
+		<!-- rooms -->
+		Room facilities<br>
+		Wifi:
+		<%if params[:wifi] == 'on'%>
+			<input type="checkbox" name="wifi" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="wifi"><br>
+		<%end%>
+		Geyser:
+		<%if params[:geyser] == 'on'%>
+			<input type="checkbox" name="geyser" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="geyser"><br>
+		<%end%>
+
+		AC:
+		<%if params[:ac] == 'on'%>
+			<input type="checkbox" name="ac" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="ac"><br>
+		<%end%>
+
+		Cooler:
+		<%if params[:cooler] == 'on'%>
+			<input type="checkbox"  name="cooler" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="cooler"><br>
+		<%end%>
+
+		Fan:
+		<%if params[:fan] == 'on'%>
+			<input type="checkbox"  name="fan" checked="true"><br>
+		<%else%>
+			<input type="checkbox"  name="fan"><br>
+		<%end%>
+		Smoking:
+		<%if params[:smoking] == 'on'%>
+			<input type="checkbox" name="smoking" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="smoking"><br>
+		<%end%>
+
+		Balcony:
+		<%if params[:balcony] == 'on'%>
+			<input type="checkbox" name="balcony" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="balcony"><br>
+		<%end%>
+
+		Bathroom:
+		<%if params[:bathroom] == 'on'%>
+			<input type="checkbox" name="bathroom" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="bathroom"><br>
+		<%end%>
+
+		TV:
+		<%if params[:tv] == 'on'%>
+			<input type="checkbox" name="tv" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="tv"><br>
+		<%end%>
+
+		Family Room:
+		<%if params[:familyroom] == 'on'%>
+			<input type="checkbox" name="familyroom" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="familyroom"><br>
+		<%end%>
+
+		PWD:
+		<%if params[:pwd] == 'on'%>
+			<input type="checkbox" name="pwd" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="pwd"><br>
+		<%end%>
+
+		Laundry:
+		<%if params[:laundry] == 'on'%>
+			<input type="checkbox" name="laundry" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="laundry"><br>
+		<%end%>
+
+		Kettle:
+		<%if params[:kettle] == 'on'%>
+			<input type="checkbox" name="kettle" checked="true"><br>
+		<%else%>
+			<input type="checkbox" name="kettle"><br>
+		<%end%>
+		
+			
+	<input type="submit" value="FILTER">	
+</form>
+
+</div>
+
+<%if @rooms.length>0%>
+	<%@rooms.each do |perHotelRoom|%>
+		<% hotel_id = Roomtype.find_by_id(perHotelRoom.first[:id]).hotel_id%>
+		<%hotel = Hotel.find_by_id(hotel_id)%>
+		<div style="border: 1px solid black;width: 76%;">
+		<h3><%=link_to hotel.hotelname.downcase.titleize , room_papa_hotel_info_path(id: hotel.id),target: '_blank'%></h3>
+		<%=hotel.buildingname.downcase.capitalize%><br>
+		<%=hotel.streetname.downcase.capitalize%>
+		,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - 
+		<%=hotel.zipcode%>
+		<br>
+		<%=hotel.country.downcase.capitalize%>
+		<br>
+		<%total = 0%>
+		<%perHotelRoom = perHotelRoom.group_by{|a| a[:id]}%>
+		<%perHotelRoom.each do |r|%>
+			<%room = Roomtype.find_by_id(r[0])%>
+			<%=link_to '('+room.typename.downcase.capitalize+')' , room_papa_room_page_path(id: room.id),target: '_blank'%> (X<%=r[1].length%>)
+			<%price = 0%>
+			<%r[1].each do |room|%>
+				<%price = price + room[:basePrice]%>
+				<%if room[:requiredAdults] + room[:requiredChildren] > room[:capacity]%>
+					<%price = price + room[:ebprice]*(room[:requiredAdults] + room[:requiredChildren]  - room[:capacity])%>
+				<%end%>
+			<%end%>
+			<%total = total + price%>
+			<%=hotel.currency%> <%=price%><br>
+		<%end%>
+		TOTAL:<%=hotel.currency%> <%=total%>
+		<form id = "hotel_<%=hotel.id%>" action = "/bookings/order">
+			<input type="hidden" name="id" value="<%=perHotelRoom%>">
+			
+			<input type="submit" name="" value="book">
+		</form>
+	</div>
+	<%end%>
+	
+
+
+
+
+
+
+<%else%>
+
+
+
+
+NO CASE MATCH
+
+
+
+
+<%end%>
+
+
+
+
+
+<style type="text/css">
+	.color{
+		background: green;
+	}
+</style>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pricings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Baseprice</th>
+      <th>Lunch</th>
+      <th>Dinner</th>
+      <th>Breakfast</th>
+      <th>Roomtype</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pricings.each do |pricing| %>
+      <tr>
+        <td><%= pricing.baseprice %></td>
+        <td><%= pricing.lunch %></td>
+        <td><%= pricing.dinner %></td>
+        <td><%= pricing.breakfast %></td>
+        <td><%= pricing.scheme %></td>
+        <td><%= pricing.roomtype %></td>
+        <td><%= link_to 'Show', pricing %></td>
+        <td><%= link_to 'Edit', edit_pricing_path(pricing) %></td>
+        <td><%= link_to 'Destroy', pricing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pricing', new_pricing_path %>

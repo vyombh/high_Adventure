@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  rooms: 1
+  beds: 1
+  adults: 1
+  children: 1
+  wifi: false
+  geyser: false
+  ac: false
+  cooler: false
+  fan: false
+  smoking: false
+  balcony: false
+  bathroom: false
+  kettle: false
+  laundry: false
+  tv: false
+  familyrooms: false
+  pwd: false
+  hotel_id: 
+
+two:
+  type: 
+  rooms: 1
+  beds: 1
+  adults: 1
+  children: 1
+  wifi: false
+  geyser: false
+  ac: false
+  cooler: false
+  fan: false
+  smoking: false
+  balcony: false
+  bathroom: false
+  kettle: false
+  laundry: false
+  tv: false
+  familyrooms: false
+  pwd: false
+  hotel_id: 
