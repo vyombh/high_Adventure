@@ -25,6 +25,8 @@ class Hotel < ActiveRecord::Base
     validates :country,presence: true
     validates :state,presence: true
     validates :city,presence: true
+    validates :description,presence: true
+    validates :policies,:presence: true
     validates_uniqueness_of :user
     validates_format_of :floor, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
     validates_format_of :year, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'

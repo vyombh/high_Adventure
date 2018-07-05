@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'bookings/order'
 
-  resources :pricings
-  resources :roomtypes
-  resources :hotels
+  resources :pricings,only:[:new,:create,:edit,:update,:destroy]
+  resources :roomtypes,only:[:new,:create,:edit,:update,:destroy]
+  resources :hotels,only:[:new,:create,:edit,:update,:destroy]
   get 'room_papa/index'
   get 'room_papa/main'
   root 'room_papa#main' #hotel profile
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get'/room_papa/filters'
   get'/room_papa/hotel_info'
   get'/room_papa/room_page'
+  get '/hotels' => 'room_papa#index'
   devise_for :users
   
 

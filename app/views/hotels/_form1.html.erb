@@ -112,6 +112,11 @@
     <%= f.label :zipcode %><sup>*</sup><br>
     <%= f.text_field :zipcode , :disabled=>true%>
   </div>
+
+  <div class="field">
+    <%= f.label :description %><sup>*</sup><br>
+    <%= f.text_area :description,:disabled=>true%>
+  </div>
    ---------basic---------
   <%= f.fields_for :basic do |f1|%>
     <div class="field">
@@ -562,6 +567,11 @@
       <% end %>  
     </div>
   <%end%> 
+
+  <div class="field">
+    <%= f.label :policies %><sup>*</sup><br>
+    <%= f.text_area :policies,:disabled=>true%>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>    
