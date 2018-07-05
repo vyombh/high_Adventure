@@ -11,18 +11,6 @@ class RoomPapaController < ApplicationController
 
   end
   def search
-    
-    # if params[:checkin]>params[:checkout]
-    #   return redirect_to '/'
-    # end
-   checkin = params[:daterange].split('-')[0].split(' ')[0]
-   checkin = checkin.split('/')[2] + '-' + checkin.split('/')[0] + '-' + checkin.split('/')[1]
-   checkout = params[:daterange].split('-')[1].split(' ')[0]
-   checkout = checkout.split('/')[2] + '-' + checkout.split('/')[0] + '-' + checkout.split('/')[1]
-    redirectPath = '/room_papa/hotels?city=' + params[:city] + '&checkin=' + checkin + '&checkout=' + checkout + '&min_price=0&max_price=100000&wifi=off&geyser=off&ac=off&cooler=off&fan=off&smoking=off&balcony=off&bathroom=off&tv=off&familyrooms=off&pwd=off&laundry=off&kettle=off&parking=off&gym=off&spa=off&pool=off&bar=off&lift=off&restaurant=off'
-
-    return redirect_to redirectPath +'&rooms=' + '3' + '&adults[]=' + '1' + '&adults[]=' + '1' + '&adults[]=' + '1' + '&children[]=' + '0' + '&children[]=' + '0' + '&children[]=' + '0'
-    
   end
   
   def checkRoomEligiblity(room,hm,checkin,checkout)
@@ -62,91 +50,29 @@ class RoomPapaController < ApplicationController
   end
   
   def hotels
-    
     @rooms = []
     count = 0
     
     city = '%' + params[:city] +'%'
 
     @hotels = Hotel.where('city LIKE ? or hotelname LIKE ?', city,city)
-    if params[:parking] == 'on' && @hotels != nil
-      @hotels = @hotels.where(parking: true)
-    end
-     if params[:gym] == 'on' && @hotels != nil
-      @hotels = @hotels.where(gym: true)
-    end
-    if params[:spa] == 'on' && @hotels != nil
-      @hotels = @hotels.where(spa: true)
-    end
-    if params[:pool] == 'on' && @hotels != nil
-      @hotels = @hotels.where(pool: true)
-    end
-    if params[:bar] == 'on' && @hotels != nil
-      @hotels = @hotels.where(bar: true)
-    end
-    if params[:lift] == 'on' && @hotels != nil
-      @hotels = @hotels.where(lift: true)
-    end
-    if params[:restaurant] == 'on' && @hotels != nil
-      @hotels = @hotels.where(restaurant: true)
-    end
-
     checkin = Date.new(params[:checkin].split('-')[0].to_i,params[:checkin].split('-')[1].to_i,params[:checkin].split('-')[2].to_i)
-    
     checkout = Date.new(params[:checkout].split('-')[0].to_i,params[:checkout].split('-')[1].to_i,params[:checkout].split('-')[2].to_i)
     n = (checkout-checkin).to_s.split('/')[0].to_i
     @hotels.each do |hotel|
-
       people = []
-      for i in 0...params[:rooms].to_i
-        person = { capacity:params[:adults][i].to_i  + params[:children][i].to_i ,adults: params[:adults][i].to_i , children: params[:children][i].to_i ,found: false}
+      i = 0
+      params[:data_value].each do |data|
+        person = { capacity:data[1][:Adult].to_i  + data[1][:BigChild].to_i ,adults:  data[1][:Adult].to_i , children:  data[1][:BigChild].to_i ,found: false}
         people = people.insert(i,person)
+        i = i + 1
       end
       people = people.sort_by{|a| a[:capacity]}.reverse
       rm = hotel.roomtypes
-      for i in 6..19
-          if params[:wifi] == 'on' && rm != nil
-            rm = rm.where(wifi: true)
-          end
-          if params[:geyser] == 'on' && rm != nil
-            rm = rm.where(geyser: true)
-          end
-          if params[:ac] == 'on' && rm != nil
-            rm = rm.where(ac: true)
-          end
-          if params[:cooler] == 'on' && rm != nil
-            rm = rm.where(cooler: true)
-          end
-          if params[:fan] == 'on' && rm != nil
-            rm = rm.where(fan: true)
-          end
-          if params[:smoking] == 'on' && rm != nil
-            rm = rm.where(smoking: true)
-          end
-          if params[:balcony] == 'on' && rm != nil
-            rm = rm.where(balcony: true)
-          end
-          if params[:bathroom] == 'on' && rm != nil
-            rm = rm.where(bathroom: true)
-          end
-          if params[:tv] == 'on' && rm != nil
-            rm = rm.where(tv: true)
-          end
-          if params[:familyrooms] == 'on' && rm != nil
-            rm = rm.where(familyrooms: true)
-          end
-          if params[:pwd] == 'on' && rm != nil
-            rm = rm.where(pwd: true)
-          end
-          if params[:laundry] == 'on' && rm != nil
-            rm = rm.where(laundry: true)
-          end
-          if params[:kettle] == 'on' && rm != nil
-            rm = rm.where(kettle: true)
-          end
-      end
+
       hotelRoomFree = []
       roomCounter = 0
+
       rm.each do |room|
         hm = {}
         i = 0
@@ -211,6 +137,12 @@ class RoomPapaController < ApplicationController
       else
       end
     end 
+    # return request.url
+    if request.xhr?
+      render :json=>{
+        :url_link => request.url
+      }
+    end
   end                                                                                #def hotels
 
   def filters

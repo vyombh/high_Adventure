@@ -440,6 +440,7 @@
       <% end %>
     </div>
   <%end%>
+  <%= f.hidden_field :hotel_id, value: current_user.hotel.id%>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,8 +1,6 @@
-
 <!-- top navbar -->
-
 <div class="row">
-  <div class="container-fluid NavbarTwoTop" style="background:#f9f9f9;">
+  <div class="container-fluidf NavbarTwoTop">
     <div class="container">
       <div class="col-sm-12">
         <h3>Find Deals for Any Season</h3>
@@ -10,134 +8,459 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-default NavbarTwo" id="NavbarTwo">
-    <form class="container"  action="/room_papa/search">
-      <ul class="nav navbar-nav NavbarStyle">
-        <li class="col-md-3 FontSize">
+  <nav class="navbar navbar-default NavbarTwo" id="NavbarTwo" style="background:red">
+    <div class="container">
+      <ul class="nav navbar-nav NavbarStyle" >
+        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3 FontSize">
           <div class="form">
             <div class="input-group ">
             <span class="input-group-addon EdgesSharp"><i id="DestinationSymbol" class="glyphicon glyphicon-map-marker"></i></span>
-            <input id="Destination" type="text" class="form-control EdgesSharp input-lg FontForInput" placeholder="Destination" name = "city" required="true">
+            <input id="Destination" type="text" class="form-control EdgesSharp input-lg FontForInput" placeholder="Destination" name = 'city'>
             </div>
           </div>
         </li>
-        <li class="col-md-4 FontSize">
+        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4 FontSize">
           <div class="form">
             <div class="input-group">
               <span class="input-group-addon EdgesSharp"><i class="glyphicon glyphicon-calendar"></i></span>
-              <%starting = Date.today + 1%>
-              <%starting = starting.to_s.split('-')[1] + '/' + starting.to_s.split('-')[2] + '/' + starting.to_s.split('-')[0]%>
-              <%ending = Date.today + 2%>
-              <%ending = ending.to_s.split('-')[1] + '/' + ending.to_s.split('-')[2] + '/' + ending.to_s.split('-')[0]%>
-              <input class="form-control EdgesSharp input-lg FontForInput" id="Calendar" type="text" name="daterange" required="true" value="<%= starting + ' ' + '-' + ' ' + ending%>"/>
+              <input class="form-control EdgesSharp input-lg FontForInput" id="Calendar"type="text" name="datefilter" value="" onkeydown="return false" placeholder="Check-In - Check-Out" name = 'daterange'/>
             </div>
           </div>
         </li>
-        <li class="col-md-3 Font FontSize">
-
-          <div class="form-inline" style="background:white">
-            <div class="input-group" style="">
-              <span class="input-group-addon" >
-                <i id="DestinationSymbol" class="glyphicon glyphicon-bed"></i>
-              </span>
-              <div class="col-sm-11 " style="background:white">
-                <span id="myBtn" class="btn EdgesSharp input-lg FontForInput pull-left"  data-toggle="dropdown"></span>
-                <ul class="dropdown-menu EdgesSharp" style="background:white">
-                  <div class="DropdownTriangleOne"></div>
-                  <div class="DropdownTriangleTwo"></div>
-                  <li class="LeftPadding TopPadding EdgesSharp"><label>Rooms</label><input id="Rooms" class="RightPadding" type="number" min="1" max="5" value="1" name="rooms"></li>
-                 <hr>
-                  <li class="LeftPadding EdgesSharp"><label>Adults</label><input id="Adults" class="RightPadding" type="number" min="1" max="30" value="2" name="adults"></li>
-                  <hr>
-                  <li class="LeftPadding BottomPadding EdgesSharp"><label>Children</label><input id="Children" class="RightPadding" type="number" min="0" max="30" value="0" name="children"></li>
-                </ul>
+        <div class="hidden-xs hidden-lg" style="padding-top: 20px">&nbsp</div>
+        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <div style="display: flex;">
+            <div class="col-xs-2" style="height:45px;max-width:39px;border: solid 1px #CCCCCC; border-right:none;background-color:#EEEEEE">
+             <i class="fa fa-bed"style="position:absolute;left:5px;font-size:22px;top: 10px;color: #545253;"></i>
+             </div>
+            <input id="RACShow" onkeydown="return false" type="text" class="col-xs-10 form-control EdgesSharp" style="height:45px;" placeholder="Rooms:0 Adults:0 Child:0">
+          </div>
+          <div class="drpdwn drpdwnhe" style="display:none">
+            <div class="col-sm-12" style="background:white">
+              <div class="row" id="TotalRoom" style="padding-left:5px;padding-right:5px">
+              </div>
+              <div class="row" style="padding-left:5px;padding-right:5px">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h5>
+                      Room Details
+                    </h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    Adults
+                  </div>
+                  <div class="col-sm-4">
+                    <select class="form-control control-label input-sm EdgesSharp" id="NoOfAdult">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row" style="padding-top:10px;padding-bottom:10px;">
+                  <div class="col-sm-8">
+                    Children
+                  </div>
+                  <div class="col-sm-4">
+                    <select class="form-control control-label input-sm EdgesSharp" id="NoOfChild">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row" style="padding-bottom:5px;" id="ChildAgeCol">
+                </div>
+              </div>
+              <div class="row" style="border-top:solid 1px #CCCCCC;padding-top:10px;padding-left:5px;padding-right:5px;padding-bottom:5px">
+                <div class="row">
+                  <div class="col-sm-6 pull-left">
+                    <button type="button" name="button" class="btn btn-success btn-block btn-sm EdgesSharp" id="AddRoom">Add Room</button>
+                  </div>
+                  <div class="col-sm-4 pull-right">
+                    <button type="button" name="button" class="btn btn-primary btn-block btn-sm EdgesSharp" id="DoneRoom"> Done</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-
         </li>
-        <li class="col-md-2">
+        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
           <div class="form">
-            
-            <input type="submit" value="Search" class="btn btn-primary btn-block EdgesSharp btn-lg">
-            
+            <input type="submit" value= "Search" remote = true class="btn btn-primary btn-block EdgesSharp btn-lg" id = "search"> 
           </div>
         </li>
       </ul>
-    </form>
+    </div>
   </nav>
 </div>
 <!-- top navbar end -->
 
-<div class="container" >
-  <div class="col-sm-2 col-sm-offset-5 text-center Destination" >
+<div class="container-fluid" >
+  <div class="col-sm-2 col-sm-offset-5 text-center " >
     <h3 id="DestinationHeading">Destinations</h3>
   </div>
 </div>
 <div class="container">
-  <div class="col-sm-6">
+  <div class="col-sm-3">
     <div class="box">
       <h3>Manali</h3>
-      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
-      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+      <!-- <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
+      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div> -->
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="box">
-      <h3>Manali</h3>
-      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
-      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+  <div class="col-sm-3">
+    <div id="box" class="box">
+        <h3>Manali</h3>
+        <span class="label label-warning PropertiesNumber" style="font-size:14px"><span>525</span> Properties</span>
+        <h5 id="pricetag" class="label label-success" style="font-size:14px">Average Price : <span>1200</span></h5>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-3">
     <div class="box">
       <h3>Manali</h3>
-      <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5>
-      <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div>
+      <!-- <h5 class="PropertiesNumber"><span><strong>124 </strong></span>Properties</h5> -->
+      <!-- <div class="pricetag "><h4><strong>Average Price : 1200</strong></h4></div> -->
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
 
-<!-- <div class="container">
-  <button class="accordion">Taste Of India <span class="label label-primary">Restaurant</span></button>
-  <div class="panel">
-    <div class="row">
-      <div class="col-sm-7">
-        <h3>Taste of India</h3>
-          It is a quirky, chic, modern Indian restaurant, where guests enjoy a sensory experience through the finest, Modern Indian and Global cuisines, with a high energy ambiance.
-          Infusing delights of the Bollywood tadka.
-          On the top we present Indian, Italian & Chinese range of cuisines. where culinary art meets the alchemy of modern presentations
-          and cooking techniques. Flowing smoke, pebble like smooth spheres,
-          Bollywood theatrics and culinary illusion are a few aspects which describe Taste of India Restaurant experience.
-          Elements of traditional & modern day cooking techniques, customized equipments, Mud Oven Baked Pizzas and ambience theatrics transform flavours for a unique, high energy,
-          modernist and genre defining dining experience.
-          <strong>
-            <ul>
-              <li>Quirky, Chic, Modern Bollywood Style Arena.</li>
-              <li>Indian, south Indian, Italian & Chinese range of cuisines.</li>
-              <li>Mud Oven Baked Pizzas.</li>
-              <li>Cooking techniques:- Flowing smoke, pebble like smooth spheres.</li>
-              <li>Bollywood theatrics and culinary illusion are a few aspects.</li>
-            </ul>
-          </strong>
+  var today = new Date();
+  var todayDate = today.getDate();
+  var todayMonth= today.getMonth()+1;
+  var todayYear = today.getFullYear();
+  var maxyear = todayYear +2;
+  var maxMonth = todayMonth +7;
 
-          Located at 1.5 km far from Mall Road, Near Indian Oil Pump, Vashishth Chowk Manali.
-      </div>
-      <div class="col-sm-5">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18084.434135276973!2d77.18083456185036!3d32.25843393626809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390487f1326ece2d%3A0x8ab396486c45aed0!2sTaste+of+India!5e0!3m2!1sen!2sin!4v1528975242837" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
+  if(maxMonth>12){
+    maxMonth=maxMonth-12;
+  }
 
-  <button class="accordion">Section 2</button>
-  <div class="panel">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
 
-  <button class="accordion">Section 3</button>
-  <div class="panel">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
-</div> -->
+  if(todayMonth<10)
+  {
+    todayMonth = "0"+todayMonth;
+  }
+
+
+   if(maxMonth<10)
+  {
+    maxMonth = "0"+maxMonth;
+  }
+
+  var todaydatecheck = todayMonth.toString() + "/" + todayDate.toString() + "/" + todayYear.toString();
+  var maxdatecheck = maxMonth.toString() + "/" + "01" + "/" + maxyear.toString();
+
+
+  function CalMonthStr(x)
+  {
+    if(x==1)
+    {
+      return "Jan";
+    }
+    else if(x==2)
+    {
+      return "Feb";
+    }
+    else if(x==3)
+    {
+      return "Mar";
+    }
+    else if(x==4)
+    {
+      return "Apr";
+    }
+    else if(x==5)
+    {
+      return "May";
+    }
+    else if(x==6)
+    {
+      return "Jun";
+    }
+    else if(x==7)
+    {
+      return "Jul";
+    }
+    else if(x==8)
+    {
+      return "Aug";
+    }
+    else if(x==9)
+    {
+      return "Sep";
+    }
+    else if(x==10)
+    {
+      return "Oct";
+    }
+    else if(x==11)
+    {
+      return "Nov";
+    }
+    else
+    {
+      return "Dec";
+    }
+  }
+
+var checkindatetoserver = '';
+var checkoutdatetoserver = '';
+
+$(function() {
+
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+       "autoApply": true,
+       "minDate": todaydatecheck,
+       "maxDate": maxdatecheck,
+        "maxSpan": {
+        "days": 30
+        },
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
+
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+      var x=$('#Calendar').val();
+      var firstMonth = x[3]+x[4];
+      if(x[3]==0)
+      {
+        firstMonth = x[4];
+      }
+      var lastMonth = x[16]+x[17];
+      if(x[16]==0)
+      {
+        lastMonth = x[17];
+      }
+
+      var FMonth = "MM";
+      FMonth = CalMonthStr(firstMonth);
+      var LMonth = "MM";
+      LMonth = CalMonthStr(lastMonth);
+      $(this).val(" ");
+
+      var firstDate = x[0]+x[1];
+      var lastDate = x[13]+x[14];
+      var firstYear = x[6]+x[7]+x[8]+x[9];
+      var lastYear = x[19]+x[20]+x[21]+x[22];
+      checkindatetoserver = firstYear+"-" + firstMonth+ "-" +firstDate;
+      checkoutdatetoserver = lastYear+"-" + lastMonth+ "-" +lastDate;
+     
+      $(this).val(firstDate + "/" + FMonth + "/" +firstYear +" - " +lastDate + "/" + LMonth + "/" +lastYear)
+      // $(this).val(picker.startDate.format('DD/'+FMonth+'/YYYY') + ' - ' + picker.endDate.format('DD/'+LMonth+'/YYYY'));
+
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
+});
+
+
+
+
+  // Room details
+
+  var AdultChild= [];
+  var RoomNumber = 0;
+
+  function PrintRoom(x){
+    var RoomNumber=0;
+    var Adult=0;
+    var Child=0;
+    var input="";
+
+    for (var i = 0; i < x.length; i++) {
+      Adult=x[i].Adult;
+      Child=x[i].TotalChild;
+      RoomNumber++;
+      input=input+'<div class="col-sm-12" id="RoomNumber"><div class="row" style="border-bottom:solid 1px #CCCCCC">'+
+            '<div class="row">'+
+             '<div class="col-sm-12">'+
+               '<h5>'+
+                 'Room '+RoomNumber+
+               '</h5>'+
+             '</div>'+
+           '</div>'+
+           '<div class="row">'+
+             '<div class="col-sm-8">'+
+               '<h6>'+
+                 'Adults:'+Adult+' '+
+                 'Children:'+Child+' '+
+               '</h6>'+
+             '</div>'+
+             '<div class="col-sm-4">'+
+               '<button type="button" class="btn btn-danger btn-block btn-sm EdgesSharp RemoveRoom" value='+RoomNumber+' onclick="RemoveRoom('+i+')">'+
+                 'Remove'+
+               '</button>'+
+             '</div>'+
+           '</div>'+
+         '</div> </div>'
+    }
+    document.getElementById('TotalRoom').innerHTML=input;
+  }
+
+
+  function DisableAddRoom(){
+    if (AdultChild.length>=5){
+      $('#AddRoom').attr("disabled", true);
+    }
+    else{
+      $('#AddRoom').attr("disabled", false);
+    }
+  }
+
+  function ShowTotal(){
+    var room=0;
+    var guest=0;
+    for (var i = 0; i < AdultChild.length; i++) {
+      room++;
+      guest=guest+parseInt(AdultChild[i].TotalChild) + parseInt(AdultChild[i].Adult);
+    }
+    if(AdultChild.length==0){
+      document.getElementById('RACShow').value="";
+    }
+    else{
+      document.getElementById('RACShow').value="Room :"+room+ " /Guest :" +guest;
+    }
+  }
+
+  function AddChildAge(){
+
+    var NoOfChild=$('#NoOfChild').val();
+    var ChildAgeArr=[];
+
+    for (var i = 0; i < NoOfChild ; i++) {
+      ChildAgeArr[i]=1;
+    }
+
+    for (var i = 0; i <NoOfChild ; i++) {
+      var y='ChildAge'+i;
+      ChildAgeArr[i]=parseInt(document.getElementById(y).value);
+    }
+    return ChildAgeArr;
+  }
+
+
+  function RemoveRoom(x){
+    AdultChild.splice(x,1);
+    ShowTotal();
+    PrintRoom(AdultChild);
+    ShowTotal();
+    DisableAddRoom();
+  }
+
+  function NoOfChild(){
+    var childAgeInp='';
+    document.getElementById('ChildAgeCol').innerHTML='';
+    var x=$('#NoOfChild').val();
+    for (var i = 0; i < x; i++) {
+      childAgeInp=childAgeInp + '<div class="col-sm-8">Child '+(i+1)+' age</div>'+
+      '<div class="col-sm-4" style="padding-bottom:5px;">'+
+        '<select class="form-control control-label input-sm EdgesSharp" id="ChildAge'+i+'">'+
+          '<option value="1">1</option>'+
+          '<option value="2">2</option>'+
+          '<option value="3">3</option>'+
+          '<option value="4">4</option>'+
+          '<option value="5">5</option>'+
+          '<option value="6">6</option>'+
+          '<option value="7">7</option>'+
+          '<option value="8">8</option>'+
+          '<option value="9">9</option>'+
+          '<option value="10">10</option>'+
+          '<option value="11">11</option>'+
+          '<option value="12">12</option>'+
+        '</select>'+
+      '</div>'
+    }
+    document.getElementById('ChildAgeCol').innerHTML=childAgeInp;
+  }
+  var v;
+  $(document).ready(function(){
+     $('#search').click(function(e){
+      var city = document.getElementById('Destination').value;
+
+        $.ajax({
+                url : "/room_papa/hotels",
+                type : "get",
+                data : { data_value: AdultChild,
+                         city: city,
+                         checkin: checkindatetoserver,
+                         checkout: checkoutdatetoserver
+                        },
+                progress:function(loadTime,status){
+                          console.log(loadTime);
+                         },
+                success: function (result,status,object) {
+                          console.log(result);
+                          console.log(status);
+                          window.location.href = result["url_link"];
+                         },
+                error:function(result,status) {
+                          alert(result.responseText);
+                          console.log(status);
+                         }
+              });
+        });
+  
+
+
+
+    $("#AddRoom").click(function(){
+
+      var Adult = parseInt($("#NoOfAdult").val());
+      var TotalChild = parseInt($("#NoOfChild").val());
+      var SmallChild = 0;
+      var BigChild = 0;
+      var arr = AddChildAge();
+      for (var i = 0; i < TotalChild; i++) {
+        if(arr[i]<=5){
+          SmallChild++;
+        }
+        else {
+          BigChild++;
+        }
+        }
+        var AdultChildObj = {Adult,TotalChild,SmallChild,BigChild};
+        if((Adult+TotalChild)>6)
+        {
+          alert("Not more then 6 people in a room !");
+        }
+        else{
+          AdultChild.push(AdultChildObj);
+        }
+        document.getElementById('NoOfAdult').value = 1;
+        document.getElementById('NoOfChild').value = 0;
+        NoOfChild();
+        PrintRoom(AdultChild);
+        ShowTotal();
+        DisableAddRoom();
+  });
+
+  $('#NoOfChild').click(function(){
+    NoOfChild();
+  });
+
+  $("#DoneRoom").click(function(){
+    $('.drpdwn').toggle(250);
+  });
+
+  $('#RACShow').click(function(){
+    $('.drpdwn').toggle(250);
+  });
+});
+
+</script>

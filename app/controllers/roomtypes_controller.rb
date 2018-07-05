@@ -19,6 +19,7 @@ class RoomtypesController < ApplicationController
 
   # GET /roomtypes/1/edit
   def edit
+    
   end
 
   # POST /roomtypes
@@ -28,7 +29,6 @@ class RoomtypesController < ApplicationController
     if roomtype_params[:basechildren] && roomtype_params[:baseadults]
       @roomtype.extrabed =  roomtype_params[:maximumguests].to_i - roomtype_params[:basechildren].to_i - roomtype_params[:baseadults].to_i
     end
-    
     respond_to do |format|
       if @roomtype.save
         format.html { redirect_to '/pricings/new?room_id='+@roomtype.id.to_s, notice: 'room type has been defined.' }
