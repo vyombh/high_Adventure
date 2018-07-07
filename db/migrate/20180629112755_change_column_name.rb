@@ -7,9 +7,6 @@ class ChangeColumnName < ActiveRecord::Migration
   	add_column :roomtypes, :maximumchildren, :integer,default: 0
   	add_column :roomtypes, :infants, :integer,default: 0
   	add_column :roomtypes, :maximumguests, :integer,default: 0
-  	add_column :pricings, :extraadult, :float,default: 0
-  	add_column :pricings, :extrachild, :float,default: 0
-  	remove_column :pricings, :ebpricing
   	remove_column :roomtypes, :extrabed
   end
 end

@@ -24,11 +24,15 @@
         
         <td><%= link_to 'Show', roomtype %></td>
         <td><%= link_to 'Edit', edit_roomtype_path(roomtype) %></td>
-        <%if current_user&&roomtype.pricing == nil%>
-          <td><%= link_to 'add price scheme', new_pricing_path(room_id: roomtype.id) %></td>
+        <%if current_user&&current_user.hotel.pricing == nil%>
+          <td><%= link_to 'add price scheme', controller: 'pricings',action: 'new',room_id: roomtype.id %></td>
 
         <%else%>
-          <td><%= link_to 'edit price scheme', edit_pricing_path(id: roomtype.pricing.id,room_id: roomtype.id) %></td>
+          <% if current_user.hotel.pricing.price[roomtype.id]%>
+              <td><%= link_to 'edit price scheme', controller: 'pricings',action: 'edit',room_id: roomtype.id%></td>
+          <%else%>
+              <td><%= link_to 'add price scheme', controller: 'pricings',action: 'new',room_id: roomtype.id %></td>
+          <%end%>
         <%end%>
 
 

@@ -195,11 +195,11 @@
       <% end %>
     </div>
     <div class="field">
-      <%= f1.label 'game console nintendro wii' %>
-      <% if @hotel.media[:gameconsolenintendrowii] == '1'%>
-          <%= f1.check_box :gameconsolenintendrowii,checked: true%>
+      <%= f1.label 'game console nintendo wii' %>
+      <% if @hotel.media[:gameconsolenintendowii] == '1'%>
+          <%= f1.check_box :gameconsolenintendowii,checked: true%>
       <%else%>
-        <%= f1.check_box :gameconsolenintendrowii %>
+        <%= f1.check_box :gameconsolenintendowii %>
       <% end %>
     </div>
     <div class="field">
@@ -535,11 +535,11 @@
   <%= f.fields_for :entertainment do |f1|%>
 
     <div class="field">
-      <%= f1.label 'baby safety gates' %>
-      <% if @hotel.entertainment[:babysafetygases] == '1'%>
-        <%= f1.check_box :babysafetygases,checked: true%>
+      <%= f1.label 'baby safety glasses' %>
+      <% if @hotel.entertainment[:babysafetyglasses] == '1'%>
+        <%= f1.check_box :babysafetyglasses,checked: true%>
       <%else%>
-        <%= f1.check_box :babysafetygases %>
+        <%= f1.check_box :babysafetyglasses %>
       <% end %>
     </div>
     <div class="field">

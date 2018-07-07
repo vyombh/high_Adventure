@@ -50,6 +50,7 @@ class RoomPapaController < ApplicationController
   end
   
   def hotels
+    byebug
     @rooms = []
     count = 0
     

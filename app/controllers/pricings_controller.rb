@@ -1,21 +1,9 @@
 class PricingsController < ApplicationController
-  before_action :set_pricing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /pricings
-  # GET /pricings.json
-  def index
-    @pricings = Pricing.all
-  end
-
-  # GET /pricings/1
-  # GET /pricings/1.json
-  def show
-  end
-
+  protect_from_forgery except: :create
   # GET /pricings/new
   def new
-    @id = nil
-    @pricing = Pricing.new
+    
   end
 
   # GET /pricings/1/edit
@@ -25,17 +13,48 @@ class PricingsController < ApplicationController
   # POST /pricings
   # POST /pricings.json
   def create
-    @pricing = Pricing.new(pricing_params)
-    @id = params[:id]
-    respond_to do |format|
-      if @pricing.save
-        format.html { redirect_to '/roomtypes', notice: 'Pricing was successfully created.' }
-        format.json { render :show, status: :created, location: @pricing }
-      else
-        format.html { render :new }
-        format.json { render json: @pricing.errors, status: :unprocessable_entity }
+    hotel = current_user.hotel
+    if hotel.pricing
+      if hotel.id == Roomtype.find_by_id(params[:roomtype_id]).hotel_id
+        pricing = Pricing.where(hotel_id: hotel.id).first
+        price = Hash.new
+        price = pricing.price
+        room = params[:roomtype_id].to_i
+        price[room] = []
+        price[room].push({price: params[:price],start: Date.today,end: Date.today+36524})
+
+
+
+        pricing.price = price
+        pricing.save
+          if request.xhr?
+            render :json=>{
+              :success=> 'true'
+            }
+          end
+        return
+      end
+    else
+      if hotel.id == Roomtype.find_by_id(params[:roomtype_id]).hotel_id
+        pricing = Pricing.new
+        pricing.hotel_id = hotel.id
+        price = Hash.new
+        room = params[:roomtype_id].to_i
+        price[room] = []
+        price[room].push({price: params[:price],start: Date.today,end: Date.today+36524})
+        pricing.price = {}
+        pricing.price = price
+        pricing.save
+        if request.xhr?
+          render :json=>{
+            :success=> 'true'
+          }
+        end
+        return
       end
     end
+    
+   
   end
 
   # PATCH/PUT /pricings/1
@@ -52,25 +71,5 @@ class PricingsController < ApplicationController
       end
     end
   end
-
-  # DELETE /pricings/1
-  # DELETE /pricings/1.json
-  def destroy
-    @pricing.destroy
-    respond_to do |format|
-      format.html { redirect_to pricings_url, notice: 'Pricing was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pricing
-      @pricing = Pricing.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pricing_params
-      params.require(:pricing).permit(:baseprice, :lunch, :dinner, :breakfast, :roomtype_id,:scheme)
-    end
+   
 end

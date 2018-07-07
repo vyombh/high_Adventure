@@ -1,8 +1,6 @@
 class Pricing < ActiveRecord::Base
-  belongs_to :roomtype
-	validates :baseprice,presence: true
-    validates :lunch,presence: true
-    validates :breakfast,presence: true
-    validates :dinner,presence: true
-    validates :scheme,presence: true
+  belongs_to :hotel
+  serialize :price
+  validates_uniqueness_of :hotel
+
 end

@@ -1,6 +1,7 @@
 class Hotel < ActiveRecord::Base
   belongs_to :user
   has_many :roomtypes, dependent: :destroy
+  has_one :pricing, dependent: :destroy
     validates :hotelname,presence: true
     validates :hoteltype,presence: true
     validates :floor,presence: true
@@ -26,7 +27,7 @@ class Hotel < ActiveRecord::Base
     validates :state,presence: true
     validates :city,presence: true
     validates :description,presence: true
-    validates :policies,:presence: true
+    validates :policies,presence: true
     validates_uniqueness_of :user
     validates_format_of :floor, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
     validates_format_of :year, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
@@ -45,5 +46,4 @@ class Hotel < ActiveRecord::Base
     serialize :entertainment,Hash
     serialize :food,Hash
     serialize :basic,Hash
-    
 end

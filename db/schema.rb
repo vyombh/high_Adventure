@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705054602) do
+ActiveRecord::Schema.define(version: 20180707091512) do
 
   create_table "bookings", force: :cascade do |t|
     t.date     "checkin"
@@ -72,19 +72,13 @@ ActiveRecord::Schema.define(version: 20180705054602) do
   add_index "hotels", ["user_id"], name: "index_hotels_on_user_id"
 
   create_table "pricings", force: :cascade do |t|
-    t.float    "baseprice"
-    t.float    "lunch"
-    t.float    "dinner"
-    t.float    "breakfast"
-    t.integer  "roomtype_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "scheme",      default: 0
-    t.float    "extraadult",  default: 0.0
-    t.float    "extrachild",  default: 0.0
+    t.text     "price"
+    t.integer  "hotel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "pricings", ["roomtype_id"], name: "index_pricings_on_roomtype_id"
+  add_index "pricings", ["hotel_id"], name: "index_pricings_on_hotel_id"
 
   create_table "roomtypes", force: :cascade do |t|
     t.integer  "rooms"
