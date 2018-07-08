@@ -24,19 +24,7 @@
   $('#submit').click(function(e){
      e.preventDefault();
 
-    // var priceO = {
-    //   'base_1': document.getElementById('base_1').value,
-    //   'base_2': document.getElementById('base_2').value,
-    //   'extraadult': document.getElementById('extraadult').value,
-    //   'extrachild': document.getElementById('extrachild').value,
-    //   'adult_breakfast': document.getElementById('adult_breakfast').value,
-    //   'adult_lunch': document.getElementById('adult_lunch').value,
-    //   'child_dinner': document.getElementById('adult_dinner').value,
-    //   'child_breakfast': document.getElementById('child_breakfast').value,
-    //   'child_lunch': document.getElementById('child_dinner').value,
-    //   'child_dinner': document.getElementById('child_dinner').value
-    // };
-    // console.log(priceO);
+    
     $.ajax({
         url: '/pricings/create',
         type: 'post',
@@ -48,7 +36,7 @@
                         'extrachild': document.getElementById('extrachild').value,
                         'adult_breakfast': document.getElementById('adult_breakfast').value,
                         'adult_lunch': document.getElementById('adult_lunch').value,
-                        'child_dinner': document.getElementById('adult_dinner').value,
+                        'adult_dinner': document.getElementById('adult_dinner').value,
                         'child_breakfast': document.getElementById('child_breakfast').value,
                         'child_lunch': document.getElementById('child_lunch').value,
                         'child_dinner': document.getElementById('child_dinner').value
@@ -73,7 +61,3 @@
   });
 </script>
 
-<!-- 
-
-
- -->

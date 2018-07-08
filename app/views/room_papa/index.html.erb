@@ -1,5 +1,5 @@
-<div class="container" style="background-color: #f9f9f9;">
-	<form class="form-horizontal">
+<div class="container" style="background-color: white;">
+	<div class="form form-horizontal">
     	<%if current_user && !current_user.hotel%>
 	
 	Your have not filled your details yet!!
@@ -72,7 +72,7 @@
 
 	<div class="row">
 		<div class="col-sm-2">
-			<label class="control-label pull-right" for="CheckInTime" >Check In Time:</label>
+			<label class="control-label" for="CheckInTime" >Check In Time:</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="row" >
@@ -113,7 +113,7 @@
 
 	<div class="row">
 			<div class="col-sm-2" >
-				<label class="control-label pull-right" for="CheckOutTime">Check Out Time:</label>
+				<label class="control-label" for="CheckOutTime">Check Out Time:</label>
 			</div>
 			<div class="col-sm-4" >
 				<div class="row">
@@ -165,9 +165,10 @@
 				</div>
 			</div>
 	</div>
-	</form>
+	</div>
+
 	<div class="col-sm-offset-2"><h2>Address</h2></div>
-	<form class="form-horizontal">
+	<div class="form form-horizontal">
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Buildingname">Buildingname:</label>
@@ -210,7 +211,343 @@
 		 	<div class="form-control" disabled><%= @hotel.zipcode %></div>	
 		</div>
 	</div>
-	</form>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Country">Country:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.country %></div>	
+		</div>
+	</div>
+
+	
+
+
+
+
+	<%arraybasic={}%>
+
+	<%arraybasic['parking']='Parking'%>
+	<%arraybasic['gym']='Gym'%>
+	<%arraybasic['spa']='Spa'%>
+	<%arraybasic['swimmingpool']='Swimming Pool'%>
+	<%arraybasic['bar']='Bar'%>
+	<%arraybasic['restaurant']='Restaurant'%>
+	<%arraybasic['lift']='Lift'%>
+
+	<%arraymedia={}%>
+
+	<%arraymedia['computer']='Computer'%>
+	<%arraymedia['flatscreentv']='Flat Screen TV'%>
+	<%arraymedia['gameconsole']='Game Console'%>
+	<%arraymedia['nintendowii']='Nintendo Wii'%>
+	<%arraymedia['ps2']='PS2'%>
+	<%arraymedia['ps3']='PS3'%>
+	<%arraymedia['ps4']='PS4'%>
+	<%arraymedia['xbox360']='XBox 360'%>
+	<%arraymedia['laptop']='Laptop'%>
+	<%arraymedia['laptopsafe']='Laptop Safe'%>
+	<%arraymedia['ipad']='IPad'%>
+	<%arraymedia['cablechannels']='Cable Channels'%>
+	<%arraymedia['cdplayer']='CD Player'%>
+	<%arraymedia['dvdplayer']='DVD Player'%>
+	<%arraymedia['fax']='Fax'%>
+	<%arraymedia['paypervideochannels']='Pay per video channels'%>
+	<%arraymedia['radio']='Radio'%>
+	<%arraymedia['satellitechannels']='Satellite Channels'%>
+	<%arraymedia['telephone']='Telephone'%>
+	<%arraymedia['tv']='TV'%>
+	<%arraymedia['video']='Video'%>
+	<%arraymedia['videogames']='Video Games'%>
+	<%arraymedia['blurayplayer']='BluRay Player'%>
+
+	<%arrayfood={}%>
+
+	<%arrayfood['diningarea']='Dining Area'%>
+	<%arrayfood['diningtable']='Dining Table'%>
+	<%arrayfood['barbecue']='Barbecue'%>
+	<%arrayfood['stovetop']='Stove top'%>
+	<%arrayfood['toaster']='Toaster'%>
+	<%arrayfood['outdoordiningarea']='Outdoor Dining Area'%>
+	<%arrayfood['outdoorfurniture']='Outdoor Furniture'%>
+	<%arrayfood['kitchenette']='Kitchenette'%>
+	<%arrayfood['kitchenware']='Kitchenware'%>
+	<%arrayfood['microwave']='Microwave'%>
+	<%arrayfood['refrigerator']='Refrigerator'%>
+	<%arrayfood['teacoffeemachine']='Tea Coffee Machine'%>
+	<%arrayfood['coffeemachine']='Coffee Machine'%>
+	<%arrayfood['highchair']='High chair'%>
+
+	<%arraydisability={}%>
+
+	<%arraydisability['groundfloor']='Ground Floor'%>
+	<%arraydisability['wheelchair']='Wheel Chair'%>
+	<%arraydisability['elevator']='Elevator'%>
+	<%arraydisability['staircaseonly']='Staircase only'%>
+	<%arraydisability['grabrailstoilet']='Grab Rails Toilet'%>
+
+	<%arrayentertainment={}%>
+
+	<%arrayentertainment['babysafetyglasses']='Baby Safety Glasses'%>
+	<%arrayentertainment['boardgamespuzzles']='Board Games Puzzles'%>
+	<%arrayentertainment['books']='Books'%>
+	<%arrayentertainment['safetysockets']='Safety sockets'%>
+
+
+	<%arraybasicchecked=[]%>
+	<%arraybasicunchecked=[]%>
+
+	<%arraymediachecked=[]%>
+	<%arraymediaunchecked=[]%>
+
+	<%arrayfoodchecked=[]%>
+	<%arrayfoodunchecked=[]%>
+
+	<%arraydisabilitychecked=[]%>
+	<%arraydisabilityunchecked=[]%>
+
+	<%arrayentertainmentchecked=[]%>
+	<%arrayentertainmentunchecked=[]%>
+
+	<%array = current_user.hotel.basic.keys%>
+	<%array.each do |item|%>
+		<%if current_user.hotel.basic[item]=='1'%>
+			<% arraybasicchecked.push(item) %>
+		<%else%>
+			<% arraybasicunchecked.push(item) %>	
+		<%end %>
+	<%end%>	
+
+	<%arraybasicchecked=arraybasicchecked.sort%>	
+	<%arraybasicunchecked=arraybasicunchecked.sort%>
+
+	<%array = current_user.hotel.media.keys%>
+	<%array.each do |item|%>
+		<%if current_user.hotel.media[item]=='1'%>
+			<% arraymediachecked.push(item) %>
+		<%else%>
+			<% arraymediaunchecked.push(item) %>	
+		<%end %>
+	<%end%>	
+
+	<%arraymediachecked=arraymediachecked.sort%>
+	<%arraymediaunchecked=arraymediaunchecked.sort%>
+
+	<%array = current_user.hotel.food.keys%>
+	<%array.each do |item|%>
+		<%if current_user.hotel.food[item]=='1'%>
+			<% arrayfoodchecked.push(item) %>
+		<%else%>
+			<% arrayfoodunchecked.push(item) %>	
+		<%end %>
+	<%end%>	
+
+	<%arrayfoodchecked=arrayfoodchecked.sort%>	
+	<%arrayfoodunchecked=arrayfoodunchecked.sort%>
+
+	<%array = current_user.hotel.disability.keys%>
+	<%array.each do |item|%>
+		<%if current_user.hotel.disability[item]=='1'%>
+			<% arraydisabilitychecked.push(item) %>
+		<%else%>
+			<% arraydisabilityunchecked.push(item) %>	
+		<%end %>
+	<%end%>	
+
+	<%arraydisabilitychecked=arraydisabilitychecked.sort%>	
+	<%arraydisabilityunchecked=arraydisabilityunchecked.sort%>
+
+	<%array = current_user.hotel.entertainment.keys%>
+	<%array.each do |item|%>
+		<%if current_user.hotel.entertainment[item]=='1'%>
+			<% arrayentertainmentchecked.push(item) %>
+		<%else%>
+			<% arrayentertainmentunchecked.push(item) %>	
+		<%end %>
+	<%end%>	
+
+	<%arrayentertainmentchecked=arrayentertainmentchecked.sort%>	
+	<%arrayentertainmentunchecked=arrayentertainmentunchecked.sort%>
+
+	<div class="col-sm-offset-2"><h2>Amenties</h2></div>
+	<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
+			<span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
+		</div>
+		<div class="col-sm-12" id="BasicAmenties" style="border: solid 1px #ccc">
+			<div class="row">
+				<div class="col-sm-12">
+				<div class="row">
+					<%arraybasicchecked.each do |item|%>
+						<div class="AccordianOption col-sm-3" style="padding-top: 8px">
+							<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arraybasic[item]%></label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<input type="checkbox" checked="true" disabled="true">
+							</div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<%arraybasicunchecked.each do |item|%>
+					<div class="AccordianOption col-sm-3" style="padding-top: 8px">
+						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraybasic[item]%></label>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			
+						<input type="checkbox" disabled="true">
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="btn btn-default btn-block AccordianBtn" id="MediaAmenitiesBtn" >
+			<span class="pull-left" style="font-size:17px">Media</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
+		</div>
+		<div id="MediaAmenties">
+			<div class="col-sm-12">
+				<div class="row">
+					<%arraymediachecked.each do |item|%>
+						<div class="AccordianOption col-sm-3">
+							<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arraymedia[item]%></label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<input type="checkbox" checked="true" disabled="true">
+							</div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<%arraymediaunchecked.each do |item|%>
+					<div class="AccordianOption col-sm-3">
+						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraymedia[item]%></label>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="btn btn-default btn-block AccordianBtn" id="FoodAmenitiesBtn" >
+			<span class="pull-left" style="font-size:17px">Food</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
+		</div>
+		<div id="FoodAmenties">
+			<div class="col-sm-12">
+				<div class="row">
+					<%arrayfoodchecked.each do |item|%>
+						<div class="AccordianOption col-sm-3">
+							<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arrayfood[item]%></label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<input type="checkbox" checked="true" disabled="true">
+							</div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<%arrayfoodunchecked.each do |item|%>
+					<div class="AccordianOption col-sm-3" >
+						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayfood[item]%></label>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="btn btn-default btn-block AccordianBtn" id="DisabilityAmentiesBtn" >
+			<span class="pull-left" style="font-size:17px">Disability</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
+		</div>
+		<div id="DisabilityAmenties">
+			<div class="col-sm-12">
+				<div class="row">
+					<%arraydisabilitychecked.each do |item|%>
+						<div class="AccordianOption col-sm-3">
+							<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arraydisability[item]%></label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<input type="checkbox" checked="true" disabled="true">
+							</div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<%arraydisabilityunchecked.each do |item|%>
+					<div class="AccordianOption col-sm-3" >
+						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraydisability[item]%></label>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="btn btn-default btn-block AccordianBtn" id="EntertainmentAmentiesBtn" >
+			<span class="pull-left" style="font-size:17px">Entertainment</span><span class="pull-right RotatePlusB" id="PlusSignE">+</span>
+		</div>
+		<div id="EntertainmentAmenties">
+			<div class="col-sm-12">
+				<div class="row">
+					<%arrayentertainmentchecked.each do |item|%>
+						<div class="AccordianOption col-sm-3">
+							<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arrayentertainment[item]%></label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<input type="checkbox" checked="true" disabled="true">
+							</div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="row">
+					<%arrayentertainmentunchecked.each do |item|%>
+					<div class="AccordianOption col-sm-3" >
+						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayentertainment[item]%></label>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div>
+		<h2 class="col-sm-offset-2">Description</h2 >
+		<div class="col-sm-offset-1 row" style="padding-left: 25px;">
+			<textarea class="form-group col-xs-12 col-sm-12" rows="4"disabled="true" style="max-width: 930px;"><%= @hotel.description %></textarea>
+		</div>
+	</div>
+
+			<div>
+				<h2 class="col-sm-offset-2">Policies</h2 >
+			<div class="col-sm-offset-1" style="padding-left: 25px;">
+			<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 930px;"><%= @hotel.policies %></textarea>
+			</div>
+			</div>
+			
 
 	
 <%else%>
@@ -220,3 +557,34 @@
 <%end%>
 </form>
 </div>
+<style>
+	.AccordianBtn{
+		height:50px;
+		border-radius: 0px;
+		background-color: #eee;
+		border:solid 1px #ccc;
+		padding-top: 10px;
+		margin-bottom: -1px;
+	}
+	.AccordianBtn:hover{
+		background-color: #ccc;
+	}.AccordianOption:hover{
+		background-color: #eee;
+	}
+	.AccordianOption{
+		background-color:white;
+		height:45px;
+		margin: 0px;
+		border: solid 1px #ccc;
+		
+	}
+	.RotatePlusA{
+		transform: rotate(45deg) scale(2);
+		transition-duration: 0.2s;
+	}
+	.RotatePlusB{
+		transform: scale(2);
+		transition-duration: 0.2s;
+	}
+
+</style>

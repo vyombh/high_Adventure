@@ -8,4 +8,8 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
- Rails.application.config.assets.precompile += %w( hotel.js )
+ Rails.application.config.assets.precompile += %w( hotels.js )
+ Rails.application.config.assets.precompile += %w( application.js )
+ Rails.application.config.assets.precompile += %w( pricings.js )
+ Rails.application.config.assets.precompile += %w( room_papa.js )
+ Rails.application.config.assets.precompile += %w( roomtypes.js )
