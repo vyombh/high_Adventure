@@ -49,18 +49,45 @@ class RoomPapaController < ApplicationController
    
   end
   
+  def pricecalc price,checkin,checkout,returnprice
+    if checkin == checkout
+      checkout = checkout + 1
+    end
+    n = checkout - checkin + 1
+    while checkout > checkin
+      price.each do |p|
+        if p[:start]<=checkin&&p[:end]>=checkout
+          returnprice[:base_1] = p[:price][:base_1].to_i + returnprice[:base_1]
+          returnprice[:base_2] = p[:price][:base_2].to_i + returnprice[:base_2]
+          returnprice[:extraadult] = p[:price][:extraadult].to_i + returnprice[:extraadult]
+          returnprice[:extrachild] = p[:price][:extrachild].to_i + returnprice[:extrachild]
+          returnprice[:adult_breakfast] = p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
+          returnprice[:adult_lunch] = p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
+          returnprice[:adult_dinner] = p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
+          returnprice[:child_breakfast] = p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
+          returnprice[:child_lunch] = p[:price][:child_lunch].to_i + returnprice[:child_lunch]
+          returnprice[:child_dinner] = p[:price][:child_dinner].to_i + returnprice[:child_dinner]
+          break
+        end
+      end
+      checkin = checkin+1
+    end
+  end
+
   def hotels
-    byebug
     @rooms = []
     count = 0
     
     city = '%' + params[:city] +'%'
-
     @hotels = Hotel.where('city LIKE ? or hotelname LIKE ?', city,city)
     checkin = Date.new(params[:checkin].split('-')[0].to_i,params[:checkin].split('-')[1].to_i,params[:checkin].split('-')[2].to_i)
     checkout = Date.new(params[:checkout].split('-')[0].to_i,params[:checkout].split('-')[1].to_i,params[:checkout].split('-')[2].to_i)
     n = (checkout-checkin).to_s.split('/')[0].to_i
     @hotels.each do |hotel|
+      price = nil
+      if hotel.pricing
+       price = hotel.pricing.price
+     end
       people = []
       i = 0
       params[:data_value].each do |data|
@@ -93,21 +120,23 @@ class RoomPapaController < ApplicationController
           i+=1
         end
         roomObject = {}
-        if room.pricing
-          roomObject = {id: room.id,free: room.rooms - booked, capacity: room.basechildren + room.baseadults , baseadults: room.baseadults, basechildren: room.basechildren , maximumadults: room.maximumadults , maximumchildren: room.maximumchildren ,used: 0,basePrice: room.pricing.baseprice,ebprice: 90,extrabed: room.extrabed}
+        if price != nil && price[room.id]
+          returnprice = {:base_1=>0, :base_2=>0, :extraadult=>0, :extrachild=>0, :adult_breakfast=>0, :adult_lunch=>0,:adult_dinner=>0, :child_dinner=>0, :child_breakfast=>0,:child_lunch=>0}
+          pricecalc(price[room.id],checkin,checkout,returnprice)
+          roomObject = {id: room.id,free: room.rooms - booked, capacity: room.basechildren + room.baseadults , baseadults: room.baseadults, basechildren: room.basechildren , maximumadults: room.maximumadults , maximumchildren: room.maximumchildren ,used: 0,price: returnprice,extrabed: room.maximumguests-room.basechildren - room.baseadults}
           hotelRoomFree = hotelRoomFree.insert(roomCounter,roomObject)
           roomCounter = roomCounter + 1
         end
 
       end
-      hotelRoomFree = hotelRoomFree.sort_by{|a| [a[:capacity],a[:basePrice]]}
+      hotelRoomFree = hotelRoomFree.sort_by{|a| [a[:capacity]]}
       room = []
       for i in 0...people.length
         
         if people[i][:found] == false 
           for j in 0...hotelRoomFree.length
             if people[i][:capacity] <= hotelRoomFree[j][:capacity] && people[i][:adults]<=hotelRoomFree[j][:maximumadults] && people[i][:children]<=hotelRoomFree[j][:maximumchildren] && people[i][:found] == false && hotelRoomFree[j][:free] - hotelRoomFree[j][:used] > 0
-              pusher = { id: hotelRoomFree[j][:id] ,free: hotelRoomFree[j][:free] ,capacity: hotelRoomFree[j][:capacity] ,baseadults: hotelRoomFree[j][:baseadults] ,basechildren: hotelRoomFree[j][:basechildren] ,maximumadults: hotelRoomFree[j][:maximumadults] ,maximumchildren: hotelRoomFree[j][:maximumchildren], used: hotelRoomFree[j][:used] + 1 ,basePrice: hotelRoomFree[j][:basePrice] ,ebprice: hotelRoomFree[j][:ebprice] ,extrabed: hotelRoomFree[j][:extrabed] ,requiredAdults: people[i][:adults] , requiredChildren: people[i][:children]}
+              pusher = { id: hotelRoomFree[j][:id] ,free: hotelRoomFree[j][:free] ,capacity: hotelRoomFree[j][:capacity] ,baseadults: hotelRoomFree[j][:baseadults] ,basechildren: hotelRoomFree[j][:basechildren] ,maximumadults: hotelRoomFree[j][:maximumadults] ,maximumchildren: hotelRoomFree[j][:maximumchildren], used: hotelRoomFree[j][:used] + 1 ,price: hotelRoomFree[j][:price],extrabed: hotelRoomFree[j][:extrabed] ,requiredAdults: people[i][:adults] , requiredChildren: people[i][:children]}
               room = room.insert(i,pusher)
               people[i][:found] = true
               hotelRoomFree[j][:used] = hotelRoomFree[j][:used] + 1
@@ -118,7 +147,7 @@ class RoomPapaController < ApplicationController
         if people[i][:found] == false 
           for j in 0...hotelRoomFree.length
             if people[i][:capacity] <= hotelRoomFree[j][:capacity] + hotelRoomFree[j][:extrabed] && people[i][:adults]<=hotelRoomFree[j][:maximumadults] && people[i][:children]<=hotelRoomFree[j][:maximumchildren] && people[i][:found] == false && hotelRoomFree[j][:free] - hotelRoomFree[j][:used] > 0
-              pusher = { id: hotelRoomFree[j][:id] ,free: hotelRoomFree[j][:free] ,capacity: hotelRoomFree[j][:capacity] ,baseadults: hotelRoomFree[j][:baseadults] ,basechildren: hotelRoomFree[j][:basechildren] ,maximumadults: hotelRoomFree[j][:maximumadults] ,maximumchildren: hotelRoomFree[j][:maximumchildren], used: hotelRoomFree[j][:used] + 1 ,basePrice: hotelRoomFree[j][:basePrice] ,ebprice: hotelRoomFree[j][:ebprice] ,extrabed: hotelRoomFree[j][:extrabed] ,requiredAdults: people[i][:adults] , requiredChildren: people[i][:children]}
+              pusher = { id: hotelRoomFree[j][:id] ,free: hotelRoomFree[j][:free] ,capacity: hotelRoomFree[j][:capacity] ,baseadults: hotelRoomFree[j][:baseadults] ,basechildren: hotelRoomFree[j][:basechildren] ,maximumadults: hotelRoomFree[j][:maximumadults] ,maximumchildren: hotelRoomFree[j][:maximumchildren], used: hotelRoomFree[j][:used] + 1 ,price: hotelRoomFree[j][:price],extrabed: hotelRoomFree[j][:extrabed] ,requiredAdults: people[i][:adults] , requiredChildren: people[i][:children]}
               
               room = room.insert(i,pusher)
               people[i][:found] = true
@@ -138,7 +167,6 @@ class RoomPapaController < ApplicationController
       else
       end
     end 
-    # return request.url
     if request.xhr?
       render :json=>{
         :url_link => request.url

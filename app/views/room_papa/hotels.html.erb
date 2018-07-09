@@ -4,7 +4,7 @@
 	<form action = "/room_papa/filters">
 		pricing<br>
 		min: <input type="number" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000">	
-		 max: <input type="number" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">	<br>
+		max: <input type="number" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">	<br>
 		<!-- hotel -->
 		hotel facilities<br>
 		Parking:
@@ -166,9 +166,19 @@
 			<%=link_to '('+room.typename.downcase.capitalize+')' , room_papa_room_page_path(id: room.id),target: '_blank'%> (X<%=r[1].length%>)
 			<%price = 0%>
 			<%r[1].each do |room|%>
-				<%price = price + room[:basePrice]%>
-				<%if room[:requiredAdults] + room[:requiredChildren] > room[:capacity]%>
-					<%price = price + room[:ebprice]*(room[:requiredAdults] + room[:requiredChildren]  - room[:capacity])%>
+				<%if room[:requiredAdults] + room[:requiredChildren] < room[:capacity]%>
+					<%price = room[:price][:base_1]+price%>
+				<%elsif room[:requiredAdults] + room[:requiredChildren] == room[:capacity] %>
+					<% price = room[:price][:base_2] + price %>
+				<%elsif room[:requiredAdults] + room[:requiredChildren] > room[:capacity] %>
+					<% price = room[:price][:base_2]+price%>
+					
+					<% if room[:requiredAdults]-room[:baseadults]>0 %>
+						<%price = room[:price][:extraadult]*(room[:requiredAdults]-room[:baseadults]) + price%>
+					<%end %>	
+					<% if room[:requiredChildren]-room[:basechildren]>0 %>
+						<%price = room[:price][:extrachild]*(room[:requiredChildren]-room[:basechildren]) + price %>
+					<%end%>	
 				<%end%>
 			<%end%>
 			<%total = total + price%>
