@@ -1,6 +1,6 @@
 class PricingsController < ApplicationController
-  before_action :authenticate_user!
-  protect_from_forgery except: :create
+  # before_action :authenticate_user!
+  # protect_from_forgery except: :create,:update
   # GET /pricings/new
   def new
     
@@ -8,6 +8,7 @@ class PricingsController < ApplicationController
 
   # GET /pricings/1/edit
   def edit
+    @pricing = Pricing.where(hotel_id: current_user.hotel.id).first
   end
 
   # POST /pricings
@@ -60,16 +61,40 @@ class PricingsController < ApplicationController
   # PATCH/PUT /pricings/1
   # PATCH/PUT /pricings/1.json
   def update
-    respond_to do |format|
-      if @pricing.update(pricing_params)
-
-        format.html { redirect_to '/roomtypes', notice: 'Pricing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pricing }
-      else
-        format.html { render :edit }
-        format.json { render json: @pricing.errors, status: :unprocessable_entity }
+    month = {'Jan': 1,'Feb': 2,'Mar': 3,'Apr': 4,'May': 5,'Jun': 6,'Jul': 7,'Aug': 8,'Sep': 9,'Oct': 10,'Nov': 11,'Dec': 12}
+    if current_user.hotel.id == Roomtype.find_by_id(params[:roomtype_id]).hotel_id
+      price = []
+      params[:price].each do |p|
+        startDate = p[1][:start].split(' ')[2].to_i
+        startMonth = month[p[1][:start].split(' ')[1].to_sym]
+        startYear = p[1][:start].split(' ')[3].to_i
+        endDate = p[1][:end].split(' ')[2].to_i
+        endMonth = month[p[1][:end].split(' ')[1].to_sym]
+        endYear = p[1][:end].split(' ')[3].to_i
+        priceObj = p[1][:price]
+        price.push(price: priceObj,start: Date.new(startYear,startMonth,startDate),end: Date.new(endYear,endMonth,endDate))
       end
+      pricing = current_user.hotel.pricing
+      pricing.price[params[:roomtype_id].to_i] = price
+      pricing.save
+      
+      if request.xhr?
+          render :json=>{
+            :success=> 'true'
+          }
+      end
+
     end
+    # respond_to do |format|
+    #   if @pricing.update(pricing_params)
+
+    #     format.html { redirect_to '/roomtypes', notice: 'Pricing was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @pricing }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @pricing.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
    
 end

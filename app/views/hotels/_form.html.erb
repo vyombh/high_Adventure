@@ -1030,6 +1030,9 @@
     <h2 class="col-sm-offset-1">Policies</h2 >
     <%= f.text_area :policies,:class=>"form-control fixedtextarea",:rows=>"6"%>
 </div>
+    images: 
+    <%= f.file_field :images, multiple: true %>
+
 
   <div class="col-sm-12 text-center"><button class="btn btn-success btn-md actions ">Create Hotel</button></div>
 

@@ -2,7 +2,6 @@ class Roomtype < ActiveRecord::Base
 	belongs_to :hotel
 	belongs_to :user
 	has_many :bookings, dependent: :destroy
-	has_one :pricing, dependent: :destroy
 	validates :typename,presence: true
 	validates :rooms,presence: true
 	validates :baseadults,presence: true,inclusion: 0..10

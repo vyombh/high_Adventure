@@ -547,9 +547,12 @@
 			<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 930px;"><%= @hotel.policies %></textarea>
 			</div>
 			</div>
-			
-
-	
+			<br>
+	<div>
+		<%current_user.hotel.images.each do |hs|%>
+		<%=image_tag(hs.url, height: '100', width: '100')%></div>
+		<%end%>
+	</div>
 <%else%>
 	Congratulations!! your have moved one step towards completion<br>
 	kindly fill  <%=link_to "Room Types",new_roomtype_path(id: current_user.hotel.id),method: :get%>

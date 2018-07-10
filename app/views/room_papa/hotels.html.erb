@@ -185,11 +185,12 @@
 			<%=hotel.currency%> <%=price%><br>
 		<%end%>
 		TOTAL:<%=hotel.currency%> <%=total%>
-		<form id = "hotel_<%=hotel.id%>" action = "/bookings/order">
-			<input type="hidden" name="id" value="<%=perHotelRoom%>">
-			
-			<input type="submit" name="" value="book">
-		</form>
+			<form action="/bookings/order">
+				<input type="hidden" name="room_object" value="<%=perHotelRoom%>">
+				<input type="hidden" name="checkin_date" value="<%=params[:checkin]%>">
+				<input type="hidden" name="checkout_date" value="<%=params[:checkout]%>">
+				<input type="submit" value="Book">
+			</form>
 	</div>
 	<%end%>
 	
@@ -220,3 +221,20 @@ NO CASE MATCH
 		background: green;
 	}
 </style>
+
+<!-- <script type="text/javascript">
+	$(document).ready(function(){
+		$('#submit_order').click(function(e){
+			e.preventDefault();
+			$.ajax({
+				url: '/bookings/order',
+				type: 'get',
+				data: {
+						room_object: ('#room_object').value,
+						checkin: ('#checkin_date').value,
+						checkout_date: ('#checkout_date').value
+				}
+			});
+		});
+	});
+</script> -->

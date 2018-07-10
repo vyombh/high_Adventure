@@ -44,7 +44,6 @@ class RoomtypesController < ApplicationController
   # PATCH/PUT /roomtypes/1.json
   def update
 
-    @roomtype = Roomtype.new(roomtype_params)
     if roomtype_params[:basechildren] && roomtype_params[:baseadults]
       @roomtype.extrabed =  roomtype_params[:maximumguests].to_i - roomtype_params[:basechildren].to_i - roomtype_params[:baseadults].to_i
     end
@@ -52,7 +51,7 @@ class RoomtypesController < ApplicationController
     
     respond_to do |format|
       if @roomtype.update(roomtype_params)
-        format.html { redirect_to '/room_papa/index', notice: 'Room Type was successfully updated.' }
+        format.html { redirect_to '/roomtypes/'+@roomtype.id.to_s, notice: 'Room Type was successfully updated.' }
         format.json { render :show, status: :ok, location: @roomtype }
       else
         format.html { render :edit }

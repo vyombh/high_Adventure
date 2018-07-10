@@ -1,6 +1,255 @@
-<h1>Editing Pricing</h1>
+Start Date:
 
-<%= render 'form' %>
+<input type="date" name="start" id = 'start'>
+End Date:
 
-<%= link_to 'Show', @pricing %> |
-<%= link_to 'Back', pricings_path %>
+<input type="date" name="end" id = 'end'>
+
+<br>
+
+baseprice for single occupancy:
+<input type="number" name="base_1" id = 'base_1'><br>
+baseprice for double occupancy:
+<input type="number" name="base_2" id = 'base_2'><br>
+extra adult cost:
+<input type="number" name="extraadult" id = 'extraadult'><br>
+extra child cost:
+<input type="number" name="extrachild" id = 'extrachild'><br>
+adult breakfast rate:
+<input type="number" name="adult_breakfast" id = 'adult_breakfast'><br>
+adult lunch rate:
+<input type="number" name="adult_lunch" id = 'adult_lunch'><br>
+adult dinner rate:
+<input type="number" name="adult_dinner" id = 'adult_dinner'><br>
+child breakfast rate:
+<input type="number" name="child_breakfast" id = 'child_breakfast'><br>
+child lunch rate:
+<input type="number" name="child_lunch" id = 'child_lunch'><br>
+child dinner rate:
+<input type="number" name="child_dinner" id = 'child_dinner'><br>
+<button id='submit_id'>submit</button>
+
+<script type="text/javascript">
+var CategoryPrice = [];
+var priceobj = {};
+var ChangePrice=[];
+
+
+<%@pricing.price[params[:room_id].to_i].each do |p|%>
+  priceobj['base_1'] = <%=p[:price][:base_1]%>
+  priceobj['base_2'] =<%=p[:price][:base_2]%>
+  priceobj['extraadult'] = <%=p[:price][:extraadult]%>
+  priceobj['extrachild'] = <%=p[:price][:extrachild]%>
+  priceobj['adult_breakfast'] = <%=p[:price][:adult_breakfast]%>
+  priceobj['adult_lunch'] = <%=p[:price][:adult_lunch]%>
+  priceobj['adult_dinner'] = <%=p[:price][:adult_dinner]%>
+  priceobj['child_breakfast'] = <%=p[:price][:child_breakfast]%>
+  priceobj['child_lunch'] = <%=p[:price][:child_lunch]%>
+  priceobj['child_dinner'] = <%=p[:price][:child_dinner]%>
+
+  var day =(<%=p[:start].day%>);
+  var month =(<%=p[:start].month%>);
+  var year =(<%=p[:start].year%>);
+  var StartDate = new Date(year,month-1,day);
+  day =(<%=p[:end].day%>);
+  month =(<%=p[:end].month%>);
+  year =(<%=p[:end].year%>);
+  var EndDate = new Date(year,month-1,day);
+  CategoryPrice.push({price: priceobj,start: StartDate,end: EndDate});
+<%end%>
+
+
+var NewPrice={};
+function declare(){
+	var NewPriceObj = { 'base_1': parseInt($('#base_1')[0].value),
+					'base_2': parseInt($('#base_2')[0].value),
+					'extraadult': parseInt($('#extraadult')[0].value),
+					'extrachild': parseInt($('#extrachild')[0].value),
+					'adult_breakfast': parseInt($('#adult_breakfast')[0].value),
+					'adult_lunch': parseInt($('#adult_lunch')[0].value),
+					'adult_dinner': parseInt($('#adult_dinner')[0].value),
+					'child_breakfast': parseInt($('#child_breakfast')[0].value),
+					'child_lunch': parseInt($('#child_lunch')[0].value),
+					'child_dinner': parseInt($('#child_dinner')[0].value)
+
+	}
+
+ NewPrice={price: NewPriceObj,start: new Date($('#start')[0].value.split('-')[0],$('#start')[0].value.split('-')[1]-1,$('#start')[0].value.split('-')[2])
+,end: new Date($('#end')[0].value.split('-')[0],$('#end')[0].value.split('-')[1]-1,$('#end')[0].value.split('-')[2])
+};
+}
+	
+
+var Price=CategoryPrice;
+
+function AddPrice(i,j){
+  for (i; i <=j; i++) {
+    ChangePrice.push(Price[i]);
+  }
+}
+
+function SetRate(Price,NewPrice){
+  var StartDate = NewPrice.start;
+  var EndDate = NewPrice.end;
+  var StartBlock = 0;
+  var EndBlock = 0;
+
+  for (var i = 0; i < Price.length; i++)
+  {
+    if((Price[i].start.getTime()<=StartDate.getTime())&&(StartDate.getTime()<=Price[i].end.getTime()))
+      {
+          StartBlock=i;
+      }
+      if((Price[i].start.getTime()<=EndDate.getTime())&&(EndDate.getTime()<=Price[i].end.getTime()))
+      {
+          EndBlock=i;
+      }
+  }
+  var NextPrevDate = new Date();
+  if (StartBlock==EndBlock)
+  {	
+    if (Price[StartBlock].start.getTime()==StartDate.getTime())
+    {
+        if (Price[EndBlock].end.getTime()==EndDate.getTime())
+        {
+          AddPrice(0,Price.length-1);
+          ChangePrice[StartBlock].price=NewPrice.price;
+        }
+        else
+        {
+          AddPrice(0,StartBlock-1);
+          ChangePrice.push(NewPrice);
+          NextPrevDate=new Date((NewPrice.end.getTime())+( 24 * 60 * 60 * 1000));
+          // NextPrevDate.setDate(NewPrice.end.getDate()+1);
+          ChangePrice.push({
+                              'start':NextPrevDate,
+                              'end':Price[StartBlock].end,
+                              'price':Price[StartBlock].price});
+          AddPrice((StartBlock+1),Price.length-1);
+        }
+    }
+    else
+    {
+        if (Price[EndBlock].end.getTime()==EndDate.getTime())
+        {
+          AddPrice(0,StartBlock-1);
+          NextPrevDate=new Date((NewPrice.start.getTime())-( 24 * 60 * 60 * 1000));
+          // NextPrevDate.setDate(NewPrice.start.getDate()-1);
+          ChangePrice.push({
+                              'start':Price[StartBlock].start,
+                              'end':NextPrevDate,
+                              'price':Price[StartBlock].price});
+          ChangePrice.push(NewPrice);
+          AddPrice(StartBlock+1,Price.length-1);
+        }
+        else
+        {
+          AddPrice(0,StartBlock-1);
+          NextPrevDate=new Date((NewPrice.start.getTime())-( 24 * 60 * 60 * 1000));
+          // NextPrevDate.setDate(NewPrice.start.getDate()-1);
+          ChangePrice.push({
+                              'start':Price[StartBlock].start,
+                              'end':NextPrevDate,
+                              'price':Price[StartBlock].price});
+          ChangePrice.push(NewPrice);
+          NextPrevDate=new Date((NewPrice.end.getTime())+( 24 * 60 * 60 * 1000));
+          // NextPrevDate.setDate(NewPrice.start.getDate()+1);
+          ChangePrice.push({
+                              'start':NextPrevDate,
+                              'end':Price[StartBlock].end,
+                              'price':Price[StartBlock].price
+                            });
+          AddPrice(StartBlock+1,Price.length-1);
+        }
+    }
+  }
+  else
+  {
+    if(Price[StartBlock].start.getTime()==StartDate.getTime())
+      {
+          if(Price[EndBlock].end.getTime()==EndDate.getTime())
+          {
+            AddPrice(0,StartBlock-1);
+            ChangePrice.push(NewPrice);
+            AddPrice(EndBlock+1,Price.length-1);
+          }
+          else
+          {
+            AddPrice(0,StartBlock-1);
+            ChangePrice.push(NewPrice);
+            NextPrevDate=new Date((NewPrice.end.getTime())+( 24 * 60 * 60 * 1000));
+            ChangePrice.push({
+                                'start':NextPrevDate,
+                                'end':Price[EndBlock].end,
+                                'price':Price[EndBlock].price
+                              });
+            AddPrice(EndBlock+1,Price.length-1);
+          }
+      }
+      else
+      {
+        if(Price[EndBlock].end.getTime()==EndDate.getTime())
+        {
+          AddPrice(0,StartBlock-1);
+          NextPrevDate=new Date((NewPrice.start.getTime())-( 24 * 60 * 60 * 1000));
+          ChangePrice.push({
+                              'start':Price[StartBlock].start,
+                              'end':NextPrevDate,
+                              'price':Price[StartBlock].price
+                            });
+          ChangePrice.push(NewPrice);
+          AddPrice(EndBlock+1,Price.length-1);
+        }
+        else
+        {
+          AddPrice(0,StartBlock-1);
+          NextPrevDate=new Date((NewPrice.start.getTime())-( 24 * 60 * 60 * 1000));
+          ChangePrice.push({
+                              'start':Price[StartBlock].start,
+                              'end':NextPrevDate,
+                              'price':Price[StartBlock].price
+                            });
+          ChangePrice.push(NewPrice);
+          NextPrevDate=new Date((NewPrice.end.getTime())+( 24 * 60 * 60 * 1000));
+          ChangePrice.push({
+                              'start':NextPrevDate,
+                              'end':Price[StartBlock].end,
+                              'price':Price[StartBlock].price
+                            });
+          AddPrice(EndBlock+1,Price.length-1);
+        }
+      }
+  	}
+  	console.log(ChangePrice);
+  	return ChangePrice;
+}
+
+  $('#submit_id').click(function(e){
+    e.preventDefault();
+    declare();
+    
+    $.ajax({
+        url: '/pricings/update',
+        type: 'post',
+        data: {
+              'price':SetRate(Price,NewPrice),
+                    'hotel_id': <%=current_user.hotel.id%>,
+                    roomtype_id: <%=params[:room_id]%>
+              },
+        progress:function(loadTime,status){
+                          console.log(loadTime);
+                         },
+        success: function (result,status,object) {
+                  console.log(result);
+                  console.log(status);
+                  window.location.href = "/roomtypes";
+                 },
+        error:function(result,status) {
+                  alert(result.responseText);
+                  console.log(status);
+                 }
+
+      });
+    ChangePrice=[];
+  });
+</script>

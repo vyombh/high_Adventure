@@ -46,4 +46,6 @@ class Hotel < ActiveRecord::Base
     serialize :entertainment,Hash
     serialize :food,Hash
     serialize :basic,Hash
+    mount_uploaders :images, PhotoUploader
+    serialize :images, JSON
 end

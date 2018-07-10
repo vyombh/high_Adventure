@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get'/pricings/new'
   post'/pricings/create'
   get'/pricings/edit'
+  post'/pricings/update'
   #get '/'
   # root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
