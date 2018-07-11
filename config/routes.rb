@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post'/pricings/create'
   get'/pricings/edit'
   post'/pricings/update'
+  get '/hotels/deleteimage'
+  get '/room_papa/deleteimage'
   #get '/'
   # root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

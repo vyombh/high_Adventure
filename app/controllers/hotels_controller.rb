@@ -41,9 +41,68 @@ class HotelsController < ApplicationController
   # PATCH/PUT /hotels/1
   # PATCH/PUT /hotels/1.json
   def update
-    
+    if hotel_params[:images]
+      @hotel.images = @hotel.images + hotel_params[:images]
+    end
+    if hotel_params[:basic]
+      @hotel.basic = hotel_params[:basic]
+    end
+    if hotel_params[:media]
+      @hotel.media = hotel_params[:media]
+    end
+    if hotel_params[:entertainment]
+      @hotel.entertainment = hotel_params[:entertainment]
+    end
+    if hotel_params[:food]
+      @hotel.food = hotel_params[:food]
+    end
+    if hotel_params[:disability]
+      @hotel.disability = hotel_params[:disability]
+    end
+    if hotel_params[:checkinhrsfrom]
+      @hotel.checkinhrsfrom = hotel_params[:checkinhrsfrom]
+    end
+    if hotel_params[:checkinminfrom]
+      @hotel.checkinminfrom = hotel_params[:checkinminfrom]
+    end
+    if hotel_params[:checkinampmfrom]
+      @hotel.checkinampmfrom = hotel_params[:checkinampmfrom]
+    end
+    if hotel_params[:checkinhrsto]
+      @hotel.checkinhrsto = hotel_params[:checkinhrsto]
+    end
+    if hotel_params[:checkinminto]
+      @hotel.checkinminto = hotel_params[:checkinminto]
+    end
+    if hotel_params[:checkinampmto]
+      @hotel.checkinampmto = hotel_params[:checkinampmto]
+    end
+    if hotel_params[:checkouthrsfrom]
+      @hotel.checkouthrsfrom = hotel_params[:checkouthrsfrom]
+    end
+    if hotel_params[:checkoutminfrom]
+      @hotel.checkoutminfrom = hotel_params[:checkoutminfrom]
+    end
+    if hotel_params[:checkoutampmfrom]
+      @hotel.checkoutampmfrom = hotel_params[:checkoutampmfrom]
+    end
+    if hotel_params[:checkouthrsto]
+      @hotel.checkouthrsto = hotel_params[:checkouthrsto]
+    end
+    if hotel_params[:checkoutminto]
+      @hotel.checkoutminto = hotel_params[:checkoutminto]
+    end
+    if hotel_params[:checkoutampmto]
+      @hotel.checkoutampmto = hotel_params[:checkoutampmto]
+    end
+    if hotel_params[:description]
+      @hotel.description = hotel_params[:description]
+    end
+    if hotel_params[:policies]
+      @hotel.policies = hotel_params[:policies]
+    end
     respond_to do |format|
-      if @hotel.update(hotel_params)
+      if @hotel.save
         format.html { redirect_to '/room_papa/index', notice: 'Hotel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hotel }
       else
@@ -55,6 +114,27 @@ class HotelsController < ApplicationController
 
   # DELETE /hotels/1
   # DELETE /hotels/1.json
+  def deleteimage
+    byebug
+    hotel = Hotel.find_by_id(params[:hotel])
+    count = 0
+    @file = params[:file]
+    hotel.images.each do |image|
+      if image.file.path.split("/").last == params[:file]
+        break;
+      end
+      count = count + 1
+    end
+    remain_images = hotel.images # copy initial avatars
+    delete_image = remain_images.delete_at(count) # delete the target image
+    delete_image.try(:remove!) # delete image
+    hotel.images = remain_images # re-assign back
+    hotel.save
+    respond_to do |format|
+      format.html { redirect_to '/hotels/'+hotel.id.to_s+'/edit' }
+      format.js {}
+    end
+  end
   def destroy
     @hotel.destroy
     respond_to do |format|
@@ -73,7 +153,6 @@ class HotelsController < ApplicationController
     def hotel_params
       # params.require(:hotel).permit(:hotelname, :hoteltype, :chainname, :floor, :currency, :rating, :year, :checkinhrsfrom, :checkinminfrom, :checkinampmfrom, :checkinhrsto, :checkinminto, :checkinampmto, :checkouthrsfrom, :checkoutminfrom, :checkoutampmfrom, :checkouthrsto, :checkoutminto, :checkoutampmto, :city, :streetname, :buildingname,:state,:country,:zipcode,:description, {basic: [:parking,:gym,:spa,:pool,:bar,:restaurant,:lift]},{media: [:computer,:gameconsole,:gameconsolenintendowii,:gameconsoleps2,:gameconsoleps3,:gameconsoleps4,:gameconsolexbox360,:laptop,:ipad,:cablechannels,:cdplayer,:dvdplayer,:fax,:laptopsafe,:flatscreentv,:paypervideochannels,:radio,:satellitechannels,:telephone,:tv,:video,:videogames,:blurayplayer]},{food: [:diningarea,:diningtable,:barbecue,:stovetop,:toaster,:outdoordiningarea,:outdoorfurniture,:kitchenette,:kitchenware,:microwave,:refrigerator,:teacoffeemachine,:coffeemachine,:highchair]},{disability: [:groundfloor,:wheelchair,:elevator,:staircaseonly,:grabrailstoilet]},{entertainment: [:babysafetyglasses,:boardgamespuzzles,:books,:safetysockets]},:policies , :user_id)
       params.require(:hotel).permit(:hotelname, :hoteltype, :chainname, :floor, :currency, :rating, :year, :checkinhrsfrom, :checkinminfrom, :checkinampmfrom, :checkinhrsto, :checkinminto, :checkinampmto, :checkouthrsfrom, :checkoutminfrom, :checkoutampmfrom, :checkouthrsto, :checkoutminto, :checkoutampmto, :city, :streetname, :buildingname,:state,:country,:zipcode,:description, {basic: [:bar,:gym,:lift,:parking,:restaurant,:spa,:swimmingpool]},{media: [:blurayplayer,:cablechannels,:cdplayer,:computer,:dvdplayer,:fax,:flatscreentv,:gameconsole,:ipad,:laptop,:laptopsafe,:nintendowii,:paypervideochannels,:ps2,:ps3,:ps4,:radio,:satellitechannels,:telephone,:tv,:video,:videogames,:xbox360]},{food: [:barbecue,:coffeemachine,:diningarea,:diningtable,:highchair,:kitchenette,:kitchenware,:microwave,:outdoordiningarea,:outdoorfurniture,:refrigerator,:stovetop,:teacoffeemachine,:toaster]},{disability: [:elevator,:staircaseonly,:grabrailstoilet,:groundfloor,:staircaseonly,:wheelchair]},{entertainment: [:babysafetyglasses,:boardgamespuzzles,:books,:safetysockets]},:policies,{images: []} , :user_id)
-
     end
 end
 

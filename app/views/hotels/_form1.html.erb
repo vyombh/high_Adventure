@@ -1,4 +1,4 @@
- <%= form_for(@hotel) do |f| %>
+ <%= form_for(@hotel,multipart: true) do |f| %>
   <% if @hotel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
@@ -27,7 +27,7 @@
 
 
           <div class="field form-group">
-            <label class="control-label col-sm-2">Chain Nme*:</label>
+            <label class="control-label col-sm-2">Chain Name*:</label>
             <div class="col-sm-4"><%= f.text_field :chainname,:class=>"form-control", :disabled=>true %></div>
           </div>
           <div class="field form-group">
@@ -932,7 +932,6 @@
             
           <%else%>
             <%=f1.check_box:wheelchair%>
-            
           <% end %>
         </div>
       </div>
@@ -959,7 +958,6 @@
             
           <%else%>
             <%=f1.check_box:babysafetyglasses%>
-            
           <% end %>
         </div>
       </div>
@@ -1003,7 +1001,6 @@
             
           <%else%>
             <%=f1.check_box:safetysockets%>
-            
           <% end %>
         </div>
       </div>
@@ -1026,7 +1023,17 @@
 </div>
 <br>
 
- images: 
+ <%if @hotel.images.any?%>
+    Existing Images:
+    <%i=1%>
+    <div>
+      <%@hotel.images.each do |image|%>
+         <%=render 'images',image: image,hotel: @hotel%>
+      <%end%>
+    </div>
+ <%end%>
+ <br>
+ Upload new images: 
     <%= f.file_field :images, multiple: true %>
 
 

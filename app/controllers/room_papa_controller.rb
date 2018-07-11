@@ -341,6 +341,27 @@ class RoomPapaController < ApplicationController
   def room_page
     
   end
+
+  def deleteimage
+    roomtype = Roomtype.find_by_id(params[:roomtype])
+    count = 0
+    @file = params[:file]
+    roomtype.images.each do |image|
+      if image.file.path.split("/").last == params[:file]
+        break;
+      end
+      count = count + 1
+    end
+    remain_images = roomtype.images # copy initial avatars
+    delete_image = remain_images.delete_at(count) # delete the target image
+    delete_image.try(:remove!) # delete image
+    roomtype.images = remain_images # re-assign back
+    roomtype.save
+    respond_to do |format|
+      format.html { redirect_to '/roomtypes/'+roomtype.id.to_s+'/edit' }
+      format.js {}
+    end
+  end
 end                                                                                 #class
 
 

@@ -43,14 +43,55 @@ class RoomtypesController < ApplicationController
   # PATCH/PUT /roomtypes/1
   # PATCH/PUT /roomtypes/1.json
   def update
+    if roomtype_params[:images]
+      @roomtype.images = @roomtype.images + roomtype_params[:images]
+    end
+    if roomtype_params[:basic]
+      @roomtype.basic = roomtype_params[:basic]
+    end
+    if roomtype_params[:view]
+      @roomtype.view = roomtype_params[:view]
+    end
+    if roomtype_params[:services]
+      @roomtype.services = roomtype_params[:services]
+    end
+    if roomtype_params[:bathroom]
+      @roomtype.bathroom = roomtype_params[:bathroom]
+    end
 
     if roomtype_params[:basechildren] && roomtype_params[:baseadults]
       @roomtype.extrabed =  roomtype_params[:maximumguests].to_i - roomtype_params[:basechildren].to_i - roomtype_params[:baseadults].to_i
     end
-    
-    
+    if roomtype_params[:typename]
+      @roomtype.typename = roomtype_params[:typename]
+    end
+    if roomtype_params[:rooms]
+      @roomtype.rooms = roomtype_params[:rooms]
+    end
+    if roomtype_params[:beds]
+      @roomtype.beds = roomtype_params[:beds]
+    end
+    if roomtype_params[:baseadults]
+      @roomtype.baseadults = roomtype_params[:baseadults]
+    end
+    if roomtype_params[:infants]
+      @roomtype.infants = roomtype_params[:infants]
+    end
+    if roomtype_params[:basechildren]
+      @roomtype.basechildren = roomtype_params[:basechildren]
+    end
+     if roomtype_params[:maximumguests]
+      @roomtype.maximumguests = roomtype_params[:maximumguests]
+    end
+     if roomtype_params[:maximumadults]
+      @roomtype.maximumadults = roomtype_params[:maximumadults]
+    end
+     if roomtype_params[:maximumchildren]
+      @roomtype.maximumchildren = roomtype_params[:maximumchildren]
+    end
+
     respond_to do |format|
-      if @roomtype.update(roomtype_params)
+      if @roomtype.save
         format.html { redirect_to '/roomtypes/'+@roomtype.id.to_s, notice: 'Room Type was successfully updated.' }
         format.json { render :show, status: :ok, location: @roomtype }
       else
@@ -62,6 +103,8 @@ class RoomtypesController < ApplicationController
 
   # DELETE /roomtypes/1
   # DELETE /roomtypes/1.json
+  
+  
   def destroy
     @roomtype.destroy
     respond_to do |format|
@@ -78,6 +121,6 @@ class RoomtypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def roomtype_params
-      params.require(:roomtype).permit(:typename, :rooms, :beds, :baseadults, :maximumadults, :infants, :basechildren, :maximumchildren, :maximumguests,{basic: [:clothesracks,:dryingracking,:foldupbed,:sofabed,:wardrobe,:carpeted,:walkingcloset,:extralongbeds,:fireplace,:heater,:interconnectingrooms,:iron,:desk,:wifi,:smoking,:tv]},{restroom: [:bathroom,:toiletpaper,:bathtub,:shower,:bathrobe,:freetoiletries,:hairdryer,:spatub,:sharedbathroom,:slippers,:toilets,:geyser]},{services: [:executiveloungeaccess,:alarmclock,:wakeupservice,:linens,:sheets,:ac,:cooler,:fan,:kettle,:laundry]},{view: [:balcony,:terrace,:cityview,:lakeview,:landmarkview,:poolview,:riverview,:oceanview]}, :hotel_id)
+      params.require(:roomtype).permit(:typename, :rooms, :beds, :baseadults, :maximumadults, :infants, :basechildren, :maximumchildren, :maximumguests,{basic: [:clothesracks,:dryingracking,:foldupbed,:sofabed,:wardrobe,:carpeted,:walkingcloset,:extralongbeds,:fireplace,:heater,:interconnectingrooms,:iron,:desk,:wifi,:smoking,:tv]},{restroom: [:bathroom,:toiletpaper,:bathtub,:shower,:bathrobe,:freetoiletries,:hairdryer,:spatub,:sharedbathroom,:slippers,:toilets,:geyser]},{services: [:executiveloungeaccess,:alarmclock,:wakeupservice,:linens,:sheets,:ac,:cooler,:fan,:kettle,:laundry]},{view: [:balcony,:terrace,:cityview,:lakeview,:landmarkview,:poolview,:riverview,:oceanview]},{images: []}, :hotel_id)
     end
 end

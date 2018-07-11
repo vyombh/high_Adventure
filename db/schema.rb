@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180710053147) do
+ActiveRecord::Schema.define(version: 20180711112709) do
 
   create_table "bookings", force: :cascade do |t|
     t.date     "checkin"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20180710053147) do
     t.text     "restroom"
     t.text     "services"
     t.text     "view"
+    t.string   "images"
   end
 
   add_index "roomtypes", ["hotel_id"], name: "index_roomtypes_on_hotel_id"

@@ -1,0 +1,15 @@
+<div id = <%=image.file.path.split("/").last.split('.').first%> class = 'images'>
+	<div>
+		<%=image_tag(image.url,height: 100,width: 100)%>
+		<%= link_to 'Delete',url_for(action: :deleteimage,file: image.file.path.split("/").last,hotel: hotel),data: {confirm: "Are you sure you want to delete this image?"}, remote: true%>
+	</div>
+</div>
+<style type="text/css">
+	div.images{
+		display: inline-block;
+	}
+	div.images div{
+		display: flex;
+		flex-direction: column;
+	}
+</style>

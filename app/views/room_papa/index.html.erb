@@ -541,16 +541,15 @@
 		</div>
 	</div>
 
-			<div>
-				<h2 class="col-sm-offset-2">Policies</h2 >
-			<div class="col-sm-offset-1" style="padding-left: 25px;">
-			<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 930px;"><%= @hotel.policies %></textarea>
-			</div>
-			</div>
-			<br>
+	<div>
+		<h2 class="col-sm-offset-2">Policies</h2 >
+	<div class="col-sm-offset-1" style="padding-left: 25px;">
+	<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 930px;"><%= @hotel.policies %></textarea>
+	</div>
+	</div>
 	<div>
 		<%current_user.hotel.images.each do |hs|%>
-		<%=image_tag(hs.url, height: '100', width: '100')%></div>
+			<%=image_tag(hs.url, height: '100', width: '100')%>
 		<%end%>
 	</div>
 <%else%>

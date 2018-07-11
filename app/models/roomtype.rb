@@ -15,5 +15,6 @@ class Roomtype < ActiveRecord::Base
     serialize :view,Hash
     serialize :restroom,Hash
     serialize :services,Hash
-
+	mount_uploaders :images, PhotoUploader
+    serialize :images, JSON
 end

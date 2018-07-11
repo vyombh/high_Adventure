@@ -440,8 +440,21 @@
       <% end %>
     </div>
   <%end%>
+  <%if @roomtype.images.any?%>
+    Existing Images:
+    <div>
+      <%@roomtype.images.each do |image|%>
+         <%=render 'images',image: image,roomtype: @roomtype%>
+      <%end%>
+    </div>
+  <%end%>
+  <br>
+  Upload new images: 
+    <%= f.file_field :images, multiple: true %>
   <%= f.hidden_field :hotel_id, value: current_user.hotel.id%>
   <div class="actions">
+
+
     <%= f.submit %>
   </div>
 
