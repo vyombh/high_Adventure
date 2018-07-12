@@ -40,11 +40,14 @@
           </div>
           <div class="field form-group">
             <div class="control-label col-sm-2"><%= f.label :rating %><sup>*</sup><strong>:</strong></div>
-            <div class="col-sm-4">
-              <input id="StarRatingSlider slider" class="form-control" type="range" min="0" max="7" step="0.1" oninput="sliderChange(this.value)">
+            <div>
+            <div class="col-sm-4" style="font-weight: bold;"><%= f.range_field :rating, :min=>0, :max=>7, :step=>0.1, :class=>"form-control removeborder",:oninput=>"sliderChange(this.value)" %>
             </div>
-            <div class="col-sm-4" style="font-weight: bold;"><%= f.text_field :rating, :class=>"form-control removeborder" %></div>
+            <div class="col-sm-2" style="font-weight: bold;padding-top: 7px;" onkeydown="return false" id="SliderValue">3.5</div>
           </div>
+          </div>
+
+
           <div class="field form-group">
             <div class="control-label col-sm-2"><%= f.label :year %><sup>*</sup><strong>:</strong></div>
             <div class="col-sm-4"><%= f.text_field :year,:class=>"form-control" %></div>
@@ -146,6 +149,10 @@
     <div class="col-sm-4"><%= f.text_field :streetname,:class=>"form-control" %></div>
   </div>
   <div class="field form-group">
+    <div class="control-label col-sm-2"><strong>Landmark<sup>*</sup>:</strong></div>
+    <div class="col-sm-4"><%= f.text_field :landmark,:class=>"form-control" %></div>
+  </div>
+  <div class="field form-group">
     <div class="control-label col-sm-2"><%= f.label :city %><sup>*</sup><strong>:</strong>
     </div>
     <div class="col-sm-4"><%= f.text_field :city,:class=>"form-control" %></div>
@@ -166,13 +173,44 @@
     <div class="col-sm-4"><%= f.text_field :zipcode,:class=>"form-control" %></div>
   </div>
 </div>
-          
 <div class="form form-horizontal">
-<div class="col-sm-offset-2">
-  <h2>Amenities</h2>
-</div>  
-
-   
+  <div class="col-sm-offset-2">
+    <h2>Contact Details</h2>
+  </div> 
+  <div class="field form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label 'Phone Number' %><strong><sup>*</sup>:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :phnno1,:class=>"form-control" %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label 'Alternate Number' %><strong><sup>*</sup>:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :phnno2,:class=>"form-control" %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label 'Landline' %><strong><sup>*</sup>:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= f.text_field :landline,:class=>"form-control" %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label 'Email' %><strong><sup>*</sup>:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= f.email_field :email,:class=>"form-control" %>
+    </div>
+  </div>
+</div>
+<div class="form form-horizontal"> 
 
 <div class="col-sm-offset-2"><h2>Amenties</h2></div>
   <div class="row">
@@ -787,7 +825,7 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
   
           <% if @hotel.food[:outdoorfurniture] == '1'%>
-            <%=f1.check_box:outdoorfurniture%>
+            <%=f1.check_box:outdoorfurniture,checked: true%>
             
           <%else%>
             <%=f1.check_box:outdoorfurniture%>
@@ -1020,7 +1058,6 @@
 
 <%end%> 
 
-
 <div class="col-sm-offset-1">
     <h2 class="col-sm-offset-1">Description</h2 >
     <%= f.text_area :description,:class=>"form-control fixedtextarea",:rows=>"4"%>
@@ -1034,13 +1071,22 @@
     <%= f.file_field :images, multiple: true %>
 
 
-  <div class="col-sm-12 text-center"><button class="btn btn-success btn-md actions ">Create Hotel</button></div>
+<br>
+
+  <div class="col-sm-12 text-center" ><button class="btn btn-success btn-md actions ">Create Hotel</button></div>
 
 </div>
  
 <% end %>
 
 <style>
+@media only screen and (min-width:786px){
+.PosChkInOut {
+position: absolute;
+right:14px;
+}
+}
+
   .AccordianBtn{
     height:50px;
     border-radius: 0px;
@@ -1071,130 +1117,179 @@
     transform: scale(2);
     transition-duration: 0.2s;
   }
-  .RotatePlusC{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusD{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusE{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusF{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusG{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusH{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusI{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusJ{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
+
 
 </style>
 
 <script type="text/javascript">
+
+ function sliderChange(x)
+    {
+      document.getElementById('SliderValue').innerHTML=x;
+    }
+
+$(document).ready(function(){
+
   $('#BasicAmenties').slideUp(1);
   $('#MediaAmenties').slideUp(1);
   $('#FoodAmenties').slideUp(1);
   $('#DisabilityAmenties').slideUp(1);
   $('#EntertainmentAmenties').slideUp(1);
-  var x=1;
-  $('#BasicAmentiesBtn').click(function(){
-    if(x==1)
+
+  var basicamenities=1;
+  var mediaamenities=1;
+  var foodamenities=1;
+  var disabilityamenities=1;
+  var entertainmentamenities=1;
+
+  function basicAmenities(){
+    if(basicamenities==1)
     {
-      $('#BasicAmenties').slideDown();
+      $('#BasicAmenties').slideDown(250);
       $('#PlusSignA').removeClass('RotatePlusB');
       $('#PlusSignA').addClass('RotatePlusA');
     }
     else
     {
-      $('#BasicAmenties').slideUp();
+      $('#BasicAmenties').slideUp(250);
       $('#PlusSignA').removeClass('RotatePlusA');
       $('#PlusSignA').addClass('RotatePlusB');
     }
-    x=(x)*(-1);
-    // $('#PlusSign').style(transform(rotate(45deg)));
-  });
+    basicamenities=(basicamenities)*(-1);
+  }
 
-  var y=1;
-  $('#MediaAmentiesBtn').click(function(){
-    if(y==1)
+  function MediaAmenities(){
+    if(mediaamenities==1)
     {
-      $('#MediaAmenties').slideDown();
-      $('#PlusSignB').removeClass('RotatePlusD');
-      $('#PlusSignB').addClass('RotatePlusC');
+      $('#MediaAmenties').slideDown(250);
+      $('#PlusSignB').removeClass('RotatePlusB');
+      $('#PlusSignB').addClass('RotatePlusA');
     }
     else
     {
-      $('#MediaAmenties').slideUp();
-      $('#PlusSignB').removeClass('RotatePlusC');
-      $('#PlusSignB').addClass('RotatePlusD');
+      $('#MediaAmenties').slideUp(250);
+      $('#PlusSignB').removeClass('RotatePlusA');
+      $('#PlusSignB').addClass('RotatePlusB');
     }
-    y=(y)*(-1);
-  });
+    mediaamenities=(mediaamenities)*(-1);
+  }
 
-  var z=1;
-  $('#FoodAmentiesBtn').click(function(){
-    if(z==1)
+  function FoodAmenities(){
+    if(foodamenities==1)
     {
-      $('#FoodAmenties').slideDown();
-      $('#PlusSignC').removeClass('RotatePlusF');
-      $('#PlusSignC').addClass('RotatePlusE');
+      $('#FoodAmenties').slideDown(250);
+      $('#PlusSignC').removeClass('RotatePlusB');
+      $('#PlusSignC').addClass('RotatePlusA');
     }
     else
     {
-      $('#FoodAmenties').slideUp();
-      $('#PlusSignC').removeClass('RotatePlusE');
-      $('#PlusSignC').addClass('RotatePlusF');
+      $('#FoodAmenties').slideUp(250);
+      $('#PlusSignC').removeClass('RotatePlusA');
+      $('#PlusSignC').addClass('RotatePlusB');
     }
-    z=(z)*(-1);
+    foodamenities=(foodamenities)*(-1);
+  }
+
+  function DisabilityAmenities(){
+    if(disabilityamenities==1)
+    {
+      $('#DisabilityAmenties').slideDown(250);
+      $('#PlusSignD').removeClass('RotatePlusB');
+      $('#PlusSignD').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#DisabilityAmenties').slideUp(250);
+      $('#PlusSignD').removeClass('RotatePlusA');
+      $('#PlusSignD').addClass('RotatePlusB');
+    }
+    disabilityamenities=(disabilityamenities)*(-1);
+  }
+
+  function EntertainmentAmenities(){
+    if(entertainmentamenities==1)
+    {
+      $('#EntertainmentAmenties').slideDown(250);
+      $('#PlusSignE').removeClass('RotatePlusB');
+      $('#PlusSignE').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#EntertainmentAmenties').slideUp(250);
+      $('#PlusSignE').removeClass('RotatePlusA');
+      $('#PlusSignE').addClass('RotatePlusB');
+    }
+    entertainmentamenities=(entertainmentamenities)*(-1);
+  }
+  $('#BasicAmenitiesBtn').click(function(){
+    
+    mediaamenities=-1;
+    foodamenities=-1;
+    disabilityamenities=-1;
+    entertainmentamenities=-1;
+
+    basicAmenities();
+    MediaAmenities();
+    FoodAmenities();
+    DisabilityAmenities();
+    EntertainmentAmenities();
   });
-  $('#FoodAmenties').slideUp(1);
-  var a=1;
+
+  $('#MediaAmenitiesBtn').click(function(){
+
+    basicamenities=-1;
+    foodamenities=-1;
+    disabilityamenities=-1;
+    entertainmentamenities=-1;
+
+    basicAmenities();
+    MediaAmenities();
+    FoodAmenities();
+    DisabilityAmenities();
+    EntertainmentAmenities();
+  });
+
+  $('#FoodAmenitiesBtn').click(function(){
+
+    basicamenities=-1;
+    mediaamenities=-1;
+    disabilityamenities=-1;
+    entertainmentamenities=-1;
+
+    basicAmenities();
+    MediaAmenities();
+    FoodAmenities();
+    DisabilityAmenities();
+    EntertainmentAmenities();
+  });
+
   $('#DisabilityAmentiesBtn').click(function(){
-    if(a==1)
-    {
-      $('#DisabilityAmenties').slideDown();
-      $('#PlusSignD').removeClass('RotatePlusH');
-      $('#PlusSignD').addClass('RotatePlusG');
-    }
-    else
-    {
-      $('#DisabilityAmenties').slideUp();
-      $('#PlusSignD').removeClass('RotatePlusG');
-      $('#PlusSignD').addClass('RotatePlusH');
-    }
-    a=(a)*(-1);
+
+    basicamenities=-1;
+    mediaamenities=-1;
+    foodamenities=-1;
+    entertainmentamenities=-1;
+
+    basicAmenities();
+    MediaAmenities();
+    FoodAmenities();
+    DisabilityAmenities();
+    EntertainmentAmenities();
   });
 
-  var b=1;
+
   $('#EntertainmentAmentiesBtn').click(function(){
-    if(b==1)
-    {
-      $('#EntertainmentAmenties').slideDown();
-      $('#PlusSignE').removeClass('RotatePlusJ');
-      $('#PlusSignE').addClass('RotatePlusI');
-    }
-    else
-    {
-      $('#EntertainmentAmenties').slideUp();
-      $('#PlusSignE').removeClass('RotatePlusI');
-      $('#PlusSignE').addClass('RotatePlusJ');
-    }
-    b=(b)*(-1);
+
+    basicamenities=-1;
+    mediaamenities=-1;
+    foodamenities=-1;
+    disabilityamenities=-1;
+
+    basicAmenities();
+    MediaAmenities();
+    FoodAmenities();
+    DisabilityAmenities();
+    EntertainmentAmenities();
   });
+});
 </script>

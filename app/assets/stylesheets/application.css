@@ -24,3 +24,6 @@
 .AfterPadding{
   padding-top: 83px;
 }
+body{
+	overflow-x: hidden;
+}

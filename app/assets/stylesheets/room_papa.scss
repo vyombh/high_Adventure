@@ -37,109 +37,17 @@ header{
 		}
 	}
 }
-
-.Destination{
-	color: black;
-	border-color: blue;
-	border-style: solid;
-	border-bottom-width: 5px;
-	border-top-width: 0px;
-	border-left-width: 0px;
-	border-right-width: 0px;
-	border-image: linear-gradient(to right,black,blue)
+.LocationBlock{
+  background-image: url("1pic.jpg");
+  height: 250px;
+  width: 100%;
+  background-size: cover;
+  transition-duration: 0.3s;
 }
-.box{
-	position: relative;
-	background-image: url("Solang-Valley2.jpg");
-	height:300px;
-}
-.box:hover{
-	box-shadow: inset 5px -5px 100px -10px  ;
-}
-.box>h3{
-	text-shadow: 2px 2px black;
-	color:white;
-	padding-left:20px;
-	padding-top:10px;
-}
-.box>.PropertiesNumber{
-	color:white;
-	padding-left:20px;
-	padding-top:10px;
-}
-.box>.pricetag{
-	position: absolute;
-	width: 35%;
-	height:40px;
-	bottom:0;
-	right:0;
-	color:white;
-}
-
-
-.LeftPadding {
-	position: relative;
-	padding-left: 8px;
-}
-.RightPadding{
-	position: absolute;
-	right: 18px;
-}
-
-.TopPadding {
-	padding-top: 10px;
-}
-.BottomPadding {
-	padding-bottom: 10px;
-}
-.EdgesSharp {
-	border-radius: 0px !important;
-}
-
-.DropdownTriangleTwo{
- position: absolute;
-  	right:10px;
-  	top: -7px;
-  	width: 15px;
-  	height:1px;
-  	border-left: 10px solid transparent;
-  	border-right: 10px solid transparent;
-   border-bottom: 8px solid white;
-  }
-.DropdownTriangleOne{
-  	position: absolute;
-  	right:10px;
-  	top: -8px;
-  	width: 15px;
-  	height:1px;
-  	border-left: 10px solid transparent;
-  	border-right: 10px solid transparent;
-   border-bottom: 8px solid grey;
-  }
-.ListStyle {
-  	width: 270px;
-  }
-.NavbarStyle {
-    padding: 10px;
-  }
-.Font {
-    font-family: Verdana;
-  }
-.FontSize {
-        font-size: 10px;
-  }
-.widthul{
-		width: 270px;
-		background: red;
-	}
-.NavbarTwoTop{
-	padding-top: 100px;
-}
-.FontForInput{
-	font-size:14px !important
-}
-.NavbarTwo{
-padding-top: 0px;
-border-style: none!important;
-background: #f9f9f9!important;
+.HotelBlock{
+	background-image: url("hotel-manali.jpg");
+	height: 250px;
+  width: 100%;
+  background-size: cover;
+  transition-duration: 0.3s;
 }

@@ -55,8 +55,8 @@ class RoomtypesController < ApplicationController
     if roomtype_params[:services]
       @roomtype.services = roomtype_params[:services]
     end
-    if roomtype_params[:bathroom]
-      @roomtype.bathroom = roomtype_params[:bathroom]
+    if roomtype_params[:restroom]
+      @roomtype.restroom = roomtype_params[:restroom]
     end
 
     if roomtype_params[:basechildren] && roomtype_params[:baseadults]
@@ -121,6 +121,7 @@ class RoomtypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def roomtype_params
+      # params.require(:roomtype).permit(:typename, :rooms, :beds, :baseadults, :maximumadults, :infants, :basechildren, :maximumchildren, :maximumguests,{basic: [:clothesracks,:dryingracking,:foldupbed,:sofabed,:wardrobe,:carpeted,:walkingcloset,:extralongbeds,:fireplace,:heater,:interconnectingrooms,:iron,:desk,:wifi,:smoking,:tv]},{restroom: [:bathroom,:toiletpaper,:bathtub,:shower,:bathrobe,:freetoiletries,:hairdryer,:spatub,:sharedbathroom,:slippers,:toilets,:geyser]},{services: [:executiveloungeaccess,:alarmclock,:wakeupservice,:linens,:sheets,:ac,:cooler,:fan,:kettle,:laundry]},{view: [:balcony,:terrace,:cityview,:lakeview,:landmarkview,:poolview,:riverview,:oceanview]},{images: []}, :hotel_id)
       params.require(:roomtype).permit(:typename, :rooms, :beds, :baseadults, :maximumadults, :infants, :basechildren, :maximumchildren, :maximumguests,{basic: [:clothesracks,:dryingracking,:foldupbed,:sofabed,:wardrobe,:carpeted,:walkingcloset,:extralongbeds,:fireplace,:heater,:interconnectingrooms,:iron,:desk,:wifi,:smoking,:tv]},{restroom: [:bathroom,:toiletpaper,:bathtub,:shower,:bathrobe,:freetoiletries,:hairdryer,:spatub,:sharedbathroom,:slippers,:toilets,:geyser]},{services: [:executiveloungeaccess,:alarmclock,:wakeupservice,:linens,:sheets,:ac,:cooler,:fan,:kettle,:laundry]},{view: [:balcony,:terrace,:cityview,:lakeview,:landmarkview,:poolview,:riverview,:oceanview]},{images: []}, :hotel_id)
     end
 end

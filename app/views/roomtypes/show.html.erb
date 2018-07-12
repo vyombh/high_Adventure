@@ -1,99 +1,506 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @roomtype.type %>
-</p>
+  <h1 align="center">Room Info</h1>
 
-<p>
-  <strong>Rooms:</strong>
-  <%= @roomtype.rooms %>
-</p>
+ <div class="container" style="background-color: white;">
+  <div class="form form-horizontal">
+    <%= link_to 'Edit', edit_roomtype_path(@roomtype),:class => "btn btn-warning pull-right"%>
+  <h2 class="col-sm-offset-2">Basic Info</h2>
 
-<p>
-  <strong>Beds:</strong>
-  <%= @roomtype.beds %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="TypeName">Room Type<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.typename %></div>  
+    </div>
+  </div>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="Rooms">Number of rooms<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.rooms %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Adults:</strong>
-  <%= @roomtype.adults %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="Beds">Bed type<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.beds %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Children:</strong>
-  <%= @roomtype.children %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="BaseAdults">Adults (Base)<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.baseadults %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Wifi:</strong>
-  <%= @roomtype.wifi %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="MaximumAdults">Adults (Maximum)<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.maximumadults %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Geyser:</strong>
-  <%= @roomtype.geyser %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="Infants">Infants<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.infants %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Ac:</strong>
-  <%= @roomtype.ac %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="BaseChildren">Children (Base)<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.basechildren %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Cooler:</strong>
-  <%= @roomtype.cooler %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="MaximumChildren">Children (Maximum)<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.maximumchildren %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Fan:</strong>
-  <%= @roomtype.fan %>
-</p>
+  <div class="feild form-group">
+    <label class="control-label col-sm-2" for="MaximumGuests">Total Guests<sup>*</sup>:</label>
+    <div class="col-sm-4">
+      <div class="form-control" disabled><%= @roomtype.maximumguests %></div>  
+    </div>
+  </div>
 
-<p>
-  <strong>Smoking:</strong>
-  <%= @roomtype.smoking %>
-</p>
+</div>
 
-<p>
-  <strong>Balcony:</strong>
-  <%= @roomtype.balcony %>
-</p>
 
-<p>
-  <strong>Bathroom:</strong>
-  <%= @roomtype.bathroom %>
-</p>
 
-<p>
-  <strong>Kettle:</strong>
-  <%= @roomtype.kettle %>
-</p>
+  <%arraybasic={}%>
 
-<p>
-  <strong>Laundry:</strong>
-  <%= @roomtype.laundry %>
-</p>
+  <%arraybasic['clothesracks']='Clothes Racks'%>
+  <%arraybasic['dryingracking']='Drying Racking'%>
+  <%arraybasic['foldupbed']='Fold-up Bed'%>
+  <%arraybasic['sofabed']='Sofa Bed'%>
+  <%arraybasic['wardrobe']='Wardrobe'%>
+  <%arraybasic['carpeted']='Carpeted'%>
+  <%arraybasic['walkingcloset']='Walking Closet'%>
+  <%arraybasic['extralongbeds']='Extra Long Beds'%>
+  <%arraybasic['fireplace']='Fireplace'%>
+  <%arraybasic['heater']='Heater'%>
+  <%arraybasic['interconnectingrooms']='Inter Connecting Rooms'%>
+  <%arraybasic['iron']='Iron'%>
+  <%arraybasic['desk']='Desk'%>
+  <%arraybasic['wifi']='WiFi'%>
+  <%arraybasic['smoking']='Smoking'%>
+  <%arraybasic['tv']='TV'%>
 
-<p>
-  <strong>Tv:</strong>
-  <%= @roomtype.tv %>
-</p>
+  <%arrayrestroom={}%>
 
-<p>
-  <strong>Familyrooms:</strong>
-  <%= @roomtype.familyrooms %>
-</p>
+  <%arrayrestroom['bathroom']='bathroom'%>
+  <%arrayrestroom['toiletpaper']='toiletpaper'%>
+  <%arrayrestroom['bathtub']='bathtub'%>
+  <%arrayrestroom['shower']='shower'%>
+  <%arrayrestroom['bathrobe']='bathrobe'%>
+  <%arrayrestroom['freetoiletries']='Free Toiletries'%>
+  <%arrayrestroom['hairdryer']='Hair Dryer'%>
+  <%arrayrestroom['spatub']='Spa Tub'%>
+  <%arrayrestroom['sharedbathroom']='Shared Bathroom'%>
+  <%arrayrestroom['slippers']='Slippers'%>
+  <%arrayrestroom['toilets']='Toilets'%>
+  <%arrayrestroom['geyser']='Geyser'%>
+  
+  <%arrayservices={}%>
 
-<p>
-  <strong>Pwd:</strong>
-  <%= @roomtype.pwd %>
-</p>
+  <%arrayservices['executiveloungeaccess']='Executive Lounge Access'%>
+  <%arrayservices['alarmclock']='Alarm Clock'%>
+  <%arrayservices['wakeupservice']='Wake-up Service'%>
+  <%arrayservices['linens']='Linens'%>
+  <%arrayservices['sheets']='Sheets'%>
+  <%arrayservices['ac']='AC'%>
+  <%arrayservices['cooler']='Cooler'%>
+  <%arrayservices['fan']='Fan'%>
+  <%arrayservices['kettle']='Kettle'%>
+  <%arrayservices['laundry']='Laundry'%>
 
-<p>
-  <strong>Hotel:</strong>
-  <%= @roomtype.hotel %>
-</p>
+  <%arrayview={}%>
 
-<%= link_to 'Edit', edit_roomtype_path(@roomtype) %> |
-<%= link_to 'Back', roomtypes_path %>
+  <%arrayview['balcony']='Balcony'%>
+  <%arrayview['terrace']='Terrace'%>
+  <%arrayview['cityview']='City View'%>
+  <%arrayview['lakeview']='Lake View'%>
+  <%arrayview['landmarkview']='Landmark View'%>
+  <%arrayview['poolview']='Pool View'%>
+  <%arrayview['riverview']='River View'%>
+  <%arrayview['oceanview']='Ocean View'%>
+
+
+  <%arraybasicchecked=[]%>
+  <%arraybasicunchecked=[]%>
+
+  <%arrayrestroomchecked=[]%>
+  <%arrayrestroomunchecked=[]%>
+
+  <%arrayserviceschecked=[]%>
+  <%arrayservicesunchecked=[]%>
+
+  <%arrayviewchecked=[]%>
+  <%arrayviewunchecked=[]%>
+
+  <%array = @roomtype.basic.keys%>
+  <%array.each do |item|%>
+    <%if @roomtype.basic[item]=='1'%>
+      <% arraybasicchecked.push(item) %>
+    <%else%>
+      <% arraybasicunchecked.push(item) %>  
+    <%end %>
+  <%end%> 
+
+  <%arraybasicchecked=arraybasicchecked.sort%>  
+  <%arraybasicunchecked=arraybasicunchecked.sort%>
+
+  <%array = @roomtype.restroom.keys%>
+  <%array.each do |item|%>
+    <%if @roomtype.restroom[item]=='1'%>
+      <% arrayrestroomchecked.push(item) %>
+    <%else%>
+      <% arrayrestroomunchecked.push(item) %>  
+    <%end %>
+  <%end%> 
+
+  <%arrayrestroomchecked=arrayrestroomchecked.sort%>
+  <%arrayrestroomunchecked=arrayrestroomunchecked.sort%>
+
+  <%array = @roomtype.services.keys%>
+  <%array.each do |item|%>
+    <%if @roomtype.services[item]=='1'%>
+      <% arrayserviceschecked.push(item) %>
+    <%else%>
+      <% arrayservicesunchecked.push(item) %> 
+    <%end %>
+  <%end%> 
+
+  <%arrayserviceschecked=arrayserviceschecked.sort%>  
+  <%arrayservicesunchecked=arrayservicesunchecked.sort%>
+
+  <%array = @roomtype.view.keys%>
+  <%array.each do |item|%>
+    <%if @roomtype.view[item]=='1'%>
+      <% arrayviewchecked.push(item) %>
+    <%else%>
+      <% arrayviewunchecked.push(item) %> 
+    <%end %>
+  <%end%> 
+
+  <%arrayviewchecked=arrayviewchecked.sort%>  
+  <%arrayviewunchecked=arrayviewunchecked.sort%>
+
+
+<div class="form form-horizontal"> 
+<div class="col-sm-offset-2"><h2>Amenities</h2></div>
+  <div class="row">
+
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
+      <span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
+    </div>
+    <div id="BasicAmenities">
+      <div class="col-sm-12">
+        <div class="row">
+          <%arraybasicchecked.each do |item|%>
+            <div class="AccordianOption col-sm-3">
+              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arraybasic[item]%></label>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <input type="checkbox" checked="true" disabled="true">
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%arraybasicunchecked.each do |item|%>
+          <div class="AccordianOption col-sm-3">
+            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraybasic[item]%></label>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">      
+            <input type="checkbox" disabled="true">
+            </div>
+          </div>
+        <%end%>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="btn btn-default btn-block AccordianBtn" id="RestroomAmenitiesBtn" >
+      <span class="pull-left" style="font-size:17px">Restroom</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
+    </div>
+    <div id="RestroomAmenities">
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayrestroomchecked.each do |item|%>
+            <div class="AccordianOption col-sm-3">
+              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arrayrestroom[item]%></label>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <input type="checkbox" checked="true" disabled="true">
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayrestroomunchecked.each do |item|%>
+          <div class="AccordianOption col-sm-3">
+            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayrestroom[item]%></label>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">      <input type="checkbox" disabled="true">
+            </div>
+          </div>
+        <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="btn btn-default btn-block AccordianBtn" id="ServicesAmenitiesBtn" >
+      <span class="pull-left" style="font-size:17px">Services</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
+    </div>
+    <div id="ServicesAmenities">
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayserviceschecked.each do |item|%>
+            <div class="AccordianOption col-sm-3">
+              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arrayservices[item]%></label>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <input type="checkbox" checked="true" disabled="true">
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayservicesunchecked.each do |item|%>
+          <div class="AccordianOption col-sm-3" >
+            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayservices[item]%></label>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">      <input type="checkbox" disabled="true">
+            </div>
+          </div>
+        <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="btn btn-default btn-block AccordianBtn" id="ViewAmenitiesBtn" >
+      <span class="pull-left" style="font-size:17px">View</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
+    </div>
+    <div id="ViewAmenities">
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayviewchecked.each do |item|%>
+            <div class="AccordianOption col-sm-3">
+              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%= arrayview[item]%></label>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <input type="checkbox" checked="true" disabled="true">
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%arrayviewunchecked.each do |item|%>
+          <div class="AccordianOption col-sm-3" >
+            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayview[item]%></label>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">      <input type="checkbox" disabled="true">
+            </div>
+          </div>
+        <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  
+</div>   
+
+
+  <style>
+
+  .AccordianBtn{
+    height:50px;
+    border-radius: 0px;
+    background-color: #eee;
+    border:solid 1px #ccc;
+    padding-top: 10px;
+    margin-bottom: -1px;
+  }
+  .AccordianBtn:hover{
+    background-color: #ccc;
+  }.AccordianOption:hover{
+    background-color: #eee;
+  }
+  .AccordianOption{
+    background-color:white;
+    height:45px;
+    margin: 0px;
+    border: solid 1px #ccc;
+
+  }
+  .RotatePlusA{
+    transform: rotate(45deg) scale(2);
+    transition-duration: 0.2s;
+  }
+  .RotatePlusB{
+    transform: scale(2);
+    transition-duration: 0.2s;
+  }
+
+
+</style>
+
+<script type="text/javascript">
+
+
+  $('#BasicAmenities').slideUp(1);
+  $('#RestroomAmenities').slideUp(1);
+  $('#ServicesAmenities').slideUp(1);
+  $('#ViewAmenities').slideUp(1);
+
+  var basicamenities=1;
+  var restroomamenities=1;
+  var servicesamenities=1;
+  var viewamenities=1;
+
+  function BasicAmenities(){
+    console.log("BASIC");
+    if(basicamenities==1)
+    {
+      $('#BasicAmenities').slideDown(250);
+      $('#PlusSignA').removeClass('RotatePlusB');
+      $('#PlusSignA').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#BasicAmenities').slideUp(250);
+      $('#PlusSignA').removeClass('RotatePlusA');
+      $('#PlusSignA').addClass('RotatePlusB');
+    }
+    basicamenities=(basicamenities)*(-1);
+  }
+
+  function RestroomAmenities(){
+    console.log("REST");
+    if(restroomamenities==1)
+    {
+      $('#RestroomAmenities').slideDown(250);
+      $('#PlusSignB').removeClass('RotatePlusB');
+      $('#PlusSignB').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#RestroomAmenities').slideUp(250);
+      $('#PlusSignB').removeClass('RotatePlusA');
+      $('#PlusSignB').addClass('RotatePlusB');
+    }
+    restroomamenities=(restroomamenities)*(-1);
+  }
+
+  function ServicesAmenities(){
+    console.log("SERV");
+    if(servicesamenities==1)
+    {
+      $('#ServicesAmenities').slideDown(250);
+      $('#PlusSignC').removeClass('RotatePlusB');
+      $('#PlusSignC').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#ServicesAmenities').slideUp(250);
+      $('#PlusSignC').removeClass('RotatePlusA');
+      $('#PlusSignC').addClass('RotatePlusB');
+    }
+    servicesamenities=(servicesamenities)*(-1);
+  }
+
+  function ViewAmenities(){
+    console.log("VIEW");  
+    if(viewamenities==1)
+    {
+      $('#ViewAmenities').slideDown(250);
+      $('#PlusSignD').removeClass('RotatePlusB');
+      $('#PlusSignD').addClass('RotatePlusA');
+    }
+    else
+    {
+      $('#ViewAmenities').slideUp(250);
+      $('#PlusSignD').removeClass('RotatePlusA');
+      $('#PlusSignD').addClass('RotatePlusB');
+    }
+    viewamenities=(viewamenities)*(-1);
+  }
+
+ 
+  $('#BasicAmenitiesBtn').click(function(){
+    
+    restroomamenities=-1;
+    servicesamenities=-1;
+    viewamenities=-1;
+    
+
+    BasicAmenities();
+    RestroomAmenities();
+    ServicesAmenities();
+    ViewAmenities();
+   
+  });
+
+  $('#RestroomAmenitiesBtn').click(function(){
+
+    basicamenities=-1;
+    servicesamenities=-1;
+    viewamenities=-1;
+  
+    BasicAmenities();
+    ServicesAmenities();
+    ViewAmenities();
+    RestroomAmenities();
+  
+  });
+
+  $('#ServicesAmenitiesBtn').click(function(){
+
+    basicamenities=-1;
+    restroomamenities=-1;
+    viewamenities=-1;
+  
+
+    basicAmenities();
+    RestroomAmenities();
+    ServicesAmenities();
+    ViewAmenities();
+  
+  });
+
+  $('#ViewAmenitiesBtn').click(function(){
+
+    basicamenities=-1;
+    restroomamenities=-1;
+    servicesamenities=-1;
+  
+
+    BasicAmenities();
+    RestroomAmenities();
+    ServicesAmenities();
+    ViewAmenities();
+   
+  });
+
+</script>
