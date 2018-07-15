@@ -9,43 +9,43 @@
 		hotel facilities<br>
 		BASIC:<br>
 		Bar:		
-		<%if params[:bar] == 'on'%>
+		<%if params[:bar] == 'true'%>
 			<input type="checkbox" id = "bar" name="bar" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "bar" name="bar"><br>
 		<%end%>
 		Gym:
-		<%if params[:gym] == 'on'%>
+		<%if params[:gym] == 'true'%>
 			<input type="checkbox" id = "gym" name="gym" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "gym" name="gym"><br>
 		<%end%>		
 		Lift:	
-		<%if params[:lift] == 'on'%>
+		<%if params[:lift] == 'true'%>
 			<input type="checkbox"  id = "lift" name="lift" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "lift" name="lift"><br>
 		<%end%>
 		Parking:
-		<%if params[:parking] == 'on'%>
+		<%if params[:parking] == 'true'%>
 			<input type="checkbox" id = "parking" name="parking" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "parking" name="parking"><br>
 		<%end%>
 		Restaurant:	
-		<%if params[:restaurant] == 'on'%>
+		<%if params[:restaurant] == 'true'%>
 			<input type="checkbox"  id = "restaurant" name="restaurant" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "restaurant" name="restaurant"><br>
 		<%end%>
 		Spa:
-		<%if params[:spa] == 'on'%>
+		<%if params[:spa] == 'true'%>
 			<input type="checkbox" id = "spa" name="spa" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "spa" name="spa"><br>
 		<%end%>
 		Swimming Pool:		
-		<%if params[:swimmingpool] == 'on'%>
+		<%if params[:swimmingpool] == 'true'%>
 			<input type="checkbox"  id = "swimmingpool" name="swimmingpool" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "swimmingpool" name="swimmingpool"><br>
@@ -53,81 +53,80 @@
 
 		FOOD:<br>
 		Barbecue:		
-		<%if params[:barbecue] == 'on'%>
+		<%if params[:barbecue] == 'true'%>
 			<input type="checkbox" id = "barbecue" name="barbecue" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "barbecue" name="barbecue"><br>
 		<%end%>
 		Coffee Machine:
-		<%if params[:coffeemachine] == 'on'%>
+		<%if params[:coffeemachine] == 'true'%>
 			<input type="checkbox" id = "coffeemachine" name="coffeemachine" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "coffeemachine" name="coffeemachine"><br>
 		<%end%>		
 		Dining Area:	
-		<%if params[:diningarea] == 'on'%>
+		<%if params[:diningarea] == 'true'%>
 			<input type="checkbox"  id = "diningarea" name="diningarea" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "diningarea" name="diningarea"><br>
 		<%end%>
 		Dining Table:	
-		<%if params[:diningtable] == 'on'%>
+		<%if params[:diningtable] == 'true'%>
 			<input type="checkbox"  id = "diningtable" name="diningtable" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "diningtable" name="diningtable"><br>
 		<%end%>
 		High Chair:		
-		<%if params[:highchair] == 'on'%>
+		<%if params[:highchair] == 'true'%>
 			<input type="checkbox"  id = "highchair" name="highchair" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "highchair" name="highchair"><br>
 		<%end%>
 		Kitchenette:
-		<%if params[:kitchenette] == 'on'%>
+		<%if params[:kitchenette] == 'true'%>
 			<input type="checkbox" id = "kitchenette" name="kitchenette" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "kitchenette" name="kitchenette"><br>
 		<%end%>
 		Microwave:		
-		<%if params[:microwave] == 'on'%>
+		<%if params[:microwave] == 'true'%>
 			<input type="checkbox"  id = "microwave" name="microwave" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "microwave" name="microwave"><br>
 		<%end%>
 		Outdoor Dining Area:		
-		<%if params[:outdoordiningarea] == 'on'%>
+		<%if params[:outdoordiningarea] == 'true'%>
 			<input type="checkbox"  id = "outdoordiningarea" name="outdoordiningarea" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "outdoordiningarea" name="outdoordiningarea"><br>
 		<%end%>
 		Outdoor Furniture:		
-		<%if params[:outdoorfurniture] == 'on'%>
+		<%if params[:outdoorfurniture] == 'true'%>
 			<input type="checkbox"  id = "outdoorfurniture" name="outdoorfurniture" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "outdoorfurniture" name="outdoorfurniture"><br>
 		<%end%>
-		min_price
 
 		Refrigerator:		
-		<%if params[:refrigerator] == 'on'%>
-			<input type="checkbox"  id = "" name="refrigerator" checked="true"><br>
+		<%if params[:refrigerator] == 'true'%>
+			<input type="checkbox"  id = "refrigerator" name="refrigerator" checked="true"><br>
 		<%else%>
-			<input type="checkbox"  id = "" name="refrigerator"><br>
+			<input type="checkbox"  id = "refrigerator" name="refrigerator"><br>
 		<%end%>
 		Stovetop:		
-		<%if params[:stovetop] == 'on'%>
+		<%if params[:stovetop] == 'true'%>
 			<input type="checkbox"  id = "stovetop" name="stovetop" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "stovetop" name="stovetop"><br>
 		<%end%>
 		Tea Coffee Machine:		
-		<%if params[:teacoffeemachine] == 'on'%>
+		<%if params[:teacoffeemachine] == 'true'%>
 			<input type="checkbox"  id = "teacoffeemachine" name="teacoffeemachine" checked="true"><br>
 		<%else%>
-			<input type="checkbox"  id = "toaster" name="teacoffeemachine"><br>
+			<input type="checkbox"  id = "teacoffeemachine" name="teacoffeemachine"><br>
 		<%end%>
 		Toaster:		
-		<%if params[:toaster] == 'on'%>
+		<%if params[:toaster] == 'true'%>
 			<input type="checkbox"  id = "toaster" name="toaster" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "toaster" name="toaster"><br>
@@ -135,31 +134,31 @@
 
 		DISABILITY:<br>
 		Elevator:		
-		<%if params[:elevator] == 'on'%>
+		<%if params[:elevator] == 'true'%>
 			<input type="checkbox"  id = "elevator" name="elevator" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "elevator" name="elevator"><br>
 		<%end%>
 		Staircase Only:		
-		<%if params[:staircaseonly] == 'on'%>
+		<%if params[:staircaseonly] == 'true'%>
 			<input type="checkbox"  id = "staircaseonly" name="staircaseonly" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "staircaseonly" name="staircaseonly"><br>
 		<%end%>
 		Grab Rails Toilet:		
-		<%if params[:grabrailstoilet] == 'on'%>
+		<%if params[:grabrailstoilet] == 'true'%>
 			<input type="checkbox"  id = "grabrailstoilet" name="grabrailstoilet" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "grabrailstoilet" name="grabrailstoilet"><br>
 		<%end%>
 		Ground Floor:		
-		<%if params[:groundfloor] == 'on'%>
+		<%if params[:groundfloor] == 'true'%>
 			<input type="checkbox"  id = "groundfloor" name="groundfloor" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "groundfloor" name="groundfloor"><br>
 		<%end%>
 		wheelchair:		
-		<%if params[:wheelchair] == 'on'%>
+		<%if params[:wheelchair] == 'true'%>
 			<input type="checkbox"  id = "wheelchair" name="wheelchair" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "wheelchair" name="wheelchair"><br>
@@ -169,7 +168,7 @@
 		Room facilities<br>
 		BASIC:<br>
 		Clothes Racks:
-		<%if params[:clothesracks] == 'on'%>
+		<%if params[:clothesracks] == 'true'%>
 			<input type="checkbox" id = "clothesracks" name="clothesracks" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "clothesracks" name="clothesracks"><br>
@@ -182,93 +181,93 @@
 		<%end%>
 
 		Fold Up Bed:
-		<%if params[:foldupbed] == 'on'%>
+		<%if params[:foldupbed] == 'true'%>
 			<input type="checkbox" id = "foldupbed" name="foldupbed" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "foldupbed" name="foldupbed"><br>
 		<%end%>
 
 		Sofabed:
-		<%if params[:sofabed] == 'on'%>
+		<%if params[:sofabed] == 'true'%>
 			<input type="checkbox"  id = "sofabed" name="sofabed" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "sofabed" name="sofabed"><br>
 		<%end%>
 
 		Wardrobe:
-		<%if params[:wardrobe] == 'on'%>
+		<%if params[:wardrobe] == 'true'%>
 			<input type="checkbox"  id = "wardrobe" name="wardrobe" checked="true"><br>
 		<%else%>
 			<input type="checkbox"  id = "wardrobe" name="wardrobe"><br>
 		<%end%>
 		Carpeted:
-		<%if params[:carpeted] == 'on'%>
+		<%if params[:carpeted] == 'true'%>
 			<input type="checkbox" id = "carpeted" name="carpeted" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "carpeted" name="carpeted"><br>
 		<%end%>
 
 		Walking Closet:
-		<%if params[:walkingcloset] == 'on'%>
+		<%if params[:walkingcloset] == 'true'%>
 			<input type="checkbox" id = "walkingcloset" name="walkingcloset" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "walkingcloset" name="walkingcloset"><br>
 		<%end%>
 
 		Extra Long Beds:
-		<%if params[:extralongbeds] == 'on'%>
+		<%if params[:extralongbeds] == 'true'%>
 			<input type="checkbox" id = "extralongbeds" name="extralongbeds" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "extralongbeds" name="extralongbeds"><br>
 		<%end%>
 
 		Fireplace:
-		<%if params[:fireplace] == 'on'%>
+		<%if params[:fireplace] == 'true'%>
 			<input type="checkbox" id = "fireplace" name="fireplace" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "fireplace" name="fireplace"><br>
 		<%end%>
 
 		Heater:
-		<%if params[:heater] == 'on'%>
+		<%if params[:heater] == 'true'%>
 			<input type="checkbox" id = "heater" name="heater" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "heater" name="heater"><br>
 		<%end%>
-		Inter Cnnecting Rooms:
-		<%if params[:interconnectingrooms] == 'on'%>
+		Inter Connecting Rooms:
+		<%if params[:interconnectingrooms] == 'true'%>
 			<input type="checkbox" id = "interconnectingrooms" name="interconnectingrooms" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "interconnectingrooms" name="interconnectingrooms"><br>
 		<%end%>
 
 		Iron:
-		<%if params[:iron] == 'on'%>
+		<%if params[:iron] == 'true'%>
 			<input type="checkbox" id = "iron" name="iron" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "iron" name="iron"><br>
 		<%end%>
 
 		Desk:
-		<%if params[:desk] == 'on'%>
+		<%if params[:desk] == 'true'%>
 			<input type="checkbox" id = "desk" name="desk" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "desk" name="desk"><br>
 		<%end%>
 		WiFi:
-		<%if params[:wifi] == 'on'%>
+		<%if params[:wifi] == 'true'%>
 			<input type="checkbox" id = "wifi" name="wifi" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "wifi" name="wifi"><br>
 		<%end%>
 		Smoking:
-		<%if params[:smoking] == 'on'%>
+		<%if params[:smoking] == 'true'%>
 			<input type="checkbox" id = "smoking" name="smoking" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "smoking" name="smoking"><br>
 		<%end%>
 		TV:
-		<%if params[:tv] == 'on'%>
+		<%if params[:tv] == 'true'%>
 			<input type="checkbox" id = "tv" name="tv" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "tv" name="tv"><br>
@@ -276,76 +275,76 @@
 		
 		RESTROOM:<br>
 		Bathroom:
-		<%if params[:bathroom] == 'on'%>
+		<%if params[:bathroom] == 'true'%>
 			<input type="checkbox" id = "bathroom" name="bathroom" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "bathroom" name="bathroom"><br>
 		<%end%>
 		Toilet Paper:
-		<%if params[:toiletpaper] == 'on'%>
+		<%if params[:toiletpaper] == 'true'%>
 			<input type="checkbox" id = "toiletpaper" name="toiletpaper" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "toiletpaper" name="toiletpaper"><br>
 		<%end%>
 
 		Bathtub:
-		<%if params[:bathtub] == 'on'%>
-			<input type="checkbox" id = "" name="bathtub" checked="true"><br>
+		<%if params[:bathtub] == 'true'%>
+			<input type="checkbox" id = "bathtub" name="bathtub" checked="true"><br>
 		<%else%>
-			<input type="checkbox" id = "" name="bathtub"><br>
+			<input type="checkbox" id = "bathtub" name="bathtub"><br>
 		<%end%>
 
 		Shower:
-		<%if params[:shower] == 'on'%>
+		<%if params[:shower] == 'true'%>
 			<input type="checkbox" id = "shower" name="shower" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "shower" name="shower"><br>
 		<%end%>
 		Bath Robe:
-		<%if params[:bathrobe] == 'on'%>
+		<%if params[:bathrobe] == 'true'%>
 			<input type="checkbox" id = "bathrobe" name="bathrobe" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "bathrobe" name="bathrobe"><br>
 		<%end%>
 		Free Toiletries:
-		<%if params[:freetoiletries] == 'on'%>
+		<%if params[:freetoiletries] == 'true'%>
 			<input type="checkbox" id = "freetoiletries" name="freetoiletries" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "freetoiletries" name="freetoiletries"><br>
 		<%end%>
 
 		Hairdryer:
-		<%if params[:hairdryer] == 'on'%>
+		<%if params[:hairdryer] == 'true'%>
 			<input type="checkbox" id = "hairdryer" name="hairdryer" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "hairdryer" name="hairdryer"><br>
 		<%end%>
 		Spatub:
-		<%if params[:spatub] == 'on'%>
+		<%if params[:spatub] == 'true'%>
 			<input type="checkbox" id = "spatub" name="spatub" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "spatub" name="spatub"><br>
 		<%end%>
 		Shared Bathroom:
-		<%if params[:sharedbathroom] == 'on'%>
+		<%if params[:sharedbathroom] == 'true'%>
 			<input type="checkbox" id = "sharedbathroom" name="sharedbathroom" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "sharedbathroom" name="sharedbathroom"><br>
 		<%end%>
 		Slippers:
-		<%if params[:slippers] == 'on'%>
+		<%if params[:slippers] == 'true'%>
 			<input type="checkbox" id = "slippers" name="slippers" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "slippers" name="slippers"><br>
 		<%end%>
 		Toilets:
-		<%if params[:toilets] == 'on'%>
+		<%if params[:toilets] == 'true'%>
 			<input type="checkbox" id = "toilets" name="toilets" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "toilets" name="toilets"><br>
 		<%end%>
 		Geyser:
-		<%if params[:geyser] == 'on'%>
+		<%if params[:geyser] == 'true'%>
 			<input type="checkbox" id = "geyser" name="geyser" checked="true"><br>
 		<%else%>
 			<input type="checkbox" id = "geyser" name="geyser"><br>
@@ -432,9 +431,10 @@ NO CASE MATCH
 </style>
 
 <script type="text/javascript">
-	var checkin = <%=params[:checkin].split('-')[0]%> + '-' + <%=params[:checkin].split('-')[1].to_i-1%> + '-' + <%=params[:checkin].split('-')[2]%>
-	var checkout = <%=params[:checkout].split('-')[0]%> + '-' + <%=params[:checkout].split('-')[1].to_i-1%> + '-' + <%=params[:checkout].split('-')[2]%>
-	console.log(checkin)
+	var checkin = <%=params[:checkin].split('-')[0]%> + '-' + <%=params[:checkin].split('-')[1].to_i%> + '-' + <%=params[:checkin].split('-')[2]%>
+	var checkout = <%=params[:checkout].split('-')[0]%> + '-' + <%=params[:checkout].split('-')[1].to_i%> + '-' + <%=params[:checkout].split('-')[2]%>
+	console.log(checkin);
+	console.log(checkout);
 	$(document).ready(function(){
 		$('#submit_filter').click(function(e){
 			e.preventDefault();
@@ -442,61 +442,61 @@ NO CASE MATCH
 				url: '/room_papa/hotels',
 				type: 'get',
 				data: {
-						max_price: $('#max_price').value,
-						min_price: $('#max_price').value,
-						bar: $('#max_price').value,
-						gym: $('#gym').value,
-						lift: $('#lift').value,
-						parking: $('#parking').value,
-						restaurant: $('#restaurant').value,
-						spa: $('#spa').value,
-						swimmingpool: $('#swimmingpool').value,
-						barbecue: $('#barbecue').value,
-						coffeemachine: $('#coffeemachine').value,
-						diningarea: $('#diningtable').value,
-						diningtable: $('#diningtable').value,
-						highchair: $('#highchair').value,
-						kitchenette: $('#kitchenette').value,
-						microwave: $('#microwave').value,
-						outdoordiningarea: $('#outdoordiningarea').value,
-						outdoorfurniture: $('#outdoorfurniture').value,
-						refrigerator: $('#refrigerator').value,
-						stovetop: $('#stovetop').value,
-						teacoffeemachine: $('#teacoffeemachine').value,
-						toaster: $('#toaster').value,
-						elevator: $('#elevator').value,
-						staircaseonly: $('#staircaseonly').value,
-						grabrailstoilet: $('#grabrailstoilet').value,
-						groundfloor: $('#groundfloor').value,
-						wheelchair: $('#wheelchair').value,
-						clothesracks: $('#clothesracks').value,
-						dryingracking: $('#dryingracking').value,
-						foldupbed: $('#foldupbed').value,
-						sofabed: $('#sofabed').value,
-						wardrobe: $('#wardrobe').value,
-						carpeted: $('#carpeted').value,
-						walkingcloset: $('#walkingcloset').value,
-						extralongbeds: $('#extralongbeds').value,
-						fireplace: $('#fireplace').value,
-						heater: $('#heater').value,
-						interconnectingrooms: $('#interconnectingrooms').value,
-						iron: $('#iron').value,
-						desk: $('#desk').value,
-						wifi: $('#wifi').value,
-						smoking: $('#smoking').value,
-						tv: $('#tv').value,
-						bathroom: $('#bathroom').value,
-						toiletpaper: $('#toiletpaper').value,
-						bathtub: $('#bathtub').value,
-						shower: $('#shower').value,
-						bathrobe: $('#bathrobe').value,
-						freetoiletries: $('#freetoiletries').value,
-						hairdryer: $('#hairdryer').value,
-						spatub: $('#spatub').value,
-						sharedbathroom: $('#sharedbathroom').value,
-						slippers: $('#slippers').value,
-						toilets: $('#toilets').value,
-						geyser: $('#geyser').value,
+						max_price: $('#max_price')[0].value,
+						min_price: $('#min_price')[0].value,
+						bar: $('#bar')[0].checked,
+						gym: $('#gym')[0].checked,
+						lift: $('#lift')[0].checked,
+						parking: $('#parking')[0].checked,
+						restaurant: $('#restaurant')[0].checked,
+						spa: $('#spa')[0].checked,
+						swimmingpool: $('#swimmingpool')[0].checked,
+						barbecue: $('#barbecue')[0].checked,
+						coffeemachine: $('#coffeemachine')[0].checked,
+						diningarea: $('#diningtable')[0].checked,
+						diningtable: $('#diningtable')[0].checked,
+						highchair: $('#highchair')[0].checked,
+						kitchenette: $('#kitchenette')[0].checked,
+						microwave: $('#microwave')[0].checked,
+						outdoordiningarea: $('#outdoordiningarea')[0].checked,
+						outdoorfurniture: $('#outdoorfurniture')[0].checked,
+						refrigerator: $('#refrigerator')[0].checked,
+						stovetop: $('#stovetop')[0].checked,
+						teacoffeemachine: $('#teacoffeemachine')[0].checked,
+						toaster: $('#toaster')[0].checked,
+						elevator: $('#elevator')[0].checked,
+						staircaseonly: $('#staircaseonly')[0].checked,
+						grabrailstoilet: $('#grabrailstoilet')[0].checked,
+						groundfloor: $('#groundfloor')[0].checked,
+						wheelchair: $('#wheelchair')[0].checked,
+						clothesracks: $('#clothesracks')[0].checked,
+						dryingracking: $('#dryingracking')[0].checked,
+						foldupbed: $('#foldupbed')[0].checked,
+						sofabed: $('#sofabed')[0].checked,
+						wardrobe: $('#wardrobe')[0].checked,
+						carpeted: $('#carpeted')[0].checked,
+						walkingcloset: $('#walkingcloset')[0].checked,
+						extralongbeds: $('#extralongbeds')[0].checked,
+						fireplace: $('#fireplace')[0].checked,
+						heater: $('#heater')[0].checked,
+						interconnectingrooms: $('#interconnectingrooms')[0].checked,
+						iron: $('#iron')[0].checked,
+						desk: $('#desk')[0].checked,
+						wifi: $('#wifi')[0].checked,
+						smoking: $('#smoking')[0].checked,
+						tv: $('#tv')[0].checked,
+						bathroom: $('#bathroom')[0].checked,
+						toiletpaper: $('#toiletpaper')[0].checked,
+						bathtub: $('#bathtub')[0].checked,
+						shower: $('#shower')[0].checked,
+						bathrobe: $('#bathrobe')[0].checked,
+						freetoiletries: $('#freetoiletries')[0].checked,
+						hairdryer: $('#hairdryer')[0].checked,
+						spatub: $('#spatub')[0].checked,
+						sharedbathroom: $('#sharedbathroom')[0].checked,
+						slippers: $('#slippers')[0].checked,
+						toilets: $('#toilets')[0].checked,
+						geyser: $('#geyser')[0].checked,
 						city:'<%=params[:city]%>',
 						data_value: <%=raw params[:data_value].to_json %>,
 						checkin: checkin,

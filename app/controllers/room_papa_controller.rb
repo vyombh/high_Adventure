@@ -53,7 +53,6 @@ class RoomPapaController < ApplicationController
     if checkin == checkout
       checkout = checkout + 1
     end
-    n = checkout - checkin + 1
     while checkout > checkin
       price.each do |p|
         if p[:start]<=checkin&&p[:end]>=checkout
@@ -73,17 +72,252 @@ class RoomPapaController < ApplicationController
       checkin = checkin+1
     end
   end
+  def hotelFilters params,hotels
+      if hotels.length == 0
+        return
+      end
+      basic = []
+
+      if params[:bar] == 'true'
+        basic.push('bar')
+      end
+      if params[:gym] == 'true'
+        basic.push('gym')
+      end
+      if params[:lift] == 'true'
+        basic.push('lift')
+      end
+      if params[:parking] == 'true'
+        basic.push('parking')
+      end
+      if params[:restaurant] == 'true'
+        basic.push('restaurant')
+      end
+      if params[:spa] == 'true'
+        basic.push('spa')
+      end
+      if params[:swimmingpool] == 'true'
+        basic.push('swimmingpool')
+      end
+      food = []
+
+      if params[:barbecue] == 'true'
+        food.push('barbecue')
+      end
+      if params[:coffeemachine] == 'true'
+        food.push('coffeemachine')
+      end
+      if params[:diningarea] == 'true'
+        food.push('diningarea')
+      end
+      if params[:diningtable] == 'true'
+        food.push('diningtable')
+      end
+      if params[:highchair] == 'true'
+        food.push('highchair')
+      end
+      if params[:kitchnette] == 'true'
+        food.push('kitchnette')
+      end
+      if params[:microwave] == 'true'
+        food.push('microwave')
+      end
+      if params[:outdoordiningarea] == 'true'
+        food.push('outdoorfurniture')
+      end
+      if params[:outdoorfurniture] == 'true'
+        food.push('outdoorfurniture')
+      end
+      if params[:refrigerator] == 'true'
+        food.push('refrigerator')
+      end
+      if params[:stovetop] == 'true'
+        food.push('stovetop')
+      end
+       if params[:teacoffeemachine] == 'true'
+        food.push('teacoffeemachine')
+      end
+       if params[:toaster] == 'true'
+        food.push('toaster')
+      end
+
+      disability = []
+
+       if params[:elevator] == 'true'
+        disability.push('elevator')
+      end
+      if params[:staircaseonly] == 'true'
+        disability.push('staircaseonly')
+      end
+      if params[:grabrailstoilet] == 'true'
+        disability.push('grabrailstoilet')
+      end
+      if params[:groundfloor] == 'true'
+        disability.push('groundfloor')
+      end
+      if params[:wheelchair] == 'true'
+        disability.push('wheelchair')
+      end
+      
+      basic.each do |b|
+        queryString ="select * from hotels where basic like '" + '%' + b + ": ''1''%'"
+        if hotels.length>1
+          hotels = hotels.find_by_sql(queryString)
+        elsif hotels.length == 1
+          if hotels[0].basic[b.to_sym] == '0'
+            hotels = []
+          end
+        end
+      end
+      food.each do |f|
+        queryString ="select * from hotels where food like '" + '%' + f + ": '1''%'"
+        if hotels.length>1
+          hotels = hotels.find_by_sql(queryString)
+        elsif hotels.length == 1
+          if hotels[0].food[b.to_sym] == '0'
+            hotels = []
+          end  
+        end
+      end
+      disability.each do |d|
+        queryString ="select * from hotels where disability like '" + '%' + d + ": '1''%'"
+        if hotels.any?
+          hotels = hotels.find_by_sql(queryString)
+        elsif hotels.length == 1
+          if hotels[0].disability[b.to_sym] == '0'
+            hotels = []
+          end
+        end
+      end
+      return hotels
+  end
+
+  def roomtypeFilters params,roomtypes
+    if roomtypes.length == 0
+        return
+    end
+    basic = []
+    if params[:clothesracks] == 'true'
+      basic.push('clothesracks')
+    end
+    if params[:dryingracking] == 'true'
+      basic.push('dryingracking')
+    end
+    if params[:foldupbed] == 'true'
+      basic.push('foldupbed')
+    end
+    if params[:sofabed] == 'true'
+      basic.push('sofabed')
+    end
+    if params[:wardrobe] == 'true'
+      basic.push('wardrobe')
+    end
+    if params[:carpeted] == 'true'
+      basic.push('carpeted')
+    end
+    if params[:walkingcloset] == 'true'
+      basic.push('walkingcloset')
+    end
+    if params[:extralongbeds] == 'true'
+      basic.push('extralongbeds')
+    end
+    if params[:fireplace] == 'true'
+      basic.push('fireplace')
+    end
+    if params[:heater] == 'true'
+      basic.push('heater')
+    end
+    if params[:interconnectingrooms] == 'true'
+      basic.push('interconnectingrooms')
+    end
+    if params[:iron] == 'true'
+      basic.push('iron')
+    end
+
+    if params[:desk] == 'true'
+      basic.push('desk')
+    end
+    if params[:wifi] == 'true'
+      basic.push('wifi')
+    end
+    if params[:smoking] == 'true'
+      basic.push('smoking')
+    end
+    if params[:tv] == 'true'
+      basic.push('tv')
+    end
+    restroom = []
+    if params[:bathroom] == 'true'
+      restroom.push('bathroom')
+    end
+    if params[:toiletpaper] == 'true'
+      restroom.push('toiletpaper')
+    end
+    if params[:bathtub] == 'true'
+      restroom.push('bathtub')
+    end
+    if params[:shower] == 'true'
+      restroom.push('shower')
+    end
+    if params[:bathrobe] == 'true'
+      restroom.push('bathrobe')
+    end
+    if params[:freetoiletries] == 'true'
+      restroom.push('freetoiletries')
+    end
+    if params[:hairdryer] == 'true'
+      restroom.push('hairdryer')
+    end
+    if params[:spatub] == 'true'
+      restroom.push('spatub')
+    end
+    if params[:sharedbathroom] == 'true'
+      restroom.push('sharedbathroom')
+    end
+    if params[:slippers] == 'true'
+      restroom.push('slippers')
+    end
+    if params[:toilets] == 'true'
+      restroom.push('toilets')
+    end
+    if params[:geyser] == 'true'
+      restroom.push('geyser')
+    end
+
+    basic.each do |b|
+      queryString ="select * from roomtypes where basic like '" + '%' + b + ": ''1''%'"
+      if roomtypes.length>1
+        roomtypes = roomtypes.find_by_sql(queryString)
+      elsif roomtypes.length == 1
+        if roomtypes[0].basic[b.to_sym] == '0'
+          roomtypes = []
+        end
+      end
+    end
+    restroom.each do |b|
+      queryString ="select * from roomtypes where restroom like '" + '%' + b + ": ''1''%'"
+      if roomtypes.length>1
+        roomtypes = roomtypes.find_by_sql(queryString)
+      elsif roomtypes.length == 1
+        if roomtypes[0].restroom[b.to_sym] == '0'
+          roomtypes = []
+        end
+      end
+    end
+    return roomtypes
+  end
 
   def hotels
-    @rooms = []
     count = 0
-    
+    @rooms = []
     city = '%' + params[:city] +'%'
     @hotels = Hotel.where('city LIKE ? or hotelname LIKE ?', city,city)
     checkin = Date.new(params[:checkin].split('-')[0].to_i,params[:checkin].split('-')[1].to_i,params[:checkin].split('-')[2].to_i)
     checkout = Date.new(params[:checkout].split('-')[0].to_i,params[:checkout].split('-')[1].to_i,params[:checkout].split('-')[2].to_i)
-    n = (checkout-checkin).to_s.split('/')[0].to_i
     
+
+    @hotels =  hotelFilters(params,@hotels)
+
     @hotels.each do |hotel|
       price = nil
       if hotel.pricing
@@ -93,15 +327,17 @@ class RoomPapaController < ApplicationController
       i = 0
       params[:data_value].each do |data|
         person = { capacity:data[1][:Adult].to_i  + data[1][:BigChild].to_i ,adults:  data[1][:Adult].to_i , children:  data[1][:BigChild].to_i ,found: false}
+        
         people = people.insert(i,person)
         i = i + 1
       end
       people = people.sort_by{|a| a[:capacity]}.reverse
       rm = hotel.roomtypes
+      rm = roomtypeFilters(params,rm)
 
       hotelRoomFree = []
       roomCounter = 0
-
+      n = checkout - checkin + 1
       rm.each do |room|
         hm = {}
         i = 0
@@ -133,7 +369,6 @@ class RoomPapaController < ApplicationController
       hotelRoomFree = hotelRoomFree.sort_by{|a| [a[:capacity]]}
       room = []
       for i in 0...people.length
-        
         if people[i][:found] == false 
           for j in 0...hotelRoomFree.length
             if people[i][:capacity] <= hotelRoomFree[j][:capacity] && people[i][:adults]<=hotelRoomFree[j][:maximumadults] && people[i][:children]<=hotelRoomFree[j][:maximumchildren] && people[i][:found] == false && hotelRoomFree[j][:free] - hotelRoomFree[j][:used] > 0
