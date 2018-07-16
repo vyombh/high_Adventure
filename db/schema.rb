@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712054218) do
+ActiveRecord::Schema.define(version: 20180715102335) do
 
   create_table "bookings", force: :cascade do |t|
     t.date     "checkin"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20180712054218) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "counties", force: :cascade do |t|
+    t.integer  "state_id"
+    t.string   "abbr"
+    t.string   "name"
+    t.string   "county_seat"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "counties", ["name"], name: "index_counties_on_name"
+  add_index "counties", ["state_id"], name: "index_counties_on_state_id"
 
   create_table "customers", force: :cascade do |t|
     t.string   "email"
@@ -73,6 +85,11 @@ ActiveRecord::Schema.define(version: 20180712054218) do
     t.string   "phnno2"
     t.string   "landline"
     t.string   "email"
+    t.string   "accholder"
+    t.string   "accno"
+    t.string   "gstno"
+    t.string   "ifsccode"
+    t.string   "panno"
   end
 
   add_index "hotels", ["user_id"], name: "index_hotels_on_user_id"
@@ -109,6 +126,15 @@ ActiveRecord::Schema.define(version: 20180712054218) do
   end
 
   add_index "roomtypes", ["hotel_id"], name: "index_roomtypes_on_hotel_id"
+
+  create_table "states", force: :cascade do |t|
+    t.string   "abbr",       limit: 2
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "states", ["abbr"], name: "index_states_on_abbr"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

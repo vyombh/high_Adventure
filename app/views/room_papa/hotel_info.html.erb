@@ -1,4 +1,73 @@
 <%hotel = Hotel.find_by_id(params[:id])%>
+
+	<%arraybasic={}%>
+
+	<%arraybasic['parking']='Parking'%>
+	<%arraybasic['gym']='Gym'%>
+	<%arraybasic['spa']='Spa'%>
+	<%arraybasic['swimmingpool']='Swimming Pool'%>
+	<%arraybasic['bar']='Bar'%>
+	<%arraybasic['restaurant']='Restaurant'%>
+	<%arraybasic['lift']='Lift'%>
+
+	<%arraymedia={}%>
+
+	<%arraymedia['computer']='Computer'%>
+	<%arraymedia['flatscreentv']='Flat Screen TV'%>
+	<%arraymedia['gameconsole']='Game Console'%>
+	<%arraymedia['nintendowii']='Nintendo Wii'%>
+	<%arraymedia['ps2']='PS2'%>
+	<%arraymedia['ps3']='PS3'%>
+	<%arraymedia['ps4']='PS4'%>
+	<%arraymedia['xbox360']='XBox 360'%>
+	<%arraymedia['laptop']='Laptop'%>
+	<%arraymedia['laptopsafe']='Laptop Safe'%>
+	<%arraymedia['ipad']='IPad'%>
+	<%arraymedia['cablechannels']='Cable Channels'%>
+	<%arraymedia['cdplayer']='CD Player'%>
+	<%arraymedia['dvdplayer']='DVD Player'%>
+	<%arraymedia['fax']='Fax'%>
+	<%arraymedia['paypervideochannels']='Pay per video channels'%>
+	<%arraymedia['radio']='Radio'%>
+	<%arraymedia['satellitechannels']='Satellite Channels'%>
+	<%arraymedia['telephone']='Telephone'%>
+	<%arraymedia['tv']='TV'%>
+	<%arraymedia['video']='Video'%>
+	<%arraymedia['videogames']='Video Games'%>
+	<%arraymedia['blurayplayer']='BluRay Player'%>
+
+	<%arrayfood={}%>
+
+	<%arrayfood['diningarea']='Dining Area'%>
+	<%arrayfood['diningtable']='Dining Table'%>
+	<%arrayfood['barbecue']='Barbecue'%>
+	<%arrayfood['stovetop']='Stove top'%>
+	<%arrayfood['toaster']='Toaster'%>
+	<%arrayfood['outdoordiningarea']='Outdoor Dining Area'%>
+	<%arrayfood['outdoorfurniture']='Outdoor Furniture'%>
+	<%arrayfood['kitchenette']='Kitchenette'%>
+	<%arrayfood['kitchenware']='Kitchenware'%>
+	<%arrayfood['microwave']='Microwave'%>
+	<%arrayfood['refrigerator']='Refrigerator'%>
+	<%arrayfood['teacoffeemachine']='Tea Coffee Machine'%>
+	<%arrayfood['coffeemachine']='Coffee Machine'%>
+	<%arrayfood['highchair']='High chair'%>
+
+	<%arraydisability={}%>
+
+	<%arraydisability['groundfloor']='Ground Floor'%>
+	<%arraydisability['wheelchair']='Wheel Chair'%>
+	<%arraydisability['elevator']='Elevator'%>
+	<%arraydisability['staircaseonly']='Staircase only'%>
+	<%arraydisability['grabrailstoilet']='Grab Rails Toilet'%>
+
+	<%arrayentertainment={}%>
+
+	<%arrayentertainment['babysafetyglasses']='Baby Safety Glasses'%>
+	<%arrayentertainment['boardgamespuzzles']='Board Games Puzzles'%>
+	<%arrayentertainment['books']='Books'%>
+	<%arrayentertainment['safetysockets']='Safety sockets'%>
+
 <%if hotel%>
 	<h1><%=hotel.hotelname.titleize%></h1>
 	<%=hotel.buildingname.downcase.capitalize%><br>
@@ -6,36 +75,112 @@
 	,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - <%=hotel.zipcode%>
 	<br><%=hotel.rating%>
 	<br>photo
-	<br>description
-	<br> <h4>Facilites : </h4>
+	
+	<br><b>Checkin time : </b><%=hotel.checkinhrsfrom%> : <%=hotel.checkinminfrom%> <%=hotel.checkinampmfrom%> -  <%=hotel.checkinhrsto%> : <%=hotel.checkinminto%> <%=hotel.checkinampmto%>
+	<br><b>Checkout time : </b><%=hotel.checkouthrsfrom%> : <%=hotel.checkoutminfrom%> <%=hotel.checkoutampmfrom%> -  <%=hotel.checkouthrsto%> : <%=hotel.checkoutminto%> <%=hotel.checkoutampmto%>
+
+	<br><%=hotel.description%>
+	<br> <h3>Facilites : </h3>
+	
 	<%string = ''%>
+	<%hotelbasic = []%>
+	<%hotelbasic=hotel.basic.keys%>
 
-	<%if hotel.parking%>
-		<%string = string + 'Parking '%>
-	<%end%>
-	<%if hotel.gym%>
-		<%string = string + 'Gym '%>
-	<%end%>
-	<%if hotel.spa%>
-		<%string = string + 'Spa '%>
-	<%end%>
-	<%if hotel.bar%>
-		<%string = string + 'Bar '%>
-	<%end%>
-	<%if hotel.pool%>
-		<%string = string + 'Swimming Pool '%>
+	
+	<b>Basic Facilities : </b>
+
+	<%for x in 0...hotelbasic.length%>
+
+
+		<%if hotel.basic[hotelbasic[x]] == "1" %> 
+			<%string = string + ' ' + arraybasic[hotelbasic[x]] + ','%>
+		<%end%>
 
 	<%end%>
-	<%if hotel.restaurant%>
-		<%string = string + 'Restaurant '%>
-	<%end%>
-	<%string = string.split(' ')%>
-	<ul>
-	<%string.each do |s|%>
-		<li><%=s%></li>
-	<%end%>
-	</ul>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+	<%string = ''%>
+	<%hotelmedia = []%>
+	<%hotelmedia=hotel.media.keys%>
 
+	
+	<b>Media Facilities : </b>
+
+	<%for x in 0...hotelmedia.length%>
+
+
+		<%if hotel.media[hotelmedia[x]] == "1" %> 
+			<%string = string + ' ' + arraymedia[hotelmedia[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+	<%string = ''%>
+	<%hotelfood = []%>
+	<%hotelfood=hotel.food.keys%>
+
+	
+	<b>Food Facilities : </b>
+
+	<%for x in 0...hotelfood.length%>
+
+
+		<%if hotel.food[hotelfood[x]] == "1" %> 
+			<%string = string + ' ' + arrayfood[hotelfood[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+	<%string = ''%>
+	<%hoteldisability = []%>
+	<%hoteldisability=hotel.disability.keys%>
+
+	
+	<b>Disability Facilities : </b>
+
+	<%for x in 0...hoteldisability.length%>
+
+
+		<%if hotel.disability[hoteldisability[x]] == "1" %> 
+			<%string = string + ' ' + arraydisability[hoteldisability[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+	<%string = ''%>
+	<%hotelentertainment = []%>
+	<%hotelentertainment=hotel.entertainment.keys%>
+
+	
+	<b>Entertainment Facilities : </b>
+
+	<%for x in 0...hotelentertainment.length%>
+
+
+		<%if hotel.entertainment[hotelentertainment[x]] == "1" %> 
+			<%string = string + ' ' + arrayentertainment[hotelentertainment[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+	<b>Policies : </b>
+	<br><%=hotel.policies%>
+	<br>
+	
 	<br><%rooms = hotel.roomtypes%>
 	<br>ROOM LIST:<br>
 	<%rooms.each do |room|%>

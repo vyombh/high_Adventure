@@ -1,8 +1,8 @@
-  	<%if current_user && !current_user.hotel%>
-	
+<%if current_user && !current_user.hotel%>
+
 	Your have not filled your details yet!!
 	<BR><BR>
-	Kindly fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%>	
+	Kindly fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%>
 
 <%else%>
 
@@ -14,42 +14,42 @@
 <h1 align="center" style="text-decoration: underline;">Hotel Info</h1>
 
 <div class="container" style="background-color: white;">
-	<div class="form form-horizontal">	 
+	<div class="form form-horizontal">
 	<%@hotel = current_user.hotel%><%= link_to 'Edit', edit_hotel_path(@hotel),:class => "btn btn-warning pull-right"%>
 	<h2 class="col-sm-offset-2">Basic Info</h2>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="HotelName">Hotel Name:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.hotelname %></div>	
+		 	<div class="form-control" disabled><%= @hotel.hotelname %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="HotelType">Hoteltype:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.hoteltype %></div>	
+		 	<div class="form-control" disabled><%= @hotel.hoteltype %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Chainname">Chainname:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.chainname %></div>	
+		 	<div class="form-control" disabled><%= @hotel.chainname %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Floor">Floor:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.floor %></div>	
+		 	<div class="form-control" disabled><%= @hotel.floor %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Currency">Currency:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.currency %></div>	
+		 	<div class="form-control" disabled><%= @hotel.currency %></div>
 		</div>
 	</div>
 
@@ -60,16 +60,16 @@
 		<div class="col-sm-4">
           <input type="range" class="form-control" id="StarRatingSlider" min="0" max="7" step="0.1" name="StarRating" value=<%= @hotel.rating %> disabled="">
         </div>
-		 	<label class="col-sm-1" style="padding-top: 5px;" disabled><%= @hotel.rating %></label>	
+		 	<label class="col-sm-1" style="padding-top: 5px;" disabled><%= @hotel.rating %></label>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Year">Year:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.year %></div>	
+		 	<div class="form-control" disabled><%= @hotel.year %></div>
 		</div>
 	</div>
-		
+
 
 	<div class="row">
 		<div class="col-sm-2">
@@ -89,7 +89,7 @@
 				<div class="col-sm-4">
 					<div class="form-control" disabled><%= @hotel.checkinampmfrom %></div>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="col-sm-4">
@@ -106,7 +106,7 @@
 				<div class="col-sm-4">
 					<div class="form-control" disabled><%= @hotel.checkinampmto %></div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -135,7 +135,7 @@
 					<div class="col-sm-4">
 						<div class="form-control" disabled><%= @hotel.checkoutampmfrom %></div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -162,7 +162,7 @@
 					<div class="col-sm-4">
 						<div class="form-control" disabled><%= @hotel.checkoutampmto %></div>
 					</div>
-					
+
 				</div>
 			</div>
 	</div>
@@ -174,53 +174,83 @@
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Buildingname">Buildingname:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.buildingname %></div>	
+		 	<div class="form-control" disabled><%= @hotel.buildingname %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Streetname">Streetname:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.streetname %></div>	
+		 	<div class="form-control" disabled><%= @hotel.streetname %></div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="Landmark">Landmark:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.landmark %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="City">City:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.city %></div>	
+		 	<div class="form-control" disabled><%= @hotel.city %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="State">State:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.state %></div>	
+		 	<div class="form-control" disabled><%= @hotel.state %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Country">Country:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.country %></div>	
+		 	<div class="form-control" disabled><%= @hotel.country %></div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="Zipcode">Zipcode:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.zipcode %></div>	
+		 	<div class="form-control" disabled><%= @hotel.zipcode %></div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="Country">Country:</label>
+	<div class="form form-horizontal">
+	  <div class="col-sm-offset-2">
+	    <h2>Contact Details</h2>
+	  </div> 
+	  <div class="form-group">
+		<label class="control-label col-sm-2" for="Phone Number">Phone Number:</label>
 		<div class="col-sm-4">
-		 	<div class="form-control" disabled><%= @hotel.country %></div>	
+		 	<div class="form-control" disabled><%= @hotel.phnno1 %></div>
 		</div>
+	  </div>
+	  <div class="form-group">
+		<label class="control-label col-sm-2" for="Alternate Number">Alternate Number:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.phnno2 %></div>
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label class="control-label col-sm-2" for="Landline">Landline:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.landline %></div>
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label class="control-label col-sm-2" for="Email">Email:</label>
+		<div class="col-sm-4">
+		 	<div class="form-control" disabled><%= @hotel.email %></div>
+		</div>
+	  </div>
 	</div>
 
-	
+
 
 
 
@@ -314,11 +344,11 @@
 		<%if current_user.hotel.basic[item]=='1'%>
 			<% arraybasicchecked.push(item) %>
 		<%else%>
-			<% arraybasicunchecked.push(item) %>	
+			<% arraybasicunchecked.push(item) %>
 		<%end %>
-	<%end%>	
+	<%end%>
 
-	<%arraybasicchecked=arraybasicchecked.sort%>	
+	<%arraybasicchecked=arraybasicchecked.sort%>
 	<%arraybasicunchecked=arraybasicunchecked.sort%>
 
 	<%array = current_user.hotel.media.keys%>
@@ -326,9 +356,9 @@
 		<%if current_user.hotel.media[item]=='1'%>
 			<% arraymediachecked.push(item) %>
 		<%else%>
-			<% arraymediaunchecked.push(item) %>	
+			<% arraymediaunchecked.push(item) %>
 		<%end %>
-	<%end%>	
+	<%end%>
 
 	<%arraymediachecked=arraymediachecked.sort%>
 	<%arraymediaunchecked=arraymediaunchecked.sort%>
@@ -338,11 +368,11 @@
 		<%if current_user.hotel.food[item]=='1'%>
 			<% arrayfoodchecked.push(item) %>
 		<%else%>
-			<% arrayfoodunchecked.push(item) %>	
+			<% arrayfoodunchecked.push(item) %>
 		<%end %>
-	<%end%>	
+	<%end%>
 
-	<%arrayfoodchecked=arrayfoodchecked.sort%>	
+	<%arrayfoodchecked=arrayfoodchecked.sort%>
 	<%arrayfoodunchecked=arrayfoodunchecked.sort%>
 
 	<%array = current_user.hotel.disability.keys%>
@@ -350,11 +380,11 @@
 		<%if current_user.hotel.disability[item]=='1'%>
 			<% arraydisabilitychecked.push(item) %>
 		<%else%>
-			<% arraydisabilityunchecked.push(item) %>	
+			<% arraydisabilityunchecked.push(item) %>
 		<%end %>
-	<%end%>	
+	<%end%>
 
-	<%arraydisabilitychecked=arraydisabilitychecked.sort%>	
+	<%arraydisabilitychecked=arraydisabilitychecked.sort%>
 	<%arraydisabilityunchecked=arraydisabilityunchecked.sort%>
 
 	<%array = current_user.hotel.entertainment.keys%>
@@ -362,11 +392,11 @@
 		<%if current_user.hotel.entertainment[item]=='1'%>
 			<% arrayentertainmentchecked.push(item) %>
 		<%else%>
-			<% arrayentertainmentunchecked.push(item) %>	
+			<% arrayentertainmentunchecked.push(item) %>
 		<%end %>
-	<%end%>	
+	<%end%>
 
-	<%arrayentertainmentchecked=arrayentertainmentchecked.sort%>	
+	<%arrayentertainmentchecked=arrayentertainmentchecked.sort%>
 	<%arrayentertainmentunchecked=arrayentertainmentunchecked.sort%>
 
 	<div class="col-sm-offset-2"><h2>Amenties</h2></div>
@@ -395,7 +425,7 @@
 					<%arraybasicunchecked.each do |item|%>
 					<div class="AccordianOption col-sm-3" style="padding-top: 8px">
 						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraybasic[item]%></label>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<input type="checkbox" disabled="true">
 						</div>
 					</div>
@@ -430,7 +460,8 @@
 					<%arraymediaunchecked.each do |item|%>
 					<div class="AccordianOption col-sm-3">
 						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraymedia[item]%></label>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input type="checkbox" disabled="true">
 						</div>
 					</div>
 				<%end%>
@@ -462,7 +493,8 @@
 					<%arrayfoodunchecked.each do |item|%>
 					<div class="AccordianOption col-sm-3" >
 						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayfood[item]%></label>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input type="checkbox" disabled="true">
 						</div>
 					</div>
 				<%end%>
@@ -494,7 +526,8 @@
 					<%arraydisabilityunchecked.each do |item|%>
 					<div class="AccordianOption col-sm-3" >
 						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arraydisability[item]%></label>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input type="checkbox" disabled="true">
 						</div>
 					</div>
 				<%end%>
@@ -526,7 +559,8 @@
 					<%arrayentertainmentunchecked.each do |item|%>
 					<div class="AccordianOption col-sm-3" >
 						<label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10"><%=arrayentertainment[item]%></label>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"">			<input type="checkbox" disabled="true">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input type="checkbox" disabled="true">
 						</div>
 					</div>
 				<%end%>
@@ -535,34 +569,52 @@
 		</div>
 	</div>
 	</div>
-	<div>
+	<div class="container">
 		<h2 class="col-sm-offset-2">Description</h2 >
-		<div class="col-sm-offset-1 row" style="padding-left: 25px;">
-			<textarea class="form-group col-xs-12 col-sm-12" rows="4"disabled="true" style="max-width: 930px;"><%= @hotel.description %></textarea>
+		<div class="col-sm-offset-1 row">
+			<textarea class="form-group col-xs-12 col-sm-12" rows="4"disabled="true" style="max-width: 980px;"><%= @hotel.description %></textarea>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="container">
 		<h2 class="col-sm-offset-2">Policies</h2 >
-	<div class="col-sm-offset-1" style="padding-left: 25px;">
-	<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 930px;"><%= @hotel.policies %></textarea>
+	<div class="col-sm-offset-1">
+	<textarea class="form-group col-xs-12 col-sm-12" rows="6"disabled="true" style="max-width: 980px;"><%= @hotel.policies %></textarea>
 	</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-offset-2">
-			<h2>Images</h2>
-		</div>
-		<div class="col-sm-10 col-sm-offset-1">
-			<%current_user.hotel.images.each do |hs|%>
-				<%=image_tag(hs.url, height: '100', width: '100')%>
-			<%end%>
-		</div>
-	</div>
-			
+	<%if current_user.hotel.images.any?%>
+		<% imagearray = []%>
+		<%current_user.hotel.images.each do |hs|%>
+			<% imagearray.push(hs.url)%>
+		<%end%>
 
-	
+		<div class="row">
+			<div class="col-sm-offset-2">
+				<h2>Images</h2>
+			</div>
+			<div class="col-sm-4 col-sm-offset-1" id="ImagesBlock">
+			</div>
+		</div>
+	<%end%>
+	<div id="ModalForImage" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span style="color:red;transform:scale(6)">&times;</span></button>
+	      </div>
+	      <div class="modal-body">
+	        <div id="ModalImg">
+	        </div>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
 <%else%>
-	Congratulations!! your have moved one step towards completion<br>
+	Congratulations!! your have moved one step cftowards completion<br>
 	kindly fill  <%=link_to "Room Types",new_roomtype_path(id: current_user.hotel.id),method: :get%>
 <%end%>
 </div>
@@ -593,7 +645,7 @@
 		height:45px;
 		margin: 0px;
 		border: solid 1px #ccc;
-		
+
 	}
 	.RotatePlusA{
 		transform: rotate(45deg) scale(2);
@@ -606,7 +658,25 @@
 
 </style>
 <script type="text/javascript">
-	$(document).ready(function(){
+	var ImagesArray=<%=raw imagearray%>;
+	function AddToModal(i) {
+		var x='<img src="'+ImagesArray[i]+'"style="height:auto;width:100%">'
+		document.getElementById('ModalImg').innerHTML=x;
+	}
+
+	function AddImage(length){
+		var x=''
+		for(var i=0;i<length;i++)
+		{
+			x=x+'<div data-toggle="modal" data-target="#ModalForImage" onclick="AddToModal('+i+')">'+
+				'<img src="'+ImagesArray[i]+'" style="height:100px;width:200px">'+
+				'</div>'
+		}
+		document.getElementById('ImagesBlock').innerHTML=x;
+	}
+
+  $(document).ready(function(){
+
   $('#BasicAmenties').slideUp(1);
   $('#MediaAmenties').slideUp(1);
   $('#FoodAmenties').slideUp(1);
@@ -619,6 +689,7 @@
   var disabilityamenities=1;
   var entertainmentamenities=1;
 
+  AddImage(ImagesArray.length);
   function basicAmenities(){
     if(basicamenities==1)
     {
@@ -699,7 +770,7 @@
     entertainmentamenities=(entertainmentamenities)*(-1);
   }
   $('#BasicAmenitiesBtn').click(function(){
-    
+
     mediaamenities=-1;
     foodamenities=-1;
     disabilityamenities=-1;
@@ -770,9 +841,3 @@
   });
 });
 </script>
-
-
-
-
-
-

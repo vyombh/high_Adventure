@@ -1,4 +1,66 @@
 <%room = Roomtype.find_by_id(params[:id])%>
+
+<%arraybasic={}%>
+
+  <%arraybasic['clothesracks']='Clothes Racks'%>
+  <%arraybasic['dryingracking']='Drying Racking'%>
+  <%arraybasic['foldupbed']='Fold-up Bed'%>
+  <%arraybasic['sofabed']='Sofa Bed'%>
+  <%arraybasic['wardrobe']='Wardrobe'%>
+  <%arraybasic['carpeted']='Carpeted'%>
+  <%arraybasic['walkingcloset']='Walking Closet'%>
+  <%arraybasic['extralongbeds']='Extra Long Beds'%>
+  <%arraybasic['fireplace']='Fireplace'%>
+  <%arraybasic['heater']='Heater'%>
+  <%arraybasic['interconnectingrooms']='Inter Connecting Rooms'%>
+  <%arraybasic['iron']='Iron'%>
+  <%arraybasic['desk']='Desk'%>
+  <%arraybasic['wifi']='WiFi'%>
+  <%arraybasic['smoking']='Smoking'%>
+  <%arraybasic['tv']='TV'%>
+
+  <%arrayrestroom={}%>
+
+  <%arrayrestroom['bathroom']='bathroom'%>
+  <%arrayrestroom['toiletpaper']='toiletpaper'%>
+  <%arrayrestroom['bathtub']='bathtub'%>
+  <%arrayrestroom['shower']='shower'%>
+  <%arrayrestroom['bathrobe']='bathrobe'%>
+  <%arrayrestroom['freetoiletries']='Free Toiletries'%>
+  <%arrayrestroom['hairdryer']='Hair Dryer'%>
+  <%arrayrestroom['spatub']='Spa Tub'%>
+  <%arrayrestroom['sharedbathroom']='Shared Bathroom'%>
+  <%arrayrestroom['slippers']='Slippers'%>
+  <%arrayrestroom['toilets']='Toilets'%>
+  <%arrayrestroom['geyser']='Geyser'%>
+  
+  <%arrayservices={}%>
+
+  <%arrayservices['executiveloungeaccess']='Executive Lounge Access'%>
+  <%arrayservices['alarmclock']='Alarm Clock'%>
+  <%arrayservices['wakeupservice']='Wake-up Service'%>
+  <%arrayservices['linens']='Linens'%>
+  <%arrayservices['sheets']='Sheets'%>
+  <%arrayservices['ac']='AC'%>
+  <%arrayservices['cooler']='Cooler'%>
+  <%arrayservices['fan']='Fan'%>
+  <%arrayservices['kettle']='Kettle'%>
+  <%arrayservices['laundry']='Laundry'%>
+
+  <%arrayview={}%>
+
+  <%arrayview['balcony']='Balcony'%>
+  <%arrayview['terrace']='Terrace'%>
+  <%arrayview['cityview']='City View'%>
+  <%arrayview['lakeview']='Lake View'%>
+  <%arrayview['landmarkview']='Landmark View'%>
+  <%arrayview['poolview']='Pool View'%>
+  <%arrayview['riverviewriverview']='River View'%>
+  <%arrayview['oceanview']='Ocean View'%>
+
+
+
+
 <%if room%>
 
 	<h1><%=room.typename.downcase.capitalize%></h1>
@@ -7,85 +69,88 @@
 	<h3><%=hotel.hotelname.downcase.titleize%></h3>
 
 	(<%=hotel.buildingname.downcase.capitalize%> <%=hotel.streetname.downcase.capitalize%>	,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - <%=hotel.zipcode%>)<br>
-	Number of rooms :
-	<%if room.rooms == 1%> 
-		<%=room.rooms%> Room <br> 
-	<%else%>
-		<%=room.rooms%> Rooms <br>
-	<%end%>
+	
 
+	<br><b>Number of rooms : </b><%=room.rooms%>
+	<br><b>Number of adults (base) : </b><%=room.baseadults%>
+	<br><b>Number of children (base) : </b><%=room.basechildren%>
 
-	Capacity : 
-	<%if room.adults == 1%> 
-		<%=room.adults%> Adult , 
-	<%else%>
-		<%=room.adults%> Adults , 
-	<%end%>
+	<br> <h3>Facilites : </h3>
 
-	<%if room.children == 1%>
-		<%=room.children%> Child <br>
-	<%else%>
-		<%=room.children%> Children <br> 
-	<%end%>
-
-	Bed type: <%=room.beds%><br>
-
-	Extra Bedding:
-	<%if room.extrabed == true%>
-		Available!!<br>
-	<%else%>
-		Not Available!!<br>
-	<%end%>
-
-	<h4>Facilites:</h4>
 	<%string = ''%>
-	<%if room.wifi%>
-		<%string = string + 'WiFi '%>
-	<%end%>
-	<%if room.ac%>
-		<%string = string + 'AC '%>
-	<%end%>
-	<%if room.geyser%>
-		<%string = string + 'Geyser '%>
-	<%end%>
-	<%if room.cooler%>
-		<%string = string + 'Cooler '%>
-	<%end%>
-	<%if room.fan%>
-		<%string = string + 'Fan '%>
-	<%end%>
-	<%if room.smoking%>
-		<%string = string + 'Smoking'%>
-	<%end%>
-	<%if room.balcony%>
-		<%string = string + 'Balcony '%>
-	<%end%>
-	<%if room.bathroom%>
-		<%string = string + 'Bathroom '%>
-	<%end%>
-	<%if room.tv%>
-		<%string = string + 'TV '%>
-	<%end%>
-	<%if room.familyrooms%>
-		<%string = string + 'Family Room '%>
-	<%end%>
-	<%if room.pwd%>
-		<%string = string + 'Facilites for Phyically Disabled '%>
-	<%end%>
-	<%if room.laundry%>
-		<%string = string + 'Laundry '%>
-	<%end%>
+	<%roombasic = []%>
+	<%roombasic=room.basic.keys%>
+	<b>Basic Facilities : </b>
 
-	<%if room.kettle%>
-		<%string = string + 'Kettle'%>
+	<%for x in 0...roombasic.length%>
+
+
+		<%if room.basic[roombasic[x]] == "1" %> 
+			<%string = string + ' ' + arraybasic[roombasic[x]] + ','%>
+		<%end%>
+
 	<%end%>
 	
-	<%string = string.split(' ')%>
-	<ul>
-		<%string.each do |s|%>
-			<li><%=s%></li>
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+
+	<%string = ''%>
+	<%roomrestroom = []%>
+	<%roomrestroom=room.restroom.keys%>
+	<b>Restroom Facilities : </b>
+
+	<%for x in 0...roomrestroom.length%>
+
+
+		<%if room.restroom[roomrestroom[x]] == "1" %> 
+			<%string = string + ' ' + arrayrestroom[roomrestroom[x]] + ','%>
 		<%end%>
-	</ul>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+
+
+	<%string = ''%>
+	<%roomservices = []%>
+	<%roomservices=room.services.keys%>
+	<b>Services Facilities : </b>
+
+	<%for x in 0...roomservices.length%>
+
+
+		<%if room.services[roomservices[x]] == "1" %> 
+			<%string = string + ' ' + arrayservices[roomservices[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+
+	<%string = ''%>
+	<%roomview = []%>
+	<%roomview=room.view.keys%>
+	<b>View Facilities : </b>
+
+
+	<%for x in 0...roomview.length%>
+
+
+		<%if room.view[roomview[x]] == "1" %> 
+			<%string = string + ' ' + arrayview[roomview[x]] + ','%>
+		<%end%>
+
+	<%end%>
+	
+	<%string=string[0..string.length-2]%>
+	<%=string%>
+	<br>
+
 	
 <%else%>
 	NO ROOM FOUND
