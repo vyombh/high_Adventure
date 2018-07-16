@@ -28,7 +28,18 @@ class Hotel < ActiveRecord::Base
     validates :city,presence: true
     validates :description,presence: true
     validates :policies,presence: true
+    validates :accno,presence: true, uniqueness: true
+    validates :accholder,presence: true
+    validates :gstno,presence: true
+    validates :panno,presence: true
+    validates :ifsccode,presence: true
     validates_uniqueness_of :user
+    validates :accno, length: { minimum: 9 }
+    validates :accno, length: { maximum: 20 }
+    validates :description, length: { maximum: 1000 }
+    validates :policies, length: { maximum: 1000 }
+    validates :ifsccode, length: { is: 11 }
+    validates_format_of :accno, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
     validates_format_of :floor, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
     validates_format_of :year, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
     validates_format_of :checkinhrsfrom, numericality: {only_integer: true}, with: /\A[0-9]*\Z/, message: 'Only numbers allowed'
@@ -48,4 +59,15 @@ class Hotel < ActiveRecord::Base
     serialize :basic,Hash
     mount_uploaders :images, PhotoUploader
     serialize :images, JSON
+    validate :ifsc_validator
+  private
+  def ifsc_validator
+    if ifsccode != nil
+        puts ifsccode
+        fuck = Razorpay::IFSC::IFSC.valid? ifsccode
+        if fuck == false
+          errors.add(:ifsccode, 'invalid format(Invalid IFSC Code)')
+        end
+    end
+  end
 end
