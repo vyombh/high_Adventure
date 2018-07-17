@@ -13,39 +13,30 @@ class RoomPapaController < ApplicationController
   def search
   end
   
-  def checkRoomEligiblity(room,hm,checkin,checkout)
-    if room.bookings
-      room.bookings.each do |b|
-        ci = b.checkin
-        co = b.checkout
+  def checkRoomEligiblity(room,checkin,checkout,hotel)
+    freq = -1
+    if hotel.bookinglog != nil
+      booking = hotel.bookinglog.booking[room.id]
+      for i in 0...booking.length
+        if booking[i][:start]<=checkin && booking[i][:end] > checkin && booking[i][:end] >= checkout
 
-        if ci>=checkin && co<=checkout
-          date = ci
-            while date<co
-              hm[date] +=  b.rooms
-              date += 1
-            end
-        elsif ci<=checkin && co>=checkin && co<=checkout
-            date = checkin
-            while date<co
-              hm[date] +=  b.rooms
-              date += 1
-            end
-        elsif ci>=checkin && ci<=checkout && co>=checkout
-            date = ci
-            while date<checkout
-                hm[date] += b.rooms
-                date += 1
-            end
-        elsif ci<=checkin && co>=checkout
-            date = checkin
-            while date<checkout
-              hm[date] +=  b.rooms
-              date += 1
-            end
+          if freq < booking[i][:frequency]
+            freq = booking[i][:frequency]
+          end
+          return freq
+
+        elsif booking[i][:start]<=checkin && booking[i][:end] > checkin && booking[i][:end] < checkout
+          
+          if freq < booking[i][:frequency]
+            freq = booking[i][:frequency]
+          end
+          checkin = booking[i][:end]
+
         end
+        i = i + 1
       end
     end
+    return freq
    
   end
   
@@ -55,22 +46,37 @@ class RoomPapaController < ApplicationController
     end
     while checkout > checkin
       price.each do |p|
+        n = 1
         if p[:start]<=checkin&&p[:end]>=checkout
-          returnprice[:base_1] = p[:price][:base_1].to_i + returnprice[:base_1]
-          returnprice[:base_2] = p[:price][:base_2].to_i + returnprice[:base_2]
-          returnprice[:extraadult] = p[:price][:extraadult].to_i + returnprice[:extraadult]
-          returnprice[:extrachild] = p[:price][:extrachild].to_i + returnprice[:extrachild]
-          returnprice[:adult_breakfast] = p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
-          returnprice[:adult_lunch] = p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
-          returnprice[:adult_dinner] = p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
-          returnprice[:child_breakfast] = p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
-          returnprice[:child_lunch] = p[:price][:child_lunch].to_i + returnprice[:child_lunch]
-          returnprice[:child_dinner] = p[:price][:child_dinner].to_i + returnprice[:child_dinner]
+          n = n + (checkout - checkin).to_i
+          returnprice[:base_1] = n*p[:price][:base_1].to_i + returnprice[:base_1]
+          returnprice[:base_2] = n*n*p[:price][:base_2].to_i + returnprice[:base_2]
+          returnprice[:extraadult] = n*p[:price][:extraadult].to_i + returnprice[:extraadult]
+          returnprice[:extrachild] = n*p[:price][:extrachild].to_i + returnprice[:extrachild]
+          returnprice[:adult_breakfast] = n*p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
+          returnprice[:adult_lunch] = n*p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
+          returnprice[:adult_dinner] = n*p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
+          returnprice[:child_breakfast] = n*p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
+          returnprice[:child_lunch] = n*p[:price][:child_lunch].to_i + returnprice[:child_lunch]
+          returnprice[:child_dinner] = n*p[:price][:child_dinner].to_i + returnprice[:child_dinner]
           break
+        elsif p[:start] <= checkin && p[:end] > checkin && p[:end] < checkout
+          n = n + (p[:end] - checkin).to_i
+          returnprice[:base_1] = n*p[:price][:base_1].to_i + returnprice[:base_1]
+          returnprice[:base_2] = n*n*p[:price][:base_2].to_i + returnprice[:base_2]
+          returnprice[:extraadult] = n*p[:price][:extraadult].to_i + returnprice[:extraadult]
+          returnprice[:extrachild] = n*p[:price][:extrachild].to_i + returnprice[:extrachild]
+          returnprice[:adult_breakfast] = n*p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
+          returnprice[:adult_lunch] = n*p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
+          returnprice[:adult_dinner] = n*p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
+          returnprice[:child_breakfast] = n*p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
+          returnprice[:child_lunch] = n*p[:price][:child_lunch].to_i + returnprice[:child_lunch]
+          returnprice[:child_dinner] = n*p[:price][:child_dinner].to_i + returnprice[:child_dinner]
+          checkin = p[:end] + 1
         end
       end
-      checkin = checkin+1
     end
+    return returnprice
   end
   def hotelFilters params,hotels
       if hotels.length == 0
@@ -332,27 +338,12 @@ class RoomPapaController < ApplicationController
       roomCounter = 0
       n = checkout - checkin + 1
       rm.each do |room|
-        hm = {}
-        i = 0
-        while i<n
-          c = checkin + i
-          hm[c] = 0
-          i += 1
-        end
-        checkRoomEligiblity(room,hm,checkin,checkout)
-        i = 0
-        booked = -1
-        while i<n
-          c = checkin + i
-          if booked<hm[c]
-            booked = hm[c]
-          end
-          i+=1
-        end
+        booked = checkRoomEligiblity(room,checkin,checkout,hotel)
         roomObject = {}
-        if price != nil && price[room.id]
+        if price != nil && price[room.id] && booked >= 0
           returnprice = {:base_1=>0, :base_2=>0, :extraadult=>0, :extrachild=>0, :adult_breakfast=>0, :adult_lunch=>0,:adult_dinner=>0, :child_dinner=>0, :child_breakfast=>0,:child_lunch=>0}
-          pricecalc(price[room.id],checkin,checkout,returnprice)
+          returnprice = pricecalc(price[room.id],checkin,checkout,returnprice)
+          # byebug
           roomObject = {id: room.id,free: room.rooms - booked, capacity: room.basechildren + room.baseadults , baseadults: room.baseadults, basechildren: room.basechildren , maximumadults: room.maximumadults , maximumchildren: room.maximumchildren ,used: 0,price: returnprice,extrabed: room.maximumguests-room.basechildren - room.baseadults}
           hotelRoomFree = hotelRoomFree.insert(roomCounter,roomObject)
           roomCounter = roomCounter + 1

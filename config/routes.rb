@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post'/pricings/update'
   get '/hotels/deleteimage'
   get '/room_papa/deleteimage'
-  get '/pricings/testing'
+  get '/bookings/testing'
   get '/bookings/bookingform'
   #get '/'
   # root 'home#index'

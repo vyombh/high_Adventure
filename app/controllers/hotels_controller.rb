@@ -101,11 +101,43 @@ class HotelsController < ApplicationController
     if hotel_params[:policies]
       @hotel.policies = hotel_params[:policies]
     end
+    if hotel_params[:accholder]
+      @hotel.accholder = hotel_params[:accholder]
+    end
+    if hotel_params[:accno]
+      @hotel.accno = hotel_params[:accno]
+    end
+    if hotel_params[:gstno]
+      @hotel.gstno = hotel_params[:gstno]
+    end
+    if hotel_params[:panno]
+      @hotel.panno = hotel_params[:panno]
+    end
+    if hotel_params[:landmark]
+      @hotel.landmark = hotel_params[:landmark]
+    end
+    if hotel_params[:phnno1]
+      @hotel.phnno1 = hotel_params[:phnno1]
+    end
+    if hotel_params[:phnno2]
+      @hotel.phnno2 = hotel_params[:phnno2]
+    end
+    if hotel_params[:landline]
+      @hotel.landline = hotel_params[:landline]
+    end
+    if hotel_params[:email]
+      @hotel.email = hotel_params[:email]
+    end
+    if hotel_params[:ifsccode]
+      @hotel.ifsccode = hotel_params[:ifsccode]
+    end
     respond_to do |format|
       if @hotel.save
+
         format.html { redirect_to '/room_papa/index', notice: 'Hotel was successfully updated.' }
         format.json { render :show, status: :ok, location: @hotel }
       else
+
         format.html { render :edit }
         format.json { render json: @hotel.errors, status: :unprocessable_entity }
       end
@@ -115,6 +147,7 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1
   # DELETE /hotels/1.json
   def deleteimage
+    byebug
     hotel = Hotel.find_by_id(params[:hotel])
     count = 0
     @file = params[:file]

@@ -624,36 +624,32 @@
 					</div>
 				</div>
 			</div>
+
 			<%if current_user.hotel.images.any?%>
-				<% imagearray = []%>
-				<%current_user.hotel.images.each do |hs|%>
-					<% imagearray.push(hs.url)%>
-				<%end%>
+		<% imagearray = []%>
+		<%current_user.hotel.images.each do |hs|%>
+			<% imagearray.push(hs.url)%>
+		<%end%>
 
-				<div class="row">
-					<div class="col-sm-offset-2">
-						<h2>Images</h2>
-					</div>
-					<div class="col-sm-4 col-sm-offset-1" id="ImagesBlock">
-					</div>
-				</div>
-			<%end%>
-			<div id="ModalForImage" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal"><span style="color:red;transform:scale(6)">&times;</span></button>
-			      </div>
-			      <div class="modal-body">
-			        <div id="ModalImg">
-			        </div>
-			      </div>
-			    </div>
-
-			  </div>
+		<div class="row">
+			<div class="col-sm-offset-2">
+				<h2>Images</h2>
 			</div>
+			<div class="col-sm-10 col-sm-offset-1" id="ImagesBlock">
+			</div>
+		</div>
+	<%end%>
+	<div id="ModalForImage" class="modal fade" role="dialog">
+
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <div id="ModalImg" style="position:absolute;top:0px;left:0px">
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 		</div>
 	<%else%>
 		Congratulations!! your have moved one step cftowards completion<br>
@@ -661,6 +657,16 @@
 	<%end%>
 <%end%>
 <style>
+
+	.modal-backdrop.in{
+	  opacity: 0.8;
+	}
+
+	.modal-dialog{
+	  width: 67%;
+	  height:auto;
+	}
+
 	@media only screen and (min-width:786px){
 		.PosChkInOut {
 			position: absolute;
@@ -709,8 +715,8 @@
 		var x=''
 		for(var i=0;i<length;i++)
 		{
-			x=x+'<div data-toggle="modal" data-target="#ModalForImage" onclick="AddToModal('+i+')">'+
-				'<img src="'+ImagesArray[i]+'" style="height:100px;width:200px">'+
+			x=x+'<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-toggle="modal" data-target="#ModalForImage" onclick="AddToModal('+i+')">'+
+				'<img src="'+ImagesArray[i]+'" style="height:150px;width:225px;margin-bottom:20px;border:solid 3px #CCCCCC">'+
 				'</div>'
 		}
 		document.getElementById('ImagesBlock').innerHTML=x;
@@ -882,3 +888,4 @@
   });
 });
 </script>
+
