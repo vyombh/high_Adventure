@@ -3,9 +3,11 @@
 	<!-- pricing -->
 	<form action = "/room_papa/filters">
 		pricing<br>
-		min: <input type="number" id = "min_price" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000">	
-		max: <input type="number" id = "max_price" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">	<br>
+		min: <input type="number" id = "min_price" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000" required = 'true'>	
+		max: <input type="number" id = "max_price" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000" required = 'true'>	<br>
 		<!-- hotel -->
+		Star Rating:<br>
+		<input type="number" id = "rating" name="rating" value = "<%=params[:rating]%>" min = 0 max = 7 required = 'true'><br>
 		hotel facilities<br>
 		BASIC:<br>
 		Bar:		
@@ -349,7 +351,31 @@
 		<%else%>
 			<input type="checkbox" id = "geyser" name="geyser"><br>
 		<%end%>
+
+		COMPLEMENTARY FOOD<br>
+		Breakfast:
+		<%if params[:breakfast] == 'true'%>
+			<input type="checkbox" id = "breakfast" name="breakfast" checked="true"><br>
+		<%else%>
+			<input type="checkbox" id = "breakfast" name="breakfast"><br>
+		<%end%>
+		
+		Lunch:
+		<%if params[:lunch] == 'true'%>
+			<input type="checkbox" id = "lunch" name="lunch" checked="true"><br>
+		<%else%>
+			<input type="checkbox" id = "lunch" name="lunch"><br>
+		<%end%>
+
+		Dinner:
+		<%if params[:dinner] == 'true'%>
+			<input type="checkbox" id = "dinner" name="dinner" checked="true"><br>
+		<%else%>
+			<input type="checkbox" id = "dinner" name="dinner"><br>
+		<%end%>
+
 		<input type="submit" value="FILTER" id='submit_filter' remote = 'true'>	
+
 	</form>
 
 </div>
@@ -433,8 +459,6 @@ NO CASE MATCH
 <script type="text/javascript">
 	var checkin = <%=params[:checkin].split('-')[0]%> + '-' + <%=params[:checkin].split('-')[1].to_i%> + '-' + <%=params[:checkin].split('-')[2]%>
 	var checkout = <%=params[:checkout].split('-')[0]%> + '-' + <%=params[:checkout].split('-')[1].to_i%> + '-' + <%=params[:checkout].split('-')[2]%>
-	console.log(checkin);
-	console.log(checkout);
 	$(document).ready(function(){
 		$('#submit_filter').click(function(e){
 			e.preventDefault();
@@ -444,6 +468,7 @@ NO CASE MATCH
 				data: {
 						max_price: $('#max_price')[0].value,
 						min_price: $('#min_price')[0].value,
+						rating: $('#rating')[0].value,
 						bar: $('#bar')[0].checked,
 						gym: $('#gym')[0].checked,
 						lift: $('#lift')[0].checked,
@@ -500,7 +525,10 @@ NO CASE MATCH
 						city:'<%=params[:city]%>',
 						data_value: <%=raw params[:data_value].to_json %>,
 						checkin: checkin,
-						checkout: checkout
+						checkout: checkout,
+						breakfast: $('#breakfast')[0].value,
+						dinner: $('#dinner')[0].value,
+						lunch: $('#lunch')[0].value
 					},
 				progress:function(loadTime,status){
                           console.log(loadTime);

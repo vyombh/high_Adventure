@@ -31,6 +31,30 @@ class RoomtypesController < ApplicationController
     end
     respond_to do |format|
       if @roomtype.save
+        hotel = current_user.hotel
+        if hotel.bookinglog
+          if hotel.id == @roomtype.hotel_id
+            bookinglog = Bookinglog.where(hotel_id: hotel.id).first
+            booking = Hash.new
+            booking = bookinglog.booking
+            room = @roomtype.id.to_i
+            booking[room] = []
+            booking[room].push({start: Date.today,end: Date.today+36524,frequency: 0})
+            bookinglog.booking = booking
+            bookinglog.save
+          end
+        else
+          if hotel.id == @roomtype.hotel_id
+            bookinglog = Bookinglog.new
+            bookinglog.hotel_id = hotel.id
+            book = Hash.new
+            room = @roomtype.id.to_i
+            book[room] = []
+            book[room].push({start: Date.today,end: Date.today+36524,frequency: 0})
+            bookinglog.booking = book
+            bookinglog.save
+          end
+        end
         format.html { redirect_to '/pricings/new?room_id='+@roomtype.id.to_s, notice: 'room type has been defined.' }
         format.json { render :show, status: :created, location: @roomtype }
       else
@@ -92,6 +116,7 @@ class RoomtypesController < ApplicationController
 
     respond_to do |format|
       if @roomtype.save
+       
         format.html { redirect_to '/roomtypes/'+@roomtype.id.to_s, notice: 'Room Type was successfully updated.' }
         format.json { render :show, status: :ok, location: @roomtype }
       else

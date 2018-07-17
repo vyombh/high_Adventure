@@ -74,7 +74,7 @@ class RoomPapaController < ApplicationController
   end
   def hotelFilters params,hotels
       if hotels.length == 0
-        return
+        return hotels
       end
       basic = []
 
@@ -160,33 +160,21 @@ class RoomPapaController < ApplicationController
       end
       
       basic.each do |b|
-        queryString ="select * from hotels where basic like '" + '%' + b + ": ''1''%'"
-        if hotels.length>1
-          hotels = hotels.find_by_sql(queryString)
-        elsif hotels.length == 1
-          if hotels[0].basic[b.to_sym] == '0'
-            hotels = []
-          end
+        queryString ="%" + b + ": '1'%"
+        if hotels.any?
+          hotels = hotels.where('basic like ?',queryString)
         end
       end
       food.each do |f|
-        queryString ="select * from hotels where food like '" + '%' + f + ": '1''%'"
-        if hotels.length>1
-          hotels = hotels.find_by_sql(queryString)
-        elsif hotels.length == 1
-          if hotels[0].food[b.to_sym] == '0'
-            hotels = []
-          end  
+        queryString = "%" + f + ": '1'%"
+        if hotels.any?
+          hotels = hotels.where('food like ?',queryString)
         end
       end
       disability.each do |d|
-        queryString ="select * from hotels where disability like '" + '%' + d + ": '1''%'"
+        queryString = "%" + d + ": '1'%"
         if hotels.any?
-          hotels = hotels.find_by_sql(queryString)
-        elsif hotels.length == 1
-          if hotels[0].disability[b.to_sym] == '0'
-            hotels = []
-          end
+          hotels = hotels.where('disability like ?',queryString)
         end
       end
       return hotels
@@ -194,7 +182,7 @@ class RoomPapaController < ApplicationController
 
   def roomtypeFilters params,roomtypes
     if roomtypes.length == 0
-        return
+        return roomtypes
     end
     basic = []
     if params[:clothesracks] == 'true'
@@ -285,9 +273,9 @@ class RoomPapaController < ApplicationController
     end
 
     basic.each do |b|
-      queryString ="select * from roomtypes where basic like '" + '%' + b + ": ''1''%'"
-      if roomtypes.length>1
-        roomtypes = roomtypes.find_by_sql(queryString)
+      queryString = "%" + b + ": '1'%"
+      if roomtypes.any?
+        roomtypes = roomtypes.where('basic like ?',queryString)
       elsif roomtypes.length == 1
         if roomtypes[0].basic[b.to_sym] == '0'
           roomtypes = []
@@ -295,13 +283,9 @@ class RoomPapaController < ApplicationController
       end
     end
     restroom.each do |b|
-      queryString ="select * from roomtypes where restroom like '" + '%' + b + ": ''1''%'"
-      if roomtypes.length>1
-        roomtypes = roomtypes.find_by_sql(queryString)
-      elsif roomtypes.length == 1
-        if roomtypes[0].restroom[b.to_sym] == '0'
-          roomtypes = []
-        end
+      queryString = "%" + b + ": '1'%"
+      if roomtypes.any?
+        roomtypes = roomtypes.where('restroom like ?',queryString)
       end
     end
     return roomtypes
@@ -310,13 +294,22 @@ class RoomPapaController < ApplicationController
   def hotels
     count = 0
     @rooms = []
-    city = '%' + params[:city] +'%'
-    @hotels = Hotel.where('city LIKE ? or hotelname LIKE ?', city,city)
+    @hotels = Hotel.all
+    if params[:rating] != nil
+      @hotels = @hotels.where('rating >=?',params[:rating].to_f)
+    end
+    if params[:city] != nil
+      city = '%' + params[:city] +'%'
+      if @hotels.any? 
+        @hotels = @hotels.where('city LIKE ? or hotelname LIKE ?', city,city)
+      end
+    end
     checkin = Date.new(params[:checkin].split('-')[0].to_i,params[:checkin].split('-')[1].to_i,params[:checkin].split('-')[2].to_i)
     checkout = Date.new(params[:checkout].split('-')[0].to_i,params[:checkout].split('-')[1].to_i,params[:checkout].split('-')[2].to_i)
     
-
-    @hotels =  hotelFilters(params,@hotels)
+    if @hotels.any?
+      @hotels =  hotelFilters(params,@hotels)
+    end
 
     @hotels.each do |hotel|
       price = nil

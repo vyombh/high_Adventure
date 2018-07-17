@@ -6,7 +6,6 @@ class CreateBookings < ActiveRecord::Migration
       t.integer :rooms
       t.references :roomtype
       t.references :customer
-
       t.timestamps null: false
     end
   end

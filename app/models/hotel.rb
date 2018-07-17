@@ -2,6 +2,7 @@ class Hotel < ActiveRecord::Base
   belongs_to :user
   has_many :roomtypes, dependent: :destroy
   has_one :pricing, dependent: :destroy
+  has_one :bookinglog, dependent: :destroy
     validates :hotelname,presence: true
     validates :hoteltype,presence: true
     validates :floor,presence: true

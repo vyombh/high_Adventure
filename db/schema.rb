@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180716072238) do
+ActiveRecord::Schema.define(version: 20180716100821) do
+
+  create_table "bookinglogs", force: :cascade do |t|
+    t.integer  "hotel_id"
+    t.text     "booking"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bookinglogs", ["hotel_id"], name: "index_bookinglogs_on_hotel_id"
 
   create_table "bookings", force: :cascade do |t|
     t.date     "checkin"
@@ -19,8 +28,10 @@ ActiveRecord::Schema.define(version: 20180716072238) do
     t.integer  "rooms"
     t.integer  "roomtype_id"
     t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "transaction_id"
+    t.string   "transaction_status"
   end
 
   create_table "customers", force: :cascade do |t|
