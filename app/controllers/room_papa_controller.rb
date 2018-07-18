@@ -44,36 +44,45 @@ class RoomPapaController < ApplicationController
     if checkin == checkout
       checkout = checkout + 1
     end
+    price = price.sort_by{|a| a[:start]}
     while checkout > checkin
-      price.each do |p|
-        n = 1
-        if p[:start]<=checkin&&p[:end]>=checkout
-          n = n + (checkout - checkin).to_i
-          returnprice[:base_1] = n*p[:price][:base_1].to_i + returnprice[:base_1]
-          returnprice[:base_2] = n*n*p[:price][:base_2].to_i + returnprice[:base_2]
-          returnprice[:extraadult] = n*p[:price][:extraadult].to_i + returnprice[:extraadult]
-          returnprice[:extrachild] = n*p[:price][:extrachild].to_i + returnprice[:extrachild]
-          returnprice[:adult_breakfast] = n*p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
-          returnprice[:adult_lunch] = n*p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
-          returnprice[:adult_dinner] = n*p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
-          returnprice[:child_breakfast] = n*p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
-          returnprice[:child_lunch] = n*p[:price][:child_lunch].to_i + returnprice[:child_lunch]
-          returnprice[:child_dinner] = n*p[:price][:child_dinner].to_i + returnprice[:child_dinner]
-          break
-        elsif p[:start] <= checkin && p[:end] > checkin && p[:end] < checkout
-          n = n + (p[:end] - checkin).to_i
-          returnprice[:base_1] = n*p[:price][:base_1].to_i + returnprice[:base_1]
-          returnprice[:base_2] = n*n*p[:price][:base_2].to_i + returnprice[:base_2]
-          returnprice[:extraadult] = n*p[:price][:extraadult].to_i + returnprice[:extraadult]
-          returnprice[:extrachild] = n*p[:price][:extrachild].to_i + returnprice[:extrachild]
-          returnprice[:adult_breakfast] = n*p[:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
-          returnprice[:adult_lunch] = n*p[:price][:adult_lunch].to_i + returnprice[:adult_lunch]
-          returnprice[:adult_dinner] = n*p[:price][:adult_dinner].to_i + returnprice[:adult_dinner]
-          returnprice[:child_breakfast] = n*p[:price][:child_breakfast].to_i + returnprice[:child_breakfast]
-          returnprice[:child_lunch] = n*p[:price][:child_lunch].to_i + returnprice[:child_lunch]
-          returnprice[:child_dinner] = n*p[:price][:child_dinner].to_i + returnprice[:child_dinner]
-          checkin = p[:end] + 1
+      for i in 0...price.length
+        n = 0
+
+        if price[i][:start]<=checkin&&price[i][:end]>=checkout-1
+          puts 0
+
+          n = (checkout - checkin).to_i
+            if checkout == checkin
+              n = n + 1
+            end
+          returnprice[:base_1] = n*price[i][:price][:base_1].to_i + returnprice[:base_1]
+          returnprice[:base_2] = n*price[i][:price][:base_2].to_i + returnprice[:base_2]
+          returnprice[:extraadult] = n*price[i][:price][:extraadult].to_i + returnprice[:extraadult]
+          returnprice[:extrachild] = n*price[i][:price][:extrachild].to_i + returnprice[:extrachild]
+          returnprice[:adult_breakfast] = n*price[i][:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
+          returnprice[:adult_lunch] = n*price[i][:price][:adult_lunch].to_i + returnprice[:adult_lunch]
+          returnprice[:adult_dinner] = n*price[i][:price][:adult_dinner].to_i + returnprice[:adult_dinner]
+          returnprice[:child_breakfast] = n*price[i][:price][:child_breakfast].to_i + returnprice[:child_breakfast]
+          returnprice[:child_lunch] = n*price[i][:price][:child_lunch].to_i + returnprice[:child_lunch]
+          returnprice[:child_dinner] = n*price[i][:price][:child_dinner].to_i + returnprice[:child_dinner]
+          return returnprice
+        elsif price[i][:start] <= checkin && price[i][:end] > checkin && price[i][:end] < checkout-1
+          puts 1
+          n = (price[i][:end] - checkin).to_i
+          returnprice[:base_1] = n*price[i][:price][:base_1].to_i + returnprice[:base_1]
+          returnprice[:base_2] = n*price[i][:price][:base_2].to_i + returnprice[:base_2]
+          returnprice[:extraadult] = n*price[i][:price][:extraadult].to_i + returnprice[:extraadult]
+          returnprice[:extrachild] = n*price[i][:price][:extrachild].to_i + returnprice[:extrachild]
+          returnprice[:adult_breakfast] = n*price[i][:price][:adult_breakfast].to_i + returnprice[:adult_breakfast]
+          returnprice[:adult_lunch] = n*price[i][:price][:adult_lunch].to_i + returnprice[:adult_lunch]
+          returnprice[:adult_dinner] = n*price[i][:price][:adult_dinner].to_i + returnprice[:adult_dinner]
+          returnprice[:child_breakfast] = n*price[i][:price][:child_breakfast].to_i + returnprice[:child_breakfast]
+          returnprice[:child_lunch] = n*price[i][:price][:child_lunch].to_i + returnprice[:child_lunch]
+          returnprice[:child_dinner] = n*price[i][:price][:child_dinner].to_i + returnprice[:child_dinner]
+          checkin = price[i][:end] + 1
         end
+        i = i + 1
       end
     end
     return returnprice
@@ -343,7 +352,6 @@ class RoomPapaController < ApplicationController
         if price != nil && price[room.id] && booked >= 0
           returnprice = {:base_1=>0, :base_2=>0, :extraadult=>0, :extrachild=>0, :adult_breakfast=>0, :adult_lunch=>0,:adult_dinner=>0, :child_dinner=>0, :child_breakfast=>0,:child_lunch=>0}
           returnprice = pricecalc(price[room.id],checkin,checkout,returnprice)
-          # byebug
           roomObject = {id: room.id,free: room.rooms - booked, capacity: room.basechildren + room.baseadults , baseadults: room.baseadults, basechildren: room.basechildren , maximumadults: room.maximumadults , maximumchildren: room.maximumchildren ,used: 0,price: returnprice,extrabed: room.maximumguests-room.basechildren - room.baseadults}
           hotelRoomFree = hotelRoomFree.insert(roomCounter,roomObject)
           roomCounter = roomCounter + 1
