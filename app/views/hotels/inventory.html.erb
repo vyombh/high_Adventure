@@ -22,17 +22,17 @@
       <!-- use code -->
       <div class="row" style="padding-top:20px">
         <div class="col-sm-3">
-          <div class="AvialableRoom UseAvailableRoom col-sm-2">
+          <div class="AvailableRoom UseAvailableRoom col-sm-2">
           </div>
           <div class="col-sm-9" style="padding-top:5px">
-            Available Rooms
+            Rooms Remaining
           </div>
         </div>
         <div class="col-sm-3">
           <div class="SoldOutRoom UseSoldOutRoom col-sm-2">
           </div>
           <div class="col-sm-9" style="padding-top:5px">
-            UnAvailable Rooms
+            All Rooms Booked
           </div>
         </div>
         <div class="col-sm-3">
@@ -118,32 +118,6 @@ var arr = Object.keys(obj);
 var TodayDate = new Date();
 var DateToShow = TodayDate.getTime();
 var RoomTypeData=[];
-
-function RoomData(roomtype){
-  $.ajax({
-   url:'/hotels/change', //Defined in your routes file
-   data:{
-     roomtype: roomtype
-   },
-   success: function (result,status) {
-     RoomTypeData.push(result.typename);
-     RoomTypeData.push(result.rooms);
-                          // RoomTypeData['totalroom']=result.rooms;
-
-                          // console.log(result);
-                          // console.log(status);
-    },
-    error:function(result,status) {
-                          alert(result.responseText);
-                          // console.log(status);
-                         }
-  });
-}
-
-for (var i = 0; i < arr.length; i++) {
-  RoomData(arr[i]);
-}
-
 
 function CalMonthStr(x)
 {
@@ -272,10 +246,20 @@ function search(from, obj, roomtype){
   diff=0;
 
   // console.log(RoomTypeData.length);
-  TableData=TableData+'<tr>'+
-            '<td>'+
-            RoomTypeData[10]+
-            '</td>'
+  // TableData=TableData+'<tr>'+
+  //           '<td>'+
+  //           RoomTypeData[10]+
+  //           '</td>'
+console.log(obj)
+
+  TableData=TableData+'<tr>'+ '<td>'+
+                      obj[roomtype][0].typename +
+                      '  '+
+                      '<strong>'+
+                      '('+
+                      obj[roomtype][0].total+
+                      ')<strong/>'+
+                       '</td>'
 
 	found=false;
 	var j;
@@ -353,9 +337,21 @@ function search(from, obj, roomtype){
 				    end1 = new Date(Date.parse(obj[parsed][j].end))
 
 				    if((checkdateequal(d,start1)=='equal' || checkdateequal(d,start1)=='greater') && checkdateequal(d,end1)=='lesser'){
-				    	// console.log(d + ":" + obj[parsed][j].frequency)
-              TableData=TableData+'<td class="FullRoom">'+
-                '<div class="text-center RoomEmptyNumber">'+
+				    	// console.log(d + ":" + obj[parsed][j].frequency) AvialableRoom
+              if(obj[roomtype][0].total<=obj[parsed][j].frequency)
+              {
+                console.log("0");
+                TableData=TableData+'<td class="FullRoom">'
+              }
+                
+              else
+              {
+                console.log("1");
+               TableData=TableData+'<td class="AvailableRoom">' 
+              }
+
+              
+                TableData=TableData+'<div class="text-center RoomEmptyNumber">'+
                   obj[parsed][j].frequency+
                 '</div>'+
                 '</td>'
@@ -399,12 +395,8 @@ function AllData(DateToShow){
 }
 // setTimeout(AllData(DateToShow), 50000);
 
-$(document).ready(function(){
-  console.log(RoomTypeData);
-  console.log(arr.length);
-  setTimeout(function(){
+$(document).ready(function(){  
     AllData(DateToShow);
-  }, 1000);
 });
 
 
@@ -446,7 +438,7 @@ $(document).ready(function(){
 .TableForDates{
 padding-top: 50px;
 }
-.AvialableRoom{
+.AvailableRoom{
 background-color:#336600;
 color: white;
 }
