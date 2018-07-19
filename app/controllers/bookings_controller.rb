@@ -6,7 +6,6 @@ class BookingsController < ApplicationController
     
   end
    def bookinglog startdate,enddate,roomtype_id,hotel_id
-
 	    bookinglog = Bookinglog.where(hotel_id: hotel_id.to_i).first
 	    booking = bookinglog.booking[roomtype_id.to_i]
 	    booking = booking.sort_by{|a| a[:start]}
@@ -29,7 +28,7 @@ class BookingsController < ApplicationController
 	        olddate = booking[i][:end]
 	        booking[i][:end] = enddate
 	        booking[i][:frequency] = booking[i][:frequency] + 1
-	        newObj = {start: enddate,end: olddate,frequency: oldfreq}
+	        newObj = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
 	        booking.insert(i+1,newObj)
 	        break
 
@@ -45,8 +44,8 @@ class BookingsController < ApplicationController
 	        olddate = booking[i][:end]
 	        oldfreq = booking[i][:frequency]
 	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1}
-	        newObj2 = {start: enddate,end: olddate,frequency: oldfreq}
+	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
+	        newObj2 = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
 	        booking.insert(i+1,newObj1)
 	        i = i + 1
 	        booking.insert(i+1,newObj2)
@@ -57,7 +56,7 @@ class BookingsController < ApplicationController
 	        olddate = booking[i][:end]
 	        oldfreq = booking[i][:frequency]
 	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1}
+	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
 	        booking.insert(i+1,newObj1)
 	        break
 
@@ -66,7 +65,7 @@ class BookingsController < ApplicationController
 	        olddate = booking[i][:end]
 	        oldfreq = booking[i][:frequency]
 	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: olddate,frequency: oldfreq + 1}
+	        newObj1 = {start: startdate,end: olddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
 	        booking.insert(i+1,newObj1)
 	        startdate = olddate
 	        i = i + 1
@@ -88,7 +87,8 @@ class BookingsController < ApplicationController
 	    book = Bookinglog.where(hotel_id: hotel_id).first
 	    book.booking[roomtype_id] = booking
 	    puts booking
-	    # booking = [{start: Date.today-1,end: Date.today + 36523,frequency: 0}]
+	    # booking = [{start: Date.today-1,end: Date.today + 36523,frequency: 0,typename: Roomtype.find(roomtype_id).typename,total: Roomtype.find(roomtype_id).rooms}]
+	    # puts booking
 	    # book.booking[roomtype_id] = booking
 	    book.save
 	    return redirect_to '/bookings/bookingform'

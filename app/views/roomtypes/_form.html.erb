@@ -1,946 +1,932 @@
-<%= form_for(@roomtype) do |f| %>
-  <% if @roomtype.errors.any? %>
-    <div>
-      <%= pluralize(@roomtype.errors.count, "error") %> prohibited this roomtype from being saved:>
+<% if current_user.hotel != nil%>
+  <h1 align="center" >New Roomtype</h1>
+  <%= form_for(@roomtype) do |f| %>
+    <% if @roomtype.errors.any? %>
+      <div>
+        <%= pluralize(@roomtype.errors.count, "error") %> prohibited this roomtype from being saved:>
 
-      <ul>
-      <% @roomtype.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @roomtype.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container" style="background-color: white;">
+      <h3 class="col-sm-offset-2">Basic Info</h3>
+      <div class="form form-horizontal">
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Room Type* :</label>
+          <div class="col-sm-4"><%= f.text_field :typename,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Number of rooms* :</label>
+          <div class="col-sm-4"><%= f.text_field :rooms,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Bed type* :</label>
+          <div class="col-sm-4"><%= f.text_field :beds,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Adults (Base)* :</label>
+          <div class="col-sm-4"><%= f.text_field :baseadults,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Adults (Maximum)* :</label>
+          <div class="col-sm-4"><%= f.text_field :maximumadults,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Infants* :</label>
+          <div class="col-sm-4"><%= f.text_field :infants,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Children (Base)* :</label>
+          <div class="col-sm-4"><%= f.text_field :basechildren,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Children (Maximum)* :</label>
+          <div class="col-sm-4"><%= f.text_field :maximumchildren,:class=>"form-control" %></div>
+        </div>
+
+        <div class="field form-group">
+          <label class="control-label col-sm-2">Total Guests* :</label>
+          <div class="col-sm-4"><%= f.text_field :maximumguests,:class=>"form-control" %></div>
+        </div>
+      </div>       
+      <div class="form form-horizontal"> 
+        <div class="col-sm-offset-2">
+          <h2>Amenities</h2>
+        </div>
+        <div class="row">
+          <%= f.fields_for :basic do |f1|%>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
+                <span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
+              </div>
+              <div class="col-sm-12" id="BasicAmenities" style="border: solid 1px #ccc">
+
+                <div class="row">
+                  
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Clothes racks</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:clothesracks] == '1'%>
+                        <%=f1.check_box :clothesracks,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:clothesracks %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Drying racking</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:dryingracking] == '1'%>
+                        <%=f1.check_box :dryingracking,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:dryingracking %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fold up bed</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:foldupbed] == '1'%>
+                        <%=f1.check_box :foldupbed,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:foldupbed %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Sofa bed</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:sofabed] == '1'%>
+                        <%=f1.check_box :sofabed,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:sofabed %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Wardrobe</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:wardrobe] == '1'%>
+                        <%=f1.check_box :wardrobe,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:wardrobe %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Carpeted</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:carpeted] == '1'%>
+                        <%=f1.check_box :carpeted,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:carpeted %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Walking Closet</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:walkingcloset] == '1'%>
+                        <%=f1.check_box :walkingcloset,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:walkingcloset %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Extra long Beds</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:extralongbeds] == '1'%>
+                        <%=f1.check_box :extralongbeds,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:extralongbeds %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fire Place</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:fireplace] == '1'%>
+                        <%=f1.check_box :fireplace,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:fireplace %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Heater</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:heater] == '1'%>
+                        <%=f1.check_box :heater,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:heater %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Interconnecting Rooms</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:interconnectingrooms] == '1'%>
+                        <%=f1.check_box :interconnectingrooms,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:interconnectingrooms %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Iron</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:iron] == '1'%>
+                        <%=f1.check_box :iron,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:iron %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Desk</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:desk] == '1'%>
+                        <%=f1.check_box :desk,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:desk %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">WiFi</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:wifi] == '1'%>
+                        <%=f1.check_box :wifi,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:wifi %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Smoking</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:smoking] == '1'%>
+                        <%=f1.check_box :smoking,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:smoking %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">TV</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.basic[:tv] == '1'%>
+                        <%=f1.check_box :tv,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:tv %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+
+
+                </div>
+              </div>
+            </div>
+          <%end%>  
+
+          <%= f.fields_for :restroom do |f1|%>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="btn btn-default btn-block AccordianBtn" id="RestroomAmenitiesBtn" >
+                <span class="pull-left" style="font-size:17px">Restroom</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
+              </div>
+              <div class="col-sm-12" id="RestroomAmenities" style="border: solid 1px #ccc">
+
+                <div class="row">
+                  
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathroom</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:bathroom] == '1'%>
+                        <%=f1.check_box :bathroom,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:bathroom %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Toilet paper</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:toiletpaper] == '1'%>
+                        <%=f1.check_box :toiletpaper,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:toiletpaper %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathtub</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:bathtub] == '1'%>
+                        <%=f1.check_box :bathtub,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:bathtub %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Shower</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:shower] == '1'%>
+                        <%=f1.check_box :shower,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:shower %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathrobe</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:bathrobe] == '1'%>
+                        <%=f1.check_box :bathrobe,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:bathrobe %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Free toiletries</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:freetoiletries] == '1'%>
+                        <%=f1.check_box :freetoiletries,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:freetoiletries %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Hair dryer</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:hairdryer] == '1'%>
+                        <%=f1.check_box :hairdryer,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:hairdryer %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Spa tub</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:spatub] == '1'%>
+                        <%=f1.check_box :spatub,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:spatub %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Shared bathroom</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:sharedbathroom] == '1'%>
+                        <%=f1.check_box :sharedbathroom,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:sharedbathroom %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Slippers</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:slippers] == '1'%>
+                        <%=f1.check_box :slippers,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:slippers %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Toilets</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:toilets] == '1'%>
+                        <%=f1.check_box :toilets,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:toilets %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                  <div  class="AccordianOption col-sm-3">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Geyser</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+              
+                      <% if @roomtype.restroom[:geyser] == '1'%>
+                        <%=f1.check_box :geyser,checked: true%>
+                      <%else%>
+                        <%=f1.check_box:geyser %>      
+                      <% end %>
+                    </div>
+                  </div>  
+
+                </div>
+              </div>
+            </div>
+          <%end%>  
+
+          <%= f.fields_for :services do |f1|%>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="btn btn-default btn-block AccordianBtn" id="ServicesAmenitiesBtn" >
+                <span class="pull-left" style="font-size:17px">Services</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
+              </div>
+              <div class="col-sm-12" id="ServicesAmenities">
+                <div class="row" >
+                  
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Executive Lounge Access
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:executiveloungeaccess] == '1'%>
+                        <%=f1.check_box:executiveloungeaccess,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:executiveloungeaccess %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Alarm Clock</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:alarmclock] == '1'%>
+                        <%=f1.check_box:alarmclock,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:alarmclock %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Wake up services
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:wakeupservice] == '1'%>
+                        <%=f1.check_box:wakeupservice,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:wakeupservice %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Linens</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:linens] == '1'%>
+                        <%=f1.check_box:linens,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:linens %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Sheets
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:sheets] == '1'%>
+                        <%=f1.check_box:sheets,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:sheets %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">AC
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:ac] == '1'%>
+                        <%=f1.check_box:ac,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:ac %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Cooler
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:cooler] == '1'%>
+                        <%=f1.check_box:cooler,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:cooler %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fan
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:fan] == '1'%>
+                        <%=f1.check_box:fan,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:fan %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Kettle
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:kettle] == '1'%>
+                        <%=f1.check_box:kettle,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:kettle %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Laundry
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.services[:laundry] == '1'%>
+                        <%=f1.check_box:laundry,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:laundry %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+          <% end %>        
+
+          <%= f.fields_for :view do |f1|%>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="btn btn-default btn-block AccordianBtn" id="ViewAmenitiesBtn" >
+                <span class="pull-left" style="font-size:17px">Views</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
+              </div>
+              <div class="col-sm-12" id="ViewAmenities">
+                <div class="row" >
+                  
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Balcony
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:balcony] == '1'%>
+                        <%=f1.check_box:balcony,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:balcony %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Terrace</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:terrace] == '1'%>
+                        <%=f1.check_box:terrace,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:terrace %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">City View
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:cityview] == '1'%>
+                        <%=f1.check_box:cityview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:cityview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lake View</label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:lakeview] == '1'%>
+                        <%=f1.check_box:lakeview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:lakeview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lnadmark View
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:landmarkview] == '1'%>
+                        <%=f1.check_box:landmarkview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:landmarkview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Pool View
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:poolview] == '1'%>
+                        <%=f1.check_box:poolview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:poolview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">River View
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:riverview] == '1'%>
+                        <%=f1.check_box:riverview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:riverview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 AccordianOption">
+                    <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Ocean View
+                    </label>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+              
+                      <% if @roomtype.view[:oceanview] == '1'%>
+                        <%=f1.check_box:oceanview,checked: true%>
+                        
+                      <%else%>
+                        <%=f1.check_box:oceanview %>
+                        
+                      <% end %>
+                    </div>
+                  </div>
+
+                  
+
+
+                </div>
+
+              </div>
+            </div>
+          <% end %>        
+
+          <br>
+
+
+          <%= f.hidden_field :hotel_id, value: current_user.hotel.id%>   
+        </div>  
+        <div class="col-sm-offset-2">
+          <h2>Images</h2>
+        </div>
+        <div>
+          <%if @roomtype.images.any?%>
+            Existing Images:
+            <div>
+              <%@roomtype.images.each do |image|%>
+                 <%=render 'images',image: image,roomtype: @roomtype%>
+              <%end%>
+            </div>
+          <%end%>
+          <br>
+          Upload new images: 
+            <%= f.file_field :images, multiple: true %>
+        </div>
+        <%= f.submit 'Submit'%> 
+      </div>
     </div>
   <% end %>
-
-
-<div class="container" style="background-color: white;">
- 
-  <h3 class="col-sm-offset-2">Basic Info</h3>
-   <div class="form form-horizontal">
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Room Type* :</label>
-        <div class="col-sm-4"><%= f.text_field :typename,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Number of rooms* :</label>
-        <div class="col-sm-4"><%= f.text_field :rooms,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Bed type* :</label>
-        <div class="col-sm-4"><%= f.text_field :beds,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Adults (Base)* :</label>
-        <div class="col-sm-4"><%= f.text_field :baseadults,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Adults (Maximum)* :</label>
-        <div class="col-sm-4"><%= f.text_field :maximumadults,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Infants* :</label>
-        <div class="col-sm-4"><%= f.text_field :infants,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Children (Base)* :</label>
-        <div class="col-sm-4"><%= f.text_field :basechildren,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Children (Maximum)* :</label>
-        <div class="col-sm-4"><%= f.text_field :maximumchildren,:class=>"form-control" %></div>
-      </div>
-
-      <div class="field form-group">
-        <label class="control-label col-sm-2">Total Guests* :</label>
-        <div class="col-sm-4"><%= f.text_field :maximumguests,:class=>"form-control" %></div>
-      </div>
-
-
-
-   </div>       
-
-
-  
-
-
-
-
-<div class="form form-horizontal"> 
-<div class="col-sm-offset-2"><h2>Amenities</h2></div>
-  <div class="row">
-
-    <%= f.fields_for :basic do |f1|%>
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
-          <span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
-        </div>
-        <div class="col-sm-12" id="BasicAmenities" style="border: solid 1px #ccc">
-
-          <div class="row">
-            
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Clothes racks</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:clothesracks] == '1'%>
-                  <%=f1.check_box :clothesracks,checked: true%>
-                <%else%>
-                  <%=f1.check_box:clothesracks %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Drying racking</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:dryingracking] == '1'%>
-                  <%=f1.check_box :dryingracking,checked: true%>
-                <%else%>
-                  <%=f1.check_box:dryingracking %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fold up bed</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:foldupbed] == '1'%>
-                  <%=f1.check_box :foldupbed,checked: true%>
-                <%else%>
-                  <%=f1.check_box:foldupbed %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Sofa bed</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:sofabed] == '1'%>
-                  <%=f1.check_box :sofabed,checked: true%>
-                <%else%>
-                  <%=f1.check_box:sofabed %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Wardrobe</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:wardrobe] == '1'%>
-                  <%=f1.check_box :wardrobe,checked: true%>
-                <%else%>
-                  <%=f1.check_box:wardrobe %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Carpeted</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:carpeted] == '1'%>
-                  <%=f1.check_box :carpeted,checked: true%>
-                <%else%>
-                  <%=f1.check_box:carpeted %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Walking Closet</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:walkingcloset] == '1'%>
-                  <%=f1.check_box :walkingcloset,checked: true%>
-                <%else%>
-                  <%=f1.check_box:walkingcloset %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Extra long Beds</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:extralongbeds] == '1'%>
-                  <%=f1.check_box :extralongbeds,checked: true%>
-                <%else%>
-                  <%=f1.check_box:extralongbeds %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fire Place</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:fireplace] == '1'%>
-                  <%=f1.check_box :fireplace,checked: true%>
-                <%else%>
-                  <%=f1.check_box:fireplace %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Heater</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:heater] == '1'%>
-                  <%=f1.check_box :heater,checked: true%>
-                <%else%>
-                  <%=f1.check_box:heater %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Interconnecting Rooms</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:interconnectingrooms] == '1'%>
-                  <%=f1.check_box :interconnectingrooms,checked: true%>
-                <%else%>
-                  <%=f1.check_box:interconnectingrooms %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Iron</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:iron] == '1'%>
-                  <%=f1.check_box :iron,checked: true%>
-                <%else%>
-                  <%=f1.check_box:iron %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Desk</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:desk] == '1'%>
-                  <%=f1.check_box :desk,checked: true%>
-                <%else%>
-                  <%=f1.check_box:desk %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">WiFi</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:wifi] == '1'%>
-                  <%=f1.check_box :wifi,checked: true%>
-                <%else%>
-                  <%=f1.check_box:wifi %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Smoking</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:smoking] == '1'%>
-                  <%=f1.check_box :smoking,checked: true%>
-                <%else%>
-                  <%=f1.check_box:smoking %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">TV</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.basic[:tv] == '1'%>
-                  <%=f1.check_box :tv,checked: true%>
-                <%else%>
-                  <%=f1.check_box:tv %>      
-                <% end %>
-              </div>
-            </div>  
-
-
-
-          </div>
-        </div>
-      </div>
-    <%end%>  
-
-    <%= f.fields_for :restroom do |f1|%>
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="btn btn-default btn-block AccordianBtn" id="RestroomAmenitiesBtn" >
-          <span class="pull-left" style="font-size:17px">Restroom</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
-        </div>
-        <div class="col-sm-12" id="RestroomAmenities" style="border: solid 1px #ccc">
-
-          <div class="row">
-            
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathroom</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:bathroom] == '1'%>
-                  <%=f1.check_box :bathroom,checked: true%>
-                <%else%>
-                  <%=f1.check_box:bathroom %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Toilet paper</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:toiletpaper] == '1'%>
-                  <%=f1.check_box :toiletpaper,checked: true%>
-                <%else%>
-                  <%=f1.check_box:toiletpaper %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathtub</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:bathtub] == '1'%>
-                  <%=f1.check_box :bathtub,checked: true%>
-                <%else%>
-                  <%=f1.check_box:bathtub %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Shower</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:shower] == '1'%>
-                  <%=f1.check_box :shower,checked: true%>
-                <%else%>
-                  <%=f1.check_box:shower %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bathrobe</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:bathrobe] == '1'%>
-                  <%=f1.check_box :bathrobe,checked: true%>
-                <%else%>
-                  <%=f1.check_box:bathrobe %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Free toiletries</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:freetoiletries] == '1'%>
-                  <%=f1.check_box :freetoiletries,checked: true%>
-                <%else%>
-                  <%=f1.check_box:freetoiletries %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Hair dryer</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:hairdryer] == '1'%>
-                  <%=f1.check_box :hairdryer,checked: true%>
-                <%else%>
-                  <%=f1.check_box:hairdryer %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Spa tub</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:spatub] == '1'%>
-                  <%=f1.check_box :spatub,checked: true%>
-                <%else%>
-                  <%=f1.check_box:spatub %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Shared bathroom</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:sharedbathroom] == '1'%>
-                  <%=f1.check_box :sharedbathroom,checked: true%>
-                <%else%>
-                  <%=f1.check_box:sharedbathroom %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Slippers</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:slippers] == '1'%>
-                  <%=f1.check_box :slippers,checked: true%>
-                <%else%>
-                  <%=f1.check_box:slippers %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Toilets</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:toilets] == '1'%>
-                  <%=f1.check_box :toilets,checked: true%>
-                <%else%>
-                  <%=f1.check_box:toilets %>      
-                <% end %>
-              </div>
-            </div>  
-
-            <div  class="AccordianOption col-sm-3">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Geyser</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-        
-                <% if @roomtype.restroom[:geyser] == '1'%>
-                  <%=f1.check_box :geyser,checked: true%>
-                <%else%>
-                  <%=f1.check_box:geyser %>      
-                <% end %>
-              </div>
-            </div>  
-
-          </div>
-        </div>
-      </div>
-    <%end%>  
-
-    <%= f.fields_for :services do |f1|%>
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="btn btn-default btn-block AccordianBtn" id="ServicesAmenitiesBtn" >
-          <span class="pull-left" style="font-size:17px">Services</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
-        </div>
-        <div class="col-sm-12" id="ServicesAmenities">
-          <div class="row" >
-            
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Executive Lounge Access
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:executiveloungeaccess] == '1'%>
-                  <%=f1.check_box:executiveloungeaccess,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:executiveloungeaccess %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Alarm Clock</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:alarmclock] == '1'%>
-                  <%=f1.check_box:alarmclock,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:alarmclock %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Wake up services
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:wakeupservice] == '1'%>
-                  <%=f1.check_box:wakeupservice,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:wakeupservice %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Linens</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:linens] == '1'%>
-                  <%=f1.check_box:linens,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:linens %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Sheets
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:sheets] == '1'%>
-                  <%=f1.check_box:sheets,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:sheets %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">AC
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:ac] == '1'%>
-                  <%=f1.check_box:ac,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:ac %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Cooler
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:cooler] == '1'%>
-                  <%=f1.check_box:cooler,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:cooler %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Fan
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:fan] == '1'%>
-                  <%=f1.check_box:fan,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:fan %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Kettle
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:kettle] == '1'%>
-                  <%=f1.check_box:kettle,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:kettle %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Laundry
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.services[:laundry] == '1'%>
-                  <%=f1.check_box:laundry,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:laundry %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-
-          </div>
-
-        </div>
-      </div>
-    <% end %>        
-
-    <%= f.fields_for :view do |f1|%>
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="btn btn-default btn-block AccordianBtn" id="ViewAmenitiesBtn" >
-          <span class="pull-left" style="font-size:17px">Views</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
-        </div>
-        <div class="col-sm-12" id="ViewAmenities">
-          <div class="row" >
-            
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Balcony
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:balcony] == '1'%>
-                  <%=f1.check_box:balcony,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:balcony %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Terrace</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:terrace] == '1'%>
-                  <%=f1.check_box:terrace,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:terrace %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">City View
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:cityview] == '1'%>
-                  <%=f1.check_box:cityview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:cityview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lake View</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:lakeview] == '1'%>
-                  <%=f1.check_box:lakeview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:lakeview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lnadmark View
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:landmarkview] == '1'%>
-                  <%=f1.check_box:landmarkview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:landmarkview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Pool View
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:poolview] == '1'%>
-                  <%=f1.check_box:poolview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:poolview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">River View
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:riverview] == '1'%>
-                  <%=f1.check_box:riverview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:riverview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            <div class="col-sm-3 AccordianOption">
-              <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Ocean View
-              </label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-        
-                <% if @roomtype.view[:oceanview] == '1'%>
-                  <%=f1.check_box:oceanview,checked: true%>
-                  
-                <%else%>
-                  <%=f1.check_box:oceanview %>
-                  
-                <% end %>
-              </div>
-            </div>
-
-            
-
-
-          </div>
-
-        </div>
-      </div>
-    <% end %>        
-
-    <br>
-
-  
-  <%= f.hidden_field :hotel_id, value: current_user.hotel.id%>   
-
-  
-</div>  
-<div class="col-sm-offset-2">
-  <h2>Images</h2>
-</div>
-<div>
-  <%if @roomtype.images.any?%>
-    Existing Images:
-    <div>
-      <%@roomtype.images.each do |image|%>
-         <%=render 'images',image: image,roomtype: @roomtype%>
-      <%end%>
-    </div>
-  <%end%>
-  <br>
-  Upload new images: 
-    <%= f.file_field :images, multiple: true %>
-</div>
-  <%= f.submit 'Submit'%> 
 <% end %>
+<style>
 
+    .AccordianBtn{
+      height:50px;
+      border-radius: 0px;
+      background-color: #eee;
+      border:solid 1px #ccc;
+      padding-top: 10px;
+      margin-bottom: -1px;
+    }
+    .AccordianBtn:hover{
+      background-color: #ccc;
+    }.AccordianOption:hover{
+      background-color: #eee;
+    }
+    .AccordianOption{
+      background-color:white;
+      height:45px;
+      margin: 0px;
+      border-bottom: solid 1px #ccc;
+      border-left: solid 1px #ccc;
+      border-right: solid 1px #ccc;
 
-
-  <style>
-
-  .AccordianBtn{
-    height:50px;
-    border-radius: 0px;
-    background-color: #eee;
-    border:solid 1px #ccc;
-    padding-top: 10px;
-    margin-bottom: -1px;
-  }
-  .AccordianBtn:hover{
-    background-color: #ccc;
-  }.AccordianOption:hover{
-    background-color: #eee;
-  }
-  .AccordianOption{
-    background-color:white;
-    height:45px;
-    margin: 0px;
-    border-bottom: solid 1px #ccc;
-    border-left: solid 1px #ccc;
-    border-right: solid 1px #ccc;
-
-  }
-  .RotatePlusA{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusB{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
-
-
+    }
+    .RotatePlusA{
+      transform: rotate(45deg) scale(2);
+      transition-duration: 0.2s;
+    }
+    .RotatePlusB{
+      transform: scale(2);
+      transition-duration: 0.2s;
+    }
 </style>
 
 <script type="text/javascript">
 
-$(document).ready(function(){
+  $(document).ready(function(){
 
-  $('#BasicAmenities').slideUp(1);
-  $('#RestroomAmenities').slideUp(1);
-  $('#ServicesAmenities').slideUp(1);
-  $('#ViewAmenities').slideUp(1);
+    $('#BasicAmenities').slideUp(1);
+    $('#RestroomAmenities').slideUp(1);
+    $('#ServicesAmenities').slideUp(1);
+    $('#ViewAmenities').slideUp(1);
 
-  var basicamenities=1;
-  var restroomamenities=1;
-  var servicesamenities=1;
-  var viewamenities=1;
+    var basicamenities=1;
+    var restroomamenities=1;
+    var servicesamenities=1;
+    var viewamenities=1;
 
-  function basicAmenities(){
-    if(basicamenities==1)
-    {
-      $('#BasicAmenities').slideDown(250);
-      $('#PlusSignA').removeClass('RotatePlusB');
-      $('#PlusSignA').addClass('RotatePlusA');
+    function basicAmenities(){
+      if(basicamenities==1)
+      {
+        $('#BasicAmenities').slideDown(250);
+        $('#PlusSignA').removeClass('RotatePlusB');
+        $('#PlusSignA').addClass('RotatePlusA');
+      }
+      else
+      {
+        $('#BasicAmenities').slideUp(250);
+        $('#PlusSignA').removeClass('RotatePlusA');
+        $('#PlusSignA').addClass('RotatePlusB');
+      }
+      basicamenities=(basicamenities)*(-1);
     }
-    else
-    {
-      $('#BasicAmenities').slideUp(250);
-      $('#PlusSignA').removeClass('RotatePlusA');
-      $('#PlusSignA').addClass('RotatePlusB');
-    }
-    basicamenities=(basicamenities)*(-1);
-  }
 
-  function RestroomAmenities(){
-    if(restroomamenities==1)
-    {
-      $('#RestroomAmenities').slideDown(250);
-      $('#PlusSignB').removeClass('RotatePlusB');
-      $('#PlusSignB').addClass('RotatePlusA');
+    function RestroomAmenities(){
+      if(restroomamenities==1)
+      {
+        $('#RestroomAmenities').slideDown(250);
+        $('#PlusSignB').removeClass('RotatePlusB');
+        $('#PlusSignB').addClass('RotatePlusA');
+      }
+      else
+      {
+        $('#RestroomAmenities').slideUp(250);
+        $('#PlusSignB').removeClass('RotatePlusA');
+        $('#PlusSignB').addClass('RotatePlusB');
+      }
+      restroomamenities=(restroomamenities)*(-1);
     }
-    else
-    {
-      $('#RestroomAmenities').slideUp(250);
-      $('#PlusSignB').removeClass('RotatePlusA');
-      $('#PlusSignB').addClass('RotatePlusB');
-    }
-    restroomamenities=(restroomamenities)*(-1);
-  }
 
-  function ServicesAmenities(){
-    if(servicesamenities==1)
-    {
-      $('#ServicesAmenities').slideDown(250);
-      $('#PlusSignC').removeClass('RotatePlusB');
-      $('#PlusSignC').addClass('RotatePlusA');
+    function ServicesAmenities(){
+      if(servicesamenities==1)
+      {
+        $('#ServicesAmenities').slideDown(250);
+        $('#PlusSignC').removeClass('RotatePlusB');
+        $('#PlusSignC').addClass('RotatePlusA');
+      }
+      else
+      {
+        $('#ServicesAmenities').slideUp(250);
+        $('#PlusSignC').removeClass('RotatePlusA');
+        $('#PlusSignC').addClass('RotatePlusB');
+      }
+      servicesamenities=(servicesamenities)*(-1);
     }
-    else
-    {
-      $('#ServicesAmenities').slideUp(250);
-      $('#PlusSignC').removeClass('RotatePlusA');
-      $('#PlusSignC').addClass('RotatePlusB');
-    }
-    servicesamenities=(servicesamenities)*(-1);
-  }
 
-  function ViewAmenities(){
-    if(viewamenities==1)
-    {
-      $('#ViewAmenities').slideDown(250);
-      $('#PlusSignD').removeClass('RotatePlusB');
-      $('#PlusSignD').addClass('RotatePlusA');
+    function ViewAmenities(){
+      if(viewamenities==1)
+      {
+        $('#ViewAmenities').slideDown(250);
+        $('#PlusSignD').removeClass('RotatePlusB');
+        $('#PlusSignD').addClass('RotatePlusA');
+      }
+      else
+      {
+        $('#ViewAmenities').slideUp(250);
+        $('#PlusSignD').removeClass('RotatePlusA');
+        $('#PlusSignD').addClass('RotatePlusB');
+      }
+      viewamenities=(viewamenities)*(-1);
     }
-    else
-    {
-      $('#ViewAmenities').slideUp(250);
-      $('#PlusSignD').removeClass('RotatePlusA');
-      $('#PlusSignD').addClass('RotatePlusB');
-    }
-    viewamenities=(viewamenities)*(-1);
-  }
 
- 
-  $('#BasicAmenitiesBtn').click(function(){
-    
-    restroomamenities=-1;
-    servicesamenities=-1;
-    viewamenities=-1;
-    
-
-    basicAmenities();
-    RestroomAmenities();
-    ServicesAmenities();
-    ViewAmenities();
    
+    $('#BasicAmenitiesBtn').click(function(){
+      
+      restroomamenities=-1;
+      servicesamenities=-1;
+      viewamenities=-1;
+      
+
+      basicAmenities();
+      RestroomAmenities();
+      ServicesAmenities();
+      ViewAmenities();
+     
+    });
+
+    $('#RestroomAmenitiesBtn').click(function(){
+
+      basicamenities=-1;
+      servicesamenities=-1;
+      viewamenities=-1;
+    
+      basicAmenities();
+      ServicesAmenities();
+      ViewAmenities();
+      RestroomAmenities();
+    
+    });
+
+    $('#ServicesAmenitiesBtn').click(function(){
+
+      basicamenities=-1;
+      restroomamenities=-1;
+      viewamenities=-1;
+    
+
+      basicAmenities();
+      RestroomAmenities();
+      ServicesAmenities();
+      ViewAmenities();
+    
+    });
+
+    $('#ViewAmenitiesBtn').click(function(){
+
+      basicamenities=-1;
+      restroomamenities=-1;
+      servicesamenities=-1;
+    
+
+      basicAmenities();
+      RestroomAmenities();
+      ServicesAmenities();
+      ViewAmenities();
+     
+    });
+
+
+    
   });
-
-  $('#RestroomAmenitiesBtn').click(function(){
-
-    basicamenities=-1;
-    servicesamenities=-1;
-    viewamenities=-1;
-  
-    basicAmenities();
-    ServicesAmenities();
-    ViewAmenities();
-    RestroomAmenities();
-  
-  });
-
-  $('#ServicesAmenitiesBtn').click(function(){
-
-    basicamenities=-1;
-    restroomamenities=-1;
-    viewamenities=-1;
-  
-
-    basicAmenities();
-    RestroomAmenities();
-    ServicesAmenities();
-    ViewAmenities();
-  
-  });
-
-  $('#ViewAmenitiesBtn').click(function(){
-
-    basicamenities=-1;
-    restroomamenities=-1;
-    servicesamenities=-1;
-  
-
-    basicAmenities();
-    RestroomAmenities();
-    ServicesAmenities();
-    ViewAmenities();
-   
-  });
-
-
-  
-});
 </script>
 

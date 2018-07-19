@@ -1,6 +1,8 @@
 class RoomPapaController < ApplicationController
-  before_action :authenticate_user!, except: [:users,:main,:search,:hotels,:filters,:hotel_info,:room_page]
-
+  before_action :authenticate_user!, except: [:default,:users,:main,:search,:hotels,:filters,:hotel_info,:room_page]
+  def default
+    render file: "#{Rails.root}/public/404", status: :not_found
+  end
   def index
 
   end
@@ -49,7 +51,7 @@ class RoomPapaController < ApplicationController
       for i in 0...price.length
         n = 0
 
-        if price[i][:start]<=checkin&&price[i][:end]>=checkout-1
+        if price[i][:start]<=checkin && price[i][:end] >=checkin && price[i][:end]>=checkout-1
           puts 0
 
           n = (checkout - checkin).to_i
@@ -67,9 +69,9 @@ class RoomPapaController < ApplicationController
           returnprice[:child_lunch] = n*price[i][:price][:child_lunch].to_i + returnprice[:child_lunch]
           returnprice[:child_dinner] = n*price[i][:price][:child_dinner].to_i + returnprice[:child_dinner]
           return returnprice
-        elsif price[i][:start] <= checkin && price[i][:end] > checkin && price[i][:end] < checkout-1
+        elsif price[i][:start] <= checkin && price[i][:end] >= checkin && price[i][:end] < checkout - 1 
           puts 1
-          n = (price[i][:end] - checkin).to_i
+          n = (price[i][:end] + 1 - checkin).to_i
           returnprice[:base_1] = n*price[i][:price][:base_1].to_i + returnprice[:base_1]
           returnprice[:base_2] = n*price[i][:price][:base_2].to_i + returnprice[:base_2]
           returnprice[:extraadult] = n*price[i][:price][:extraadult].to_i + returnprice[:extraadult]
@@ -81,6 +83,7 @@ class RoomPapaController < ApplicationController
           returnprice[:child_lunch] = n*price[i][:price][:child_lunch].to_i + returnprice[:child_lunch]
           returnprice[:child_dinner] = n*price[i][:price][:child_dinner].to_i + returnprice[:child_dinner]
           checkin = price[i][:end] + 1
+
         end
         i = i + 1
       end

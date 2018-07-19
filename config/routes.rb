@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'bookings/order'
 
   resources :roomtypes
   resources :hotels,only:[:new,:create,:edit,:update,:destroy]
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   get'/room_papa/room_page'
   get '/hotels' => 'room_papa#index'
   devise_for :users
-  
+  get 'bookings/order'
   get'/pricings/new'
   post'/pricings/create'
   get'/pricings/edit'
@@ -24,6 +23,10 @@ Rails.application.routes.draw do
   get '/room_papa/deleteimage'
   get '/bookings/testing'
   get '/bookings/bookingform'
+  get '/hotels/inventory'
+  get '/room_papa/default'
+  get '/hotels/change'
+  match '/(*path)', to: 'room_papa#default', via: [:get, :post]
   #get '/'
   # root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

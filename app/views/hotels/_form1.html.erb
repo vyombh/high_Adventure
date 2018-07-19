@@ -1,19 +1,20 @@
- <%= form_for(@hotel,multipart: true) do |f| %>
-  <% if @hotel.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+<%if current_user.hotel.id == params[:id].to_i%>
+  <%= form_for(@hotel,multipart: true) do |f| %>
+    <% if @hotel.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
 
-      <ul>
-      <% @hotel.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
- <div class="container" style="background-color: white;">
- <h1 align="center" style="text-decoration: underline;">Editing Hotel</h1>
-  <h2 class="col-sm-offset-2">Basic Info</h2>
-   <div class="form form-horizontal">
+        <ul>
+        <% @hotel.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container" style="background-color: white;">
+      <h1 align="center" style="text-decoration: underline;">Editing Hotel</h1>
+      <h2 class="col-sm-offset-2">Basic Info</h2>
+      <div class="form form-horizontal">
           <div class="field form-group">
             <label class="control-label col-sm-2">Hotel Name* :</label>
             <div class="col-sm-4"><%= f.text_field :hotelname,:class=>"form-control", :disabled=>true, :disabled=>true %></div>
@@ -134,1075 +135,1080 @@
           </div>
       </div>
 
- <div class="form form-horizontal">
-  <div class="col-sm-offset-2"><h2>Address</h2></div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><strong>Building Name*:</strong></div>
-    <div class="col-sm-4"><%= f.text_field :buildingname,:class=>"form-control", :disabled=>true, :disabled=>true, :disabled=>true, :disabled=>true %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><strong>Street Name:</strong></div>
-    <div class="col-sm-4"><%= f.text_field :streetname,:class=>"form-control", :disabled=>true, :disabled=>true, :disabled=>true %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><strong>Landmark<sup>*</sup>:</strong></div>
-    <div class="col-sm-4"><%= f.text_field :landmark,:class=>"form-control" %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><%= f.label :city %><sup>*</sup><strong>:</strong>
-    </div>
-    <div class="col-sm-4"><%= f.text_field :city,:class=>"form-control", :disabled=>true, :disabled=>true %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><%= f.label :state %><sup>*</sup><strong>:</strong>
-    </div>
-    <div class="col-sm-4"><%= f.text_field :state,:class=>"form-control", :disabled=>true %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><%= f.label :country %><sup>*</sup><strong>:</strong>
-    </div>
-    <div class="col-sm-4"><%= f.text_field :country,:class=>"form-control", :disabled=>true %></div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2"><%= f.label :zipcode %><sup>*</sup><strong>:</strong>
-    </div>
-    <div class="col-sm-4"><%= f.text_field :zipcode,:class=>"form-control", :disabled=>true %></div>
-  </div>
-</div>
-<div class="form form-horizontal">
-  <div class="col-sm-offset-2">
-    <h2>Contact Details</h2>
-  </div> 
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Phone Number' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :phnno1,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Alternate Number' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :phnno2,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Landline' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :landline,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Email' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.email_field :email,:class=>"form-control" %>
-    </div>
-  </div>
-</div>
-  <div class="col-sm-offset-2"><h2>Amenties</h2></div>
-  <div class="row">
-  <%= f.fields_for :basic do |f1|%>
-  <div class="col-sm-10 col-sm-offset-1">
-    <div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
-      <span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
-    </div>
-      <div class="col-sm-12" id="BasicAmenties" style="border: solid 1px #ccc">
-
+      <div class="form form-horizontal">
+      <div class="col-sm-offset-2"><h2>Address</h2></div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><strong>Building Name*:</strong></div>
+          <div class="col-sm-4"><%= f.text_field :buildingname,:class=>"form-control", :disabled=>true, :disabled=>true, :disabled=>true, :disabled=>true %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><strong>Street Name:</strong></div>
+          <div class="col-sm-4"><%= f.text_field :streetname,:class=>"form-control", :disabled=>true, :disabled=>true, :disabled=>true %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><strong>Landmark<sup>*</sup>:</strong></div>
+          <div class="col-sm-4"><%= f.text_field :landmark,:class=>"form-control" %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><%= f.label :city %><sup>*</sup><strong>:</strong>
+          </div>
+          <div class="col-sm-4"><%= f.text_field :city,:class=>"form-control", :disabled=>true, :disabled=>true %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><%= f.label :state %><sup>*</sup><strong>:</strong>
+          </div>
+          <div class="col-sm-4"><%= f.text_field :state,:class=>"form-control", :disabled=>true %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><%= f.label :country %><sup>*</sup><strong>:</strong>
+          </div>
+          <div class="col-sm-4"><%= f.text_field :country,:class=>"form-control", :disabled=>true %></div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2"><%= f.label :zipcode %><sup>*</sup><strong>:</strong>
+          </div>
+          <div class="col-sm-4"><%= f.text_field :zipcode,:class=>"form-control", :disabled=>true %></div>
+        </div>
+      </div>
+      <div class="form form-horizontal">
+        <div class="col-sm-offset-2">
+          <h2>Contact Details</h2>
+        </div> 
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Phone Number' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :phnno1,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Alternate Number' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :phnno2,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Landline' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :landline,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Email' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.email_field :email,:class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-offset-2"><h2>Amenties</h2></div>
         <div class="row">
-          <div  class="AccordianOption col-sm-3">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bar
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-
-              <% if @hotel.basic[:bar] == '1'%>
-                <%=f1.check_box :bar,checked: true%>
-              <%else%>
-                <%=f1.check_box:bar %>
-              <% end %>
-            </div>
+      <%= f.fields_for :basic do |f1|%>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="btn btn-default btn-block AccordianBtn" id="BasicAmenitiesBtn" >
+            <span class="pull-left" style="font-size:17px">Basic</span><span class="pull-right RotatePlusB" id="PlusSignA">+</span>
           </div>
+          <div class="col-sm-12" id="BasicAmenties" style="border: solid 1px #ccc">
 
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Gym
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+            <div class="row">
+              <div  class="AccordianOption col-sm-3">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Bar
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
 
-              <% if @hotel.basic[:gym] == '1'%>
-                <%=f1.check_box:gym,checked: true%>
-              <%else%>
-                <%=f1.check_box:gym %>
-              <% end %>
+                  <% if @hotel.basic[:bar] == '1'%>
+                    <%=f1.check_box :bar,checked: true%>
+                  <%else%>
+                    <%=f1.check_box:bar %>
+                  <% end %>
+                </div>
+              </div>
 
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Gym
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+
+                  <% if @hotel.basic[:gym] == '1'%>
+                    <%=f1.check_box:gym,checked: true%>
+                  <%else%>
+                    <%=f1.check_box:gym %>
+                  <% end %>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lift
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
+
+                  <% if @hotel.basic[:lift] == '1'%>
+                    <%=f1.check_box:lift,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:lift %>
+
+                  <% end %>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Parking
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.basic[:parking] == '1'%>
+                    <%=f1.check_box:parking,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:parking %>
+
+                  <% end %>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Restaurant
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.basic[:restaurant] == '1'%>
+                    <%=f1.check_box:restaurant,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:restaurant %>
+
+                  <% end %>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Spa
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.basic[:spa] == '1'%>
+                    <%=f1.check_box:spa,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:spa %>
+
+                  <% end %>
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Swimming pool
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.basic[:swimmingpool] == '1'%>
+                    <%=f1.check_box:swimmingpool,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:swimmingpool %>
+
+                  <% end %>
+
+
+                </div>
+              </div>
 
             </div>
+
           </div>
-
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Lift
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top: 8px;">
-
-              <% if @hotel.basic[:lift] == '1'%>
-                <%=f1.check_box:lift,checked: true%>
-
-              <%else%>
-                <%=f1.check_box:lift %>
-
-              <% end %>
-
-
-            </div>
-          </div>
-
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Parking
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-              <% if @hotel.basic[:parking] == '1'%>
-                <%=f1.check_box:parking,checked: true%>
-
-              <%else%>
-                <%=f1.check_box:parking %>
-
-              <% end %>
-
-
-            </div>
-          </div>
-
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Restaurant
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-              <% if @hotel.basic[:restaurant] == '1'%>
-                <%=f1.check_box:restaurant,checked: true%>
-
-              <%else%>
-                <%=f1.check_box:restaurant %>
-
-              <% end %>
-
-
-            </div>
-          </div>
-
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Spa
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-              <% if @hotel.basic[:spa] == '1'%>
-                <%=f1.check_box:spa,checked: true%>
-
-              <%else%>
-                <%=f1.check_box:spa %>
-
-              <% end %>
-
-
-            </div>
-          </div>
-
-          <div class="col-sm-3 AccordianOption">
-            <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Swimming pool
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-              <% if @hotel.basic[:swimmingpool] == '1'%>
-                <%=f1.check_box:swimmingpool,checked: true%>
-
-              <%else%>
-                <%=f1.check_box:swimmingpool %>
-
-              <% end %>
-
-
-            </div>
-          </div>
-
         </div>
+      <%end%>
 
+      <%= f.fields_for :media do |f1|%>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="btn btn-default btn-block AccordianBtn" id="MediaAmenitiesBtn" >
+            <span class="pull-left" style="font-size:17px">Media</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
+          </div>
+          <div class="col-sm-12" id="MediaAmenties">
+            <div class="row">
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Blu-ray Player
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+                  <% if @hotel.media[:blurayplayer] == '1'%>
+                    <%=f1.check_box:blurayplayer,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:blurayplayer %>
+                  <% end %>
+                </div>
+                </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">cablechannels
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:cablechannels] == '1'%>
+                    <%=f1.check_box:cablechannels,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:cablechannels %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">cdplayer
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:cdplayer] == '1'%>
+                    <%=f1.check_box:cdplayer,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:cdplayer %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Computer
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:computer] == '1'%>
+                    <%=f1.check_box:computer,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:computer %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">dvdplayer
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:dvdplayer] == '1'%>
+                    <%=f1.check_box:dvdplayer,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:dvdplayer %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">fax
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:fax] == '1'%>
+                    <%=f1.check_box:fax,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:fax %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Flat Screen TV
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:flatscreentv] == '1'%>
+                    <%=f1.check_box:flatscreentv,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:flatscreentv %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Gameconsole
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:gameconsole] == '1'%>
+                    <%=f1.check_box:gameconsole,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:gameconsole %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">ipad
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:ipad] == '1'%>
+                    <%=f1.check_box:ipad,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:ipad %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">laptop
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:laptop] == '1'%>
+                    <%=f1.check_box:laptop,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:laptop %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Laptop Safe
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:laptopsafe] == '1'%>
+                    <%=f1.check_box:laptopsafe,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:laptopsafe %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Nintendo wii
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:nintendowii] == '1'%>
+                    <%=f1.check_box:nintendowii,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:nintendowii %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">paypervideochannels
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:paypervideochannels] == '1'%>
+                    <%=f1.check_box:paypervideochannels,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:paypervideochannels %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS2
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:ps2] == '1'%>
+                    <%=f1.check_box:ps2,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:ps2 %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS3
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:ps3] == '1'%>
+                    <%=f1.check_box:ps3,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:ps3 %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS4
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:ps4] == '1'%>
+                    <%=f1.check_box:ps4,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:ps4 %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Radio
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:radio] == '1'%>
+                    <%=f1.check_box:radio,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:radio %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Satellite Channels
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:satellitechannels] == '1'%>
+                    <%=f1.check_box:satellitechannels,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:satellitechannels %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Telephone
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:telephone] == '1'%>
+                    <%=f1.check_box:telephone,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:telephone %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">TV
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:tv] == '1'%>
+                    <%=f1.check_box:tv,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:tv %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Video
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:video] == '1'%>
+                    <%=f1.check_box:video,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:video %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Video Games
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:videogames] == '1'%>
+                    <%=f1.check_box:videogames,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:videogames %>
+                  <% end %>
+                </div>
+              </div>
+
+             <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Xbox 360
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.media[:xbox360] == '1'%>
+                    <%=f1.check_box:xbox360,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:xbox360 %>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <%end %>
+
+      <%= f.fields_for :food do |f1|%>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="btn btn-default btn-block AccordianBtn" id="FoodAmenitiesBtn" >
+            <span class="pull-left" style="font-size:17px">Food</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
+          </div>
+          <div class="col-sm-12" id="FoodAmenties">
+            <div class="row" >
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Barbecue
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:barbecue] == '1'%>
+                    <%=f1.check_box:barbecue,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:barbecue %>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Coffee Machine
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:coffeemachine] == '1'%>
+                    <%=f1.check_box:coffeemachine,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:coffeemachine%>
+
+                  <% end %>
+                </div>
+              </div>
+
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Dining Area
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:diningarea] == '1'%>
+                    <%=f1.check_box:diningarea,checked: true%>
+
+                  <%else%>
+                   <%=f1.check_box:diningarea %>
+
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Dining Table
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:diningtable] == '1'%>
+                    <%=f1.check_box:diningtable,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:diningtable %>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">High Chair
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:highchair] == '1'%>
+                    <%=f1.check_box:highchair,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:highchair%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">kitchenette
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:kitchenette] == '1'%>
+                    <%=f1.check_box:kitchenette,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:kitchenette%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">kitchenware
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:kitchenware] == '1'%>
+                    <%=f1.check_box:kitchenware,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:kitchenware%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Microwave
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:microwave] == '1'%>
+                    <%=f1.check_box:microwave,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:microwave%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Outdoor Dining Area
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:outdoordiningarea] == '1'%>
+                    <%=f1.check_box:outdoordiningarea,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:outdoordiningarea %>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Outdoor Furniture
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:outdoorfurniture] == '1'%>
+                    <%=f1.check_box:outdoorfurniture,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:outdoorfurniture%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">refrigerator
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:refrigerator] == '1'%>
+                    <%=f1.check_box:refrigerator,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:refrigerator%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">stovetop
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:stovetop] == '1'%>
+                    <%=f1.check_box:stovetop,checked: true%>
+                  <%else%>
+                    <%=f1.check_box:stovetop %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">teacoffeemachine
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:teacoffeemachine] == '1'%>
+                    <%=f1.check_box:teacoffeemachine,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:teacoffeemachine%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">toaster
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.food[:toaster] == '1'%>
+                    <%=f1.check_box:toaster,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:toaster%>
+
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <%end%>
+
+      <%= f.fields_for :disability do |f1|%>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="btn btn-default btn-block AccordianBtn" id="DisabilityAmentiesBtn" >
+            <span class="pull-left" style="font-size:17px">Disability</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
+          </div>
+          <div class="col-sm-12" id="DisabilityAmenties">
+            <div class="row" >
+
+             <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Elevator
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.disability[:elevator] == '1'%>
+                    <%=f1.check_box:elevator,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:elevator%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Grab Rails Toilet
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.disability[:grabrailstoilet] == '1'%>
+                    <%=f1.check_box:grabrailstoilet,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:grabrailstoilet%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Ground Floor
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.disability[:groundfloor] == '1'%>
+                    <%=f1.check_box:groundfloor,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:groundfloor%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Staircase only
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.disability[:staircaseonly] == '1'%>
+                    <%=f1.check_box:staircaseonly,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:staircaseonly%>
+
+                  <% end %>
+                </div>
+              </div>
+
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">wheelchair
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.disability[:wheelchair] == '1'%>
+                    <%=f1.check_box:wheelchair,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:wheelchair%>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <%end%>
+
+      <%= f.fields_for :entertainment do |f1|%>
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="btn btn-default btn-block AccordianBtn" id="EntertainmentAmentiesBtn" >
+            <span class="pull-left" style="font-size:17px">Entertainment</span><span class="pull-right RotatePlusB" id="PlusSignE">+</span>
+          </div>
+          <div class="col-sm-12" id="EntertainmentAmenties">
+            <div class="row">
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Baby Safety Glasses
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.entertainment[:babysafetyglasses] == '1'%>
+                    <%=f1.check_box:babysafetyglasses,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:babysafetyglasses%>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Board Games Puzzles
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.entertainment[:boardgamespuzzles] == '1'%>
+                    <%=f1.check_box:boardgamespuzzles,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:boardgamespuzzles%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Books
+                </label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.entertainment[:books] == '1'%>
+                    <%=f1.check_box:books,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:books%>
+
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-sm-3 AccordianOption">
+                <label class="control-label col-lg-10 col-md-10 col-sm10 col-xs-10">Safety sockets</label>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+
+                  <% if @hotel.entertainment[:safetysockets] == '1'%>
+                    <%=f1.check_box:safetysockets,checked: true%>
+
+                  <%else%>
+                    <%=f1.check_box:safetysockets%>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <%end%>
       </div>
+
+
+      <div class="col-sm-offset-1">
+          <h2 class="col-sm-offset-1">Description</h2 >
+          <%= f.text_area :description,:class=>"form-control fixedtextarea",:rows=>"4"%>
+      </div>
+
+      <div class="col-sm-offset-1">
+          <h2 class="col-sm-offset-1">Policies</h2 >
+          <%= f.text_area :policies,:class=>"form-control fixedtextarea",:rows=>"6"%>
+      </div>
+      
+      <br>
+
+      <div class="col-sm-offset-1">
+        <div class="col-sm-offset-1">
+          <h2>Images</h2>
+        </div>
+         <div class="row">
+           <div id='ImagesBlock'>
+           </div>
+           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+             <div id="AddMoreImage" style="height:135px;width:200px;border:solid 6px #cccccc;" title="Click here to add more images">
+               <img src="/assets/Plus.png" style="margin-top:-15px;margin-left:22px;height:150px;width:auto">
+             </div>
+           </div>
+         </div>
+         <div class="hidden-xs hidden-sm hidden-md hidden-lg">
+           <%= f.file_field :images, multiple: true,:id=>"AddMoreImageBtn"%>
+         </div>
+
+        <div id="ModalForImage" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <div id="ModalImg" style="position:absolute;top:0px;left:0px">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="form form-horizontal">
+        <div class="col-sm-offset-2">
+          <h2>Bank Details</h2>
+        </div> 
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Account holder Name' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :accholder,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'Account Number' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :accno,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <strong>IFSC code<sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :ifsccode,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'GST Number' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :gstno,:class=>"form-control" %>
+          </div>
+        </div>
+        <div class="field form-group">
+          <div class="control-label col-sm-2">
+            <%= f.label 'PAN Number' %><strong><sup>*</sup>:</strong>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :panno,:class=>"form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-success btn-md actions ">Update Hotel</button>
+      </div>
+
     </div>
+  <%end%>
+<%else%>
+  You are not Authorised to edit this hotel!!!!
 <%end%>
-
-<%= f.fields_for :media do |f1|%>
-<div class="col-sm-10 col-sm-offset-1">
-  <div class="btn btn-default btn-block AccordianBtn" id="MediaAmenitiesBtn" >
-    <span class="pull-left" style="font-size:17px">Media</span><span class="pull-right RotatePlusB" id="PlusSignB">+</span>
-  </div>
-  <div class="col-sm-12" id="MediaAmenties">
-    <div class="row">
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Blu-ray Player
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-          <% if @hotel.media[:blurayplayer] == '1'%>
-            <%=f1.check_box:blurayplayer,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:blurayplayer %>
-          <% end %>
-        </div>
-        </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">cablechannels
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:cablechannels] == '1'%>
-            <%=f1.check_box:cablechannels,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:cablechannels %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">cdplayer
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:cdplayer] == '1'%>
-            <%=f1.check_box:cdplayer,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:cdplayer %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Computer
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:computer] == '1'%>
-            <%=f1.check_box:computer,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:computer %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">dvdplayer
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:dvdplayer] == '1'%>
-            <%=f1.check_box:dvdplayer,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:dvdplayer %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">fax
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:fax] == '1'%>
-            <%=f1.check_box:fax,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:fax %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Flat Screen TV
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:flatscreentv] == '1'%>
-            <%=f1.check_box:flatscreentv,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:flatscreentv %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Gameconsole
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:gameconsole] == '1'%>
-            <%=f1.check_box:gameconsole,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:gameconsole %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">ipad
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:ipad] == '1'%>
-            <%=f1.check_box:ipad,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:ipad %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">laptop
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:laptop] == '1'%>
-            <%=f1.check_box:laptop,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:laptop %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Laptop Safe
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:laptopsafe] == '1'%>
-            <%=f1.check_box:laptopsafe,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:laptopsafe %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Nintendo wii
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:nintendowii] == '1'%>
-            <%=f1.check_box:nintendowii,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:nintendowii %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">paypervideochannels
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:paypervideochannels] == '1'%>
-            <%=f1.check_box:paypervideochannels,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:paypervideochannels %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS2
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:ps2] == '1'%>
-            <%=f1.check_box:ps2,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:ps2 %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS3
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:ps3] == '1'%>
-            <%=f1.check_box:ps3,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:ps3 %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">PS4
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:ps4] == '1'%>
-            <%=f1.check_box:ps4,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:ps4 %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Radio
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:radio] == '1'%>
-            <%=f1.check_box:radio,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:radio %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Satellite Channels
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:satellitechannels] == '1'%>
-            <%=f1.check_box:satellitechannels,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:satellitechannels %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Telephone
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:telephone] == '1'%>
-            <%=f1.check_box:telephone,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:telephone %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">TV
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:tv] == '1'%>
-            <%=f1.check_box:tv,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:tv %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Video
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:video] == '1'%>
-            <%=f1.check_box:video,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:video %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Video Games
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:videogames] == '1'%>
-            <%=f1.check_box:videogames,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:videogames %>
-          <% end %>
-        </div>
-      </div>
-
-     <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Xbox 360
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.media[:xbox360] == '1'%>
-            <%=f1.check_box:xbox360,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:xbox360 %>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<%end %>
-
-<%= f.fields_for :food do |f1|%>
-<div class="col-sm-10 col-sm-offset-1">
-  <div class="btn btn-default btn-block AccordianBtn" id="FoodAmenitiesBtn" >
-    <span class="pull-left" style="font-size:17px">Food</span><span class="pull-right RotatePlusB" id="PlusSignC">+</span>
-  </div>
-  <div class="col-sm-12" id="FoodAmenties">
-    <div class="row" >
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Barbecue
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:barbecue] == '1'%>
-            <%=f1.check_box:barbecue,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:barbecue %>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Coffee Machine
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:coffeemachine] == '1'%>
-            <%=f1.check_box:coffeemachine,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:coffeemachine%>
-
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Dining Area
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:diningarea] == '1'%>
-            <%=f1.check_box:diningarea,checked: true%>
-
-          <%else%>
-           <%=f1.check_box:diningarea %>
-
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Dining Table
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:diningtable] == '1'%>
-            <%=f1.check_box:diningtable,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:diningtable %>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">High Chair
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:highchair] == '1'%>
-            <%=f1.check_box:highchair,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:highchair%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">kitchenette
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:kitchenette] == '1'%>
-            <%=f1.check_box:kitchenette,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:kitchenette%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">kitchenware
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:kitchenware] == '1'%>
-            <%=f1.check_box:kitchenware,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:kitchenware%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Microwave
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:microwave] == '1'%>
-            <%=f1.check_box:microwave,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:microwave%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Outdoor Dining Area
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:outdoordiningarea] == '1'%>
-            <%=f1.check_box:outdoordiningarea,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:outdoordiningarea %>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Outdoor Furniture
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:outdoorfurniture] == '1'%>
-            <%=f1.check_box:outdoorfurniture,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:outdoorfurniture%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">refrigerator
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:refrigerator] == '1'%>
-            <%=f1.check_box:refrigerator,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:refrigerator%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">stovetop
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:stovetop] == '1'%>
-            <%=f1.check_box:stovetop,checked: true%>
-          <%else%>
-            <%=f1.check_box:stovetop %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">teacoffeemachine
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:teacoffeemachine] == '1'%>
-            <%=f1.check_box:teacoffeemachine,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:teacoffeemachine%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">toaster
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.food[:toaster] == '1'%>
-            <%=f1.check_box:toaster,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:toaster%>
-
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<%end%>
-
-<%= f.fields_for :disability do |f1|%>
-<div class="col-sm-10 col-sm-offset-1">
-  <div class="btn btn-default btn-block AccordianBtn" id="DisabilityAmentiesBtn" >
-    <span class="pull-left" style="font-size:17px">Disability</span><span class="pull-right RotatePlusB" id="PlusSignD">+</span>
-  </div>
-  <div class="col-sm-12" id="DisabilityAmenties">
-    <div class="row" >
-
-     <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Elevator
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.disability[:elevator] == '1'%>
-            <%=f1.check_box:elevator,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:elevator%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Grab Rails Toilet
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.disability[:grabrailstoilet] == '1'%>
-            <%=f1.check_box:grabrailstoilet,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:grabrailstoilet%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Ground Floor
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.disability[:groundfloor] == '1'%>
-            <%=f1.check_box:groundfloor,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:groundfloor%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Staircase only
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.disability[:staircaseonly] == '1'%>
-            <%=f1.check_box:staircaseonly,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:staircaseonly%>
-
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">wheelchair
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.disability[:wheelchair] == '1'%>
-            <%=f1.check_box:wheelchair,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:wheelchair%>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<%end%>
-
-<%= f.fields_for :entertainment do |f1|%>
-<div class="col-sm-10 col-sm-offset-1">
-  <div class="btn btn-default btn-block AccordianBtn" id="EntertainmentAmentiesBtn" >
-    <span class="pull-left" style="font-size:17px">Entertainment</span><span class="pull-right RotatePlusB" id="PlusSignE">+</span>
-  </div>
-  <div class="col-sm-12" id="EntertainmentAmenties">
-    <div class="row">
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Baby Safety Glasses
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.entertainment[:babysafetyglasses] == '1'%>
-            <%=f1.check_box:babysafetyglasses,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:babysafetyglasses%>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Board Games Puzzles
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.entertainment[:boardgamespuzzles] == '1'%>
-            <%=f1.check_box:boardgamespuzzles,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:boardgamespuzzles%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm-10 col-xs-10">Books
-        </label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.entertainment[:books] == '1'%>
-            <%=f1.check_box:books,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:books%>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-sm-3 AccordianOption">
-        <label class="control-label col-lg-10 col-md-10 col-sm10 col-xs-10">Safety sockets</label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
-
-          <% if @hotel.entertainment[:safetysockets] == '1'%>
-            <%=f1.check_box:safetysockets,checked: true%>
-
-          <%else%>
-            <%=f1.check_box:safetysockets%>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<%end%>
-</div>
-
-
-<div class="col-sm-offset-1">
-    <h2 class="col-sm-offset-1">Description</h2 >
-    <%= f.text_area :description,:class=>"form-control fixedtextarea",:rows=>"4"%>
-</div>
-
-<div class="col-sm-offset-1">
-    <h2 class="col-sm-offset-1">Policies</h2 >
-    <%= f.text_area :policies,:class=>"form-control fixedtextarea",:rows=>"6"%>
-</div>
-<br>
-
-<div class="col-sm-offset-1">
-  <div class="col-sm-offset-1">
-    <h2>Images</h2>
-  </div>
-   <div class="row">
-     <div id='ImagesBlock'>
-     </div>
-     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-       <div id="AddMoreImage" style="height:135px;width:200px;border:solid 6px #cccccc;" title="Click here to add more images">
-         <img src="/assets/Plus.png" style="margin-top:-15px;margin-left:22px;height:150px;width:auto">
-       </div>
-     </div>
-   </div>
-   <div class="hidden-xs hidden-sm hidden-md hidden-lg">
-     <%= f.file_field :images, multiple: true,:id=>"AddMoreImageBtn"%>
-   </div>
-
-  <div id="ModalForImage" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-          <div id="ModalImg" style="position:absolute;top:0px;left:0px">
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<div class="form form-horizontal">
-  <div class="col-sm-offset-2">
-    <h2>Bank Details</h2>
-  </div> 
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Account holder Name' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :accholder,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'Account Number' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :accno,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <strong>IFSC code<sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :ifsccode,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'GST Number' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :gstno,:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="field form-group">
-    <div class="control-label col-sm-2">
-      <%= f.label 'PAN Number' %><strong><sup>*</sup>:</strong>
-    </div>
-    <div class="col-sm-4">
-      <%= f.text_field :panno,:class=>"form-control" %>
-    </div>
-  </div>
-</div>
-<div class="col-sm-12 text-center"><button class="btn btn-success btn-md actions ">Update Hotel</button></div>
-
-</div>
-<% end %>
-
 <style>
 
-.modal-backdrop.in{
-  opacity: 0.8;
-}
+  .modal-backdrop.in{
+    opacity: 0.8;
+  }
 
-.modal-dialog{
-  width: 67%;
-  height:auto;
-}
+  .modal-dialog{
+    width: 67%;
+    height:auto;
+  }
 
-@media only screen and (min-width:786px){
-  .PosChkInOut {
-  position: absolute;
-  right:14px;
-  }
-}
-
-.fixedtextarea {
-  resize: none;
-  max-width: 955px;
-}
-
-  .AccordianBtn{
-    height:50px;
-    border-radius: 0px;
-    background-color: #eee;
-    border:solid 1px #ccc;
-    padding-top: 10px;
-    margin-bottom: -1px;
-  }
-  .AccordianBtn:hover{
-    background-color: #ccc;
-  }.AccordianOption:hover{
-    background-color: #eee;
-  }
-  .AccordianOption{
-    background-color:white;
-    height:45px;
-    margin: 0px;
-    border-bottom: solid 1px #ccc;
-    border-left: solid 1px #ccc;
-    border-right: solid 1px #ccc;
-
-  }
-  .RotatePlusA{
-    transform: rotate(45deg) scale(2);
-    transition-duration: 0.2s;
-  }
-  .RotatePlusB{
-    transform: scale(2);
-    transition-duration: 0.2s;
-  }
-  .removeborder{
-    border: none;
-    outline: none;
-    box-shadow: none;
-    pointer-events:none
-  }
-  #AddMoreImage:hover{
-    background-color: #cccccc;
+  @media only screen and (min-width:786px){
+    .PosChkInOut {
+    position: absolute;
+    right:14px;
     }
+  }
+
+  .fixedtextarea {
+    resize: none;
+    max-width: 955px;
+  }
+
+    .AccordianBtn{
+      height:50px;
+      border-radius: 0px;
+      background-color: #eee;
+      border:solid 1px #ccc;
+      padding-top: 10px;
+      margin-bottom: -1px;
+    }
+    .AccordianBtn:hover{
+      background-color: #ccc;
+    }.AccordianOption:hover{
+      background-color: #eee;
+    }
+    .AccordianOption{
+      background-color:white;
+      height:45px;
+      margin: 0px;
+      border-bottom: solid 1px #ccc;
+      border-left: solid 1px #ccc;
+      border-right: solid 1px #ccc;
+
+    }
+    .RotatePlusA{
+      transform: rotate(45deg) scale(2);
+      transition-duration: 0.2s;
+    }
+    .RotatePlusB{
+      transform: scale(2);
+      transition-duration: 0.2s;
+    }
+    .removeborder{
+      border: none;
+      outline: none;
+      box-shadow: none;
+      pointer-events:none
+    }
+    #AddMoreImage:hover{
+      background-color: #cccccc;
+      }
 </style>
 <script type="text/javascript">
   <%if current_user.hotel.images.any?%>

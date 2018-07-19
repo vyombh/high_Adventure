@@ -6,7 +6,8 @@ End Date:
 <input type="date" name="end" id = 'end'>
 
 <br>
-
+published for single occupancy:
+<input type="number" name="published_price" id = 'published_price'><br>
 baseprice for single occupancy:
 <input type="number" name="base_1" id = 'base_1'><br>
 baseprice for double occupancy:
@@ -36,6 +37,7 @@ var ChangePrice=[];
 
 
 <%@pricing.price[params[:room_id].to_i].each do |p|%>
+  priceobj['published_price'] = <%=p[:price][:published_price]%>
   priceobj['base_1'] = <%=p[:price][:base_1]%>
   priceobj['base_2'] =<%=p[:price][:base_2]%>
   priceobj['extraadult'] = <%=p[:price][:extraadult]%>
@@ -61,7 +63,10 @@ var ChangePrice=[];
 
 var NewPrice={};
 function declare(){
-	var NewPriceObj = { 'base_1': parseInt($('#base_1')[0].value),
+	var NewPriceObj = { 
+
+          'published_price': parseInt($('#published_price')[0].value),
+          'base_1': parseInt($('#base_1')[0].value),
 					'base_2': parseInt($('#base_2')[0].value),
 					'extraadult': parseInt($('#extraadult')[0].value),
 					'extrachild': parseInt($('#extrachild')[0].value),
@@ -232,9 +237,9 @@ function SetRate(Price,NewPrice){
         url: '/pricings/update',
         type: 'post',
         data: {
-              'price':SetRate(Price,NewPrice),
-                    'hotel_id': <%=current_user.hotel.id%>,
-                    roomtype_id: <%=params[:room_id]%>
+              price: SetRate(Price,NewPrice),
+              hotel_id: <%=current_user.hotel.id%>,
+              roomtype_id: <%=params[:room_id]%>
               },
         progress:function(loadTime,status){
                           console.log(loadTime);

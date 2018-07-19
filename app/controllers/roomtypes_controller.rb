@@ -39,7 +39,7 @@ class RoomtypesController < ApplicationController
             booking = bookinglog.booking
             room = @roomtype.id.to_i
             booking[room] = []
-            booking[room].push({start: Date.today,end: Date.today+36524,frequency: 0})
+            booking[room].push({start: Date.today,end: Date.today+36524,frequency: 0,typename: @roomtype.typename,total: @roomtype.rooms})
             bookinglog.booking = booking
             bookinglog.save
           end
@@ -141,7 +141,12 @@ class RoomtypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_roomtype
+      if params[:id].to_i == 0
+        return render file: "#{Rails.root}/public/500", status: :not_found
+      end
       @roomtype = Roomtype.find(params[:id])
+      rescue ActiveRecord::RecordNotFound  
+        return render file: "#{Rails.root}/public/500", status: :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

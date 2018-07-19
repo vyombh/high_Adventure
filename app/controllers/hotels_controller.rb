@@ -174,11 +174,26 @@ class HotelsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def inventory
+  end
+  def change
+    room = Roomtype.find(params[:roomtype])
+    if request.xhr?
+      render :json=>{
+        :typename=> room.typename,
+        :rooms=> room.rooms
+      }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hotel
+      if params[:id].to_i == 0
+        return render file: "#{Rails.root}/public/500", status: :not_found
+      end
       @hotel = Hotel.find(params[:id])
+      rescue ActiveRecord::RecordNotFound  
+        return render file: "#{Rails.root}/public/500", status: :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

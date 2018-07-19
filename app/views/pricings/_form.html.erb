@@ -1,4 +1,6 @@
 
+  published for single occupancy:
+  <input type="number" name="published_price" id = 'published_price'><br>
   baseprice for single occupancy:
   <input type="number" name="base_1" id = 'base_1'><br>
   baseprice for double occupancy:
@@ -30,6 +32,7 @@
         type: 'post',
         data: {
               price: {
+                        'published_price': document.getElementById('published_price').value,
                         'base_1': document.getElementById('base_1').value,
                         'base_2': document.getElementById('base_2').value,
                         'extraadult': document.getElementById('extraadult').value,

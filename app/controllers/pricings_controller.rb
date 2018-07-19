@@ -63,8 +63,8 @@ class PricingsController < ApplicationController
   def update
     month = {'Jan': 1,'Feb': 2,'Mar': 3,'Apr': 4,'May': 5,'Jun': 6,'Jul': 7,'Aug': 8,'Sep': 9,'Oct': 10,'Nov': 11,'Dec': 12}
     if current_user.hotel.id == Roomtype.find_by_id(params[:roomtype_id]).hotel_id
-      price = []
-      params[:price].each do |p|
+        price = []
+        params[:price].each do |p|
         startDate = p[1][:start].split(' ')[2].to_i
         startMonth = month[p[1][:start].split(' ')[1].to_sym]
         startYear = p[1][:start].split(' ')[3].to_i
@@ -74,15 +74,15 @@ class PricingsController < ApplicationController
         priceObj = p[1][:price]
         price.push(price: priceObj,start: Date.new(startYear,startMonth,startDate),end: Date.new(endYear,endMonth,endDate))
       end
-      pricing = current_user.hotel.pricing
-      pricing.price[params[:roomtype_id].to_i] = price
-      pricing.save
-      
-      if request.xhr?
-          render :json=>{
-            :success=> 'true'
-          }
-      end
+        pricing = current_user.hotel.pricing
+        pricing.price[params[:roomtype_id].to_i] = price
+        pricing.save
+        
+        if request.xhr?
+            render :json=>{
+              :success=> 'true'
+            }
+        end
 
     end
     # respond_to do |format|
