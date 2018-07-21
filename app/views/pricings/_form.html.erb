@@ -1,27 +1,70 @@
+<div class="container" style="background-color: white">
+  <div class="form form-horizontal" style="margin-top: 1%">
+    
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Pulished Price* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="published_price" id = 'published_price' class="form-control"></div>
+    </div>
 
-  published for single occupancy:
-  <input type="number" name="published_price" id = 'published_price'><br>
-  baseprice for single occupancy:
-  <input type="number" name="base_1" id = 'base_1'><br>
-  baseprice for double occupancy:
-  <input type="number" name="base_2" id = 'base_2'><br>
-  extra adult cost:
-  <input type="number" name="extraadult" id = 'extraadult'><br>
-  extra child cost:
-  <input type="number" name="extrachild" id = 'extrachild'><br>
-  adult breakfast rate:
-  <input type="number" name="adult_breakfast" id = 'adult_breakfast'><br>
-  adult lunch rate:
-  <input type="number" name="adult_lunch" id = 'adult_lunch'><br>
-  adult dinner rate:
-  <input type="number" name="adult_dinner" id = 'adult_dinner'><br>
-  child breakfast rate:
-  <input type="number" name="child_breakfast" id = 'child_breakfast'><br>
-  child lunch rate:
-  <input type="number" name="child_lunch" id = 'child_lunch'><br>
-  child dinner rate:
-  <input type="number" name="child_dinner" id = 'child_dinner'><br>
-  <button id='submit'>submit</button> 
+    <div class="field form-group">
+      <label class="control-label col-sm-3">baseprice for single occupancy* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="base_1" id = 'base_1' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">baseprice for double occupancy* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="base_2" id = 'base_2' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Extra adult cost* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="extraadult" id = 'extraadult' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Extra child cost* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="extrachild" id = 'extrachild' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Adult Breakfast rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="adult_breakfast" id = 'adult_breakfast' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Adult Lunch rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="adult_lunch" id = 'adult_lunch' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Adult Dinner rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="adult_dinner" id = 'adult_dinner' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Child Breakfast rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="child_breakfast" id = 'child_breakfast' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Child Lunch rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="child_lunch" id = 'child_lunch' class="form-control"></div>
+    </div>
+
+    <div class="field form-group">
+      <label class="control-label col-sm-3">Child Dinner rate* :</label>
+      <div class="col-sm-4" ><input type="number" required = 'true' name="child_dinner" id = 'child_dinner' class="form-control"></div>
+    </div>
+
+
+
+  </div>
+
+  <div class="col-sm-12 text-center" style="margin-bottom: 1%"><button class="btn btn-success btn-md actions " id="submit">Submit</button></div>
+
+</div>   
+
+
 <script type="text/javascript">
   $('#submit').click(function(e){
      e.preventDefault();

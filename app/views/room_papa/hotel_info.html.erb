@@ -1,4 +1,61 @@
 <%hotel = Hotel.find_by_id(params[:id])%>
+<%arrayroombasic={}%>
+
+	<%arrayroombasic['clothesracks']='Clothes Racks'%>
+	<%arrayroombasic['dryingracking']='Drying Racking'%>
+	<%arrayroombasic['foldupbed']='Fold-up Bed'%>
+	<%arrayroombasic['sofabed']='Sofa Bed'%>
+	<%arrayroombasic['wardrobe']='Wardrobe'%>
+	<%arrayroombasic['carpeted']='Carpeted'%>
+	<%arrayroombasic['walkingcloset']='Walking Closet'%>
+	<%arrayroombasic['extralongbeds']='Extra Long Beds'%>
+	<%arrayroombasic['fireplace']='Fireplace'%>
+	<%arrayroombasic['heater']='Heater'%>
+	<%arrayroombasic['interconnectingrooms']='Inter Connecting Rooms'%>
+	<%arrayroombasic['iron']='Iron'%>
+	<%arrayroombasic['desk']='Desk'%>
+	<%arrayroombasic['wifi']='WiFi'%>
+	<%arrayroombasic['smoking']='Smoking'%>
+	<%arrayroombasic['tv']='TV'%>
+
+	<%arrayrestroom={}%>
+
+	<%arrayrestroom['bathroom']='bathroom'%>
+	<%arrayrestroom['toiletpaper']='toiletpaper'%>
+	<%arrayrestroom['bathtub']='bathtub'%>
+	<%arrayrestroom['shower']='shower'%>
+	<%arrayrestroom['bathrobe']='bathrobe'%>
+	<%arrayrestroom['freetoiletries']='Free Toiletries'%>
+	<%arrayrestroom['hairdryer']='Hair Dryer'%>
+	<%arrayrestroom['spatub']='Spa Tub'%>
+	<%arrayrestroom['sharedbathroom']='Shared Bathroom'%>
+	<%arrayrestroom['slippers']='Slippers'%>
+	<%arrayrestroom['toilets']='Toilets'%>
+	<%arrayrestroom['geyser']='Geyser'%>
+
+	<%arrayservices={}%>
+
+	<%arrayservices['executiveloungeaccess']='Executive Lounge Access'%>
+	<%arrayservices['alarmclock']='Alarm Clock'%>
+	<%arrayservices['wakeupservice']='Wake-up Service'%>
+	<%arrayservices['linens']='Linens'%>
+	<%arrayservices['sheets']='Sheets'%>
+	<%arrayservices['ac']='AC'%>
+	<%arrayservices['cooler']='Cooler'%>
+	<%arrayservices['fan']='Fan'%>
+	<%arrayservices['kettle']='Kettle'%>
+	<%arrayservices['laundry']='Laundry'%>
+
+	<%arrayview={}%>
+
+	<%arrayview['balcony']='Balcony'%>
+	<%arrayview['terrace']='Terrace'%>
+	<%arrayview['cityview']='City View'%>
+	<%arrayview['lakeview']='Lake View'%>
+	<%arrayview['landmarkview']='Landmark View'%>
+	<%arrayview['poolview']='Pool View'%>
+	<%arrayview['riverviewriverview']='River View'%>
+	<%arrayview['oceanview']='Ocean View'%>
 
 	<%arraybasic={}%>
 
@@ -67,127 +124,263 @@
 	<%arrayentertainment['boardgamespuzzles']='Board Games Puzzles'%>
 	<%arrayentertainment['books']='Books'%>
 	<%arrayentertainment['safetysockets']='Safety sockets'%>
-
+<%imageArray = []%>
 <%if hotel%>
-	<h1><%=hotel.hotelname.titleize%></h1>
-	<%=hotel.buildingname.downcase.capitalize%><br>
-	<%=hotel.streetname.downcase.capitalize%>
-	,<%=hotel.city.downcase.capitalize%> , <%=hotel.state.downcase.capitalize%> - <%=hotel.zipcode%>
-	<br><%=hotel.rating%>
-	<br>photo
-	
-	<br><b>Checkin time : </b><%=hotel.checkinhrsfrom%> : <%=hotel.checkinminfrom%> <%=hotel.checkinampmfrom%> -  <%=hotel.checkinhrsto%> : <%=hotel.checkinminto%> <%=hotel.checkinampmto%>
-	<br><b>Checkout time : </b><%=hotel.checkouthrsfrom%> : <%=hotel.checkoutminfrom%> <%=hotel.checkoutampmfrom%> -  <%=hotel.checkouthrsto%> : <%=hotel.checkoutminto%> <%=hotel.checkoutampmto%>
-
-	<br><%=hotel.description%>
-	<br> <h3>Facilites : </h3>
-	
-	<%string = ''%>
-	<%hotelbasic = []%>
-	<%hotelbasic=hotel.basic.keys%>
-
-	
-	<b>Basic Facilities : </b>
-
-	<%for x in 0...hotelbasic.length%>
-
-
-		<%if hotel.basic[hotelbasic[x]] == "1" %> 
-			<%string = string + ' ' + arraybasic[hotelbasic[x]] + ','%>
+	<%if hotel.images.any?%>
+		<%hotel.images.each do |image| %>
+			<%imageArray.push(image.url)%>
 		<%end%>
-
 	<%end%>
-	
-	<%string=string[0..string.length-2]%>
-	<%=string%>
-	<br>
-	<%string = ''%>
-	<%hotelmedia = []%>
-	<%hotelmedia=hotel.media.keys%>
+	<!-- hotel photos=<%=imageArray%> -->
+<div class="container-fluid">
+	<div class="row" style="background:#EEEEEE;border-radius:15px">
+		<div class="col-sm-6">
+			00
+		</div>
+		<div class="col-sm-6" >
+			<div class="row">
+				<div class="col-lg-8 col-sm-8 col-xs-8">
+					<h2><%=hotel.hotelname.titleize%></h2>
+				</div>
+				<div class="col-lg-4 col-sm-4 col-xs-4">
+					<div class="col-lg-4 col-sm-4 col-xs-9 Rating text-center">
+						<%=hotel.rating%>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div class="col-sm-12">
+					<strong>Address</strong>
+				</div> -->
+				<div class="col-sm-12">
+					<%=hotel.buildingname.downcase.capitalize%>
+				</div>
+				<div class="col-sm-12">
+					<%=hotel.streetname.downcase.capitalize%>
+					<%=hotel.city.downcase.capitalize%>
+				</div>
+				<div class="col-sm-12">
+					<%=hotel.state.downcase.capitalize%> -
+					<%=hotel.zipcode%>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-12">
+					<strong>Checkin Hours :</strong> <%=hotel.checkinhrsfrom%> : <%=hotel.checkinminfrom%> <%=hotel.checkinampmfrom%> -  <%=hotel.checkinhrsto%> : <%=hotel.checkinminto%> <%=hotel.checkinampmto%>
+				</div>
+				<div class="col-sm-12">
+					<strong>Checkout Hours :</strong> <%=hotel.checkouthrsfrom%> : <%=hotel.checkoutminfrom%> <%=hotel.checkoutampmfrom%> -  <%=hotel.checkouthrsto%> : <%=hotel.checkoutminto%> <%=hotel.checkoutampmto%>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4><strong>About Hotel</strong></h4>
+				</div>
+				<div class="col-sm-11">
+					<%=hotel.description%>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4><strong>Hotel Facilites</strong></h4>
+				</div>
+			</div>
+			<%string = ''%>
+			<%hotelbasic = []%>
+			<%hotelbasic=hotel.basic.keys%>
+			<%basicfacility=[]%>
+			<%for x in 0...hotelbasic.length%>
+				<%if hotel.basic[hotelbasic[x]] == "1" %>
+					<%basicfacility.push(arraybasic[hotelbasic[x]])%>
+				<%end%>
+			<%end%>
+			<%string = ''%>
+			<%hotelmedia = []%>
+			<%hotelmedia=hotel.media.keys%>
+			<%for x in 0...hotelmedia.length%>
+				<%if hotel.media[hotelmedia[x]] == "1" %>
+					<%basicfacility.push(arraymedia[hotelmedia[x]])%>
+				<%end%>
+			<%end%>
+			<%hotelfood = []%>
+			<%hotelfood=hotel.food.keys%>
+			<%for x in 0...hotelfood.length%>
+				<%if hotel.food[hotelfood[x]] == "1" %>
+					<%basicfacility.push(arrayfood[hotelfood[x]])%>
+				<%end%>
+			<%end%>
+			<%hoteldisability = []%>
+			<%hoteldisability=hotel.disability.keys%>
+			<%for x in 0...hoteldisability.length%>
+				<%if hotel.disability[hoteldisability[x]] == "1" %>
+					<%basicfacility.push(arraydisability[hoteldisability[x]])%>
+				<%end%>
+			<%end%>
+			<%hotelentertainment = []%>
+			<%hotelentertainment=hotel.entertainment.keys%>
+			<%for x in 0...hotelentertainment.length%>
+				<%if hotel.entertainment[hotelentertainment[x]] == "1" %>
+					<%basicfacility.push(arrayentertainment[hotelentertainment[x]])%>
+				<%end%>
+			<%end%>
+			<!-- <%=basicfacility%> -->
+			<div class="row">
+				<div class="col-sm-12 FacilityBlock" >
+					<%i=0%>
+					<%for i in 0...basicfacility.length%>
+						<div class="Facility">
+							<%=basicfacility[i]%>
+						</div>
+					<%end%>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4><strong>Hotel policy</strong></h4>
+				</div>
+				<div class="col-sm-11 HotelDescription">
+					<%=hotel.policies%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<h3 align="left" class="col-sm-offset-2">Rooms</h3>
 
-	
-	<b>Media Facilities : </b>
-
-	<%for x in 0...hotelmedia.length%>
-
-
-		<%if hotel.media[hotelmedia[x]] == "1" %> 
-			<%string = string + ' ' + arraymedia[hotelmedia[x]] + ','%>
-		<%end%>
-
-	<%end%>
-	
-	<%string=string[0..string.length-2]%>
-	<%=string%>
-	<br>
-	<%string = ''%>
-	<%hotelfood = []%>
-	<%hotelfood=hotel.food.keys%>
-
-	
-	<b>Food Facilities : </b>
-
-	<%for x in 0...hotelfood.length%>
-
-
-		<%if hotel.food[hotelfood[x]] == "1" %> 
-			<%string = string + ' ' + arrayfood[hotelfood[x]] + ','%>
-		<%end%>
-
-	<%end%>
-	
-	<%string=string[0..string.length-2]%>
-	<%=string%>
-	<br>
-	<%string = ''%>
-	<%hoteldisability = []%>
-	<%hoteldisability=hotel.disability.keys%>
-
-	
-	<b>Disability Facilities : </b>
-
-	<%for x in 0...hoteldisability.length%>
-
-
-		<%if hotel.disability[hoteldisability[x]] == "1" %> 
-			<%string = string + ' ' + arraydisability[hoteldisability[x]] + ','%>
-		<%end%>
-
-	<%end%>
-	
-	<%string=string[0..string.length-2]%>
-	<%=string%>
-	<br>
-	<%string = ''%>
-	<%hotelentertainment = []%>
-	<%hotelentertainment=hotel.entertainment.keys%>
-
-	
-	<b>Entertainment Facilities : </b>
-
-	<%for x in 0...hotelentertainment.length%>
-
-
-		<%if hotel.entertainment[hotelentertainment[x]] == "1" %> 
-			<%string = string + ' ' + arrayentertainment[hotelentertainment[x]] + ','%>
-		<%end%>
-
-	<%end%>
-	
-	<%string=string[0..string.length-2]%>
-	<%=string%>
-	<br>
-	<b>Policies : </b>
-	<br><%=hotel.policies%>
-	<br>
-	
-	<br><%rooms = hotel.roomtypes%>
-	<br>ROOM LIST:<br>
+	<%rooms = hotel.roomtypes%>
 	<%rooms.each do |room|%>
-		<%=link_to room.typename.downcase.capitalize,room_papa_room_page_path(id: room.id)%><br>
+
+<div class="container-fluid" style="background:white;border-radius:15px;margin-top:20px">
+		<div class="col-sm-6" style="background:orange;">
+			Photo
+		</div>
+		<div class="col-sm-6">
+			<h3><%=room.typename.downcase.titleize%></h3>
+			<div>
+				<h4> 	<strong>About Room</strong>	</h4>
+				This room has a <strong><%=room.beds%></strong> type bed which can accomodate
+				<%if room.baseadults == 0%>
+				 	<strong>0</strong> adult
+				<%elsif room.baseadults == 1 %>
+					<strong><%=room.baseadults%></strong> adult
+				<%else%>
+					<strong><%=room.baseadults%></strong> adults
+				<%end%>
+
+				<%if room.basechildren == 0%>
+
+				<%elsif room.basechildren == 1%>
+					along with <strong><%=room.basechildren%></strong> child
+				<%else%>
+					along with <strong><%=room.basechildren%></strong> children
+				<%end%>.
+				<div>
+					We offer <strong><%=room.extrabed%></strong> Extra Bed/s.
+				</div>
+			</div>
+			<br>
+			<%roombasicfacility = []%>
+			<%roombasic=room.basic.keys%>
+			<%for x in 0...roombasic.length%>
+				<%if room.basic[roombasic[x]] == "1" %>
+					<%roombasicfacility.push(arrayroombasic[roombasic[x]])%>
+				<%end%>
+			<%end%>
+			<%restroomfacility = []%>
+			<%roomrestroom=room.restroom.keys%>
+			<%for x in 0...roomrestroom.length%>
+				<%if room.restroom[roomrestroom[x]] == "1" %>
+					<%restroomfacility.push(arrayrestroom[roomrestroom[x]])%>
+				<%end%>
+			<%end%>
+			<%servicesfacility = []%>
+			<%roomservices=room.services.keys%>
+			<%for x in 0...roomservices.length%>
+				<%if room.services[roomservices[x]] == "1" %>
+					<%servicesfacility.push(arrayservices[roomservices[x]])%>
+				<%end%>
+			<%end%>
+			<%viewfacility = []%>
+			<%roomview = []%>
+			<%roomview=room.view.keys%>
+			<%for x in 0...roomview.length%>
+				<%if room.view[roomview[x]] == "1" %>
+					<%viewfacility.push(arrayview[roomview[x]])%>
+				<%end%>
+			<%end%>
+
+			<h4><strong>Room Facilites</strong></h4>
+			<div class="row">
+				<div class="col-sm-12 FacilityBlock" >
+					<%i=0%>
+					<%for i in 0...basicfacility.length%>
+						<div class="Facility">
+							<%=basicfacility[i]%>
+						</div>
+					<%end%>
+					<%for i in 0...restroomfacility.length%>
+						<div class="Facility">
+							<%=restroomfacility[i]%>
+						</div>
+					<%end%>
+					<%for i in 0...servicesfacility.length%>
+						<div class="Facility">
+							<%=servicesfacility[i]%>
+						</div>
+					<%end%>
+					<%for i in 0...viewfacility.length%>
+						<div class="Facility">
+							<%=viewfacility[i]%>
+						</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+
+		<%imageRoomArray = []%>
+		<%if room.images.any?%>
+			<%room.images.each do |image|%>
+				<%imageRoomArray.push(image.url)%>
+			<%end%>
+
+		<%end%>
+	</div>
 	<%end%>
+
+
 <%else%>
 
 	No such  hotel found.
 
 <%end%>
+<style>
+	.Rating{
+		color: white;
+		background: #4285f4;
+		padding:10px 0px 10px 0px;
+		border-radius: 10px;
+		margin-top: 15px;
+		font-size: 20px;
+	}
+	.HotelDescription{
+		padding:5px 0px 5px 15px;
+		margin-left:12px;
+		margin-right:50px;
+		border-radius:10px;
+		border:solid 2px #cccccc;
+	}
+	.Facility{
+		border: solid 2px orange;
+		border-radius: 25%;
+		padding-left:7px;
+		padding-right:7px;
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+	.FacilityBlock{
+		display: flex;
+		flex-wrap:wrap;
+	}
+</style>

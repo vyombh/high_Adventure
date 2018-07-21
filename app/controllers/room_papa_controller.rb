@@ -413,10 +413,6 @@ class RoomPapaController < ApplicationController
 
   end
 
-  def room_page
-    
-  end
-
   def deleteimage
     roomtype = Roomtype.find_by_id(params[:roomtype])
     count = 0

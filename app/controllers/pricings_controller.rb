@@ -3,12 +3,18 @@ class PricingsController < ApplicationController
   # protect_from_forgery except: :create,:update
   # GET /pricings/new
   def new
-    
+    Roomtype.find(params[:room_id])
+    rescue ActiveRecord::RecordNotFound  
+        return render file: "#{Rails.root}/public/500", status: :not_found
   end
 
   # GET /pricings/1/edit
   def edit
     @pricing = Pricing.where(hotel_id: current_user.hotel.id).first
+    
+    Roomtype.find(params[:room_id])
+    rescue ActiveRecord::RecordNotFound  
+        return render file: "#{Rails.root}/public/500", status: :not_found
   end
 
   # POST /pricings

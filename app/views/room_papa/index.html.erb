@@ -1,13 +1,30 @@
 <%if current_user && !current_user.hotel%>
 
-	Your have not filled your details yet!!
-	<BR><BR>
-	Kindly fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%>
 
+	<div class="container">
+
+	  <div class="modalfade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Your have not filled your details yet!!</h4>
+	        </div>
+	        <div class="modal-body">
+	          <p>Kindly fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%></p>
+	        </div>
+
+	      </div>
+	     
+	    </div>
+	  </div>
+	 
+	</div>
+
+
+	
 <%else%>
-
-
-	<p id="notice"><%= notice %></p>
 
 	<%if current_user.hotel.roomtypes.count>0%>
 
@@ -626,37 +643,61 @@
 			</div>
 
 			<%if current_user.hotel.images.any?%>
-		<% imagearray = []%>
-		<%current_user.hotel.images.each do |hs|%>
-			<% imagearray.push(hs.url)%>
-		<%end%>
+				<% imagearray = []%>
+				<%current_user.hotel.images.each do |hs|%>
+					<% imagearray.push(hs.url)%>
+				<%end%>
 
-		<div class="row">
-			<div class="col-sm-offset-2">
-				<h2>Images</h2>
-			</div>
-			<div class="col-sm-10 col-sm-offset-1" id="ImagesBlock">
-			</div>
-		</div>
-	<%end%>
-	<div id="ModalForImage" class="modal fade" role="dialog">
+				<div class="row">
+					<div class="col-sm-offset-2">
+						<h2>Images</h2>
+					</div>
+					<div class="col-sm-10 col-sm-offset-1" id="ImagesBlock">
+					</div>
+				</div>
+			<%end%>
+			<div id="ModalForImage" class="modal fade" role="dialog">
 
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-body">
-	        <div id="ModalImg" style="position:absolute;top:0px;left:0px">
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-body">
+			        <div id="ModalImg" style="position:absolute;top:0px;left:0px">
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	<%else%>
-		Congratulations!! your have moved one step cftowards completion<br>
-		kindly fill  <%=link_to "Room Types",new_roomtype_path(id: current_user.hotel.id),method: :get%>
+
+
+			<div class="container">
+
+			  <div class="modalfade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Congratulations!! Step 1 has been completed.</h4>
+			        </div>
+			        <div class="modal-body">
+			          <p>Kindly fill  <%=link_to "Room Types",new_roomtype_path(id: current_user.hotel.id),method: :get%></p>
+			        </div>
+
+			      </div>
+			     
+			    </div>
+			  </div>
+			 
+			</div>
+
+		
 	<%end%>
 <%end%>
 <style>
+
+	.close {display: none;}
 
 	.modal-backdrop.in{
 	  opacity: 0.8;

@@ -1,3 +1,60 @@
-<h1>New Pricing</h1>
+<%if current_user.hotel && current_user.hotel.roomtypes.any? && current_user.hotel.id == Roomtype.find(params[:room_id]).hotel_id%>
+	<%if current_user.hotel.pricing && current_user.hotel.pricing.price[params[:room_id].to_i] == nil%>
+		<h1 align="center">New Pricing</h1>
 
-<%= render 'form' %>
+		<%= render 'form' %>
+	<%else%>
+		
+		<div class="container">
+
+	        <div class="modalfade" id="myModal" role="dialog">
+	          <div class="modal-dialog">
+	      
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                <h4 class="modal-title">You have already added the pricing of this room type!</h4>
+	              </div>
+	              <div class="modal-body">
+	                <p>For editing price scheme <%= link_to 'Click here',url_for(controller: 'pricings',action: 'edit',room_id: params[:room_id])%></p>
+	              </div>
+
+	            </div>
+	           
+	          </div>
+	        </div>
+       
+      	</div>
+	<%end%>
+<%else%>
+
+
+  		<div class="container">
+
+	        <div class="modalfade" id="myModal" role="dialog">
+	          <div class="modal-dialog">
+	      
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                <h4 class="modal-title">Sorry! Something went wrong.</h4>
+	              </div>
+	              <div class="modal-body">
+	                <p>You are not authorized to create pricing of this room category.</p>
+	              </div>
+
+	            </div>
+	           
+	          </div>
+	        </div>
+       
+      </div>
+
+
+<%end%>
+
+<style>
+
+  .close {display: none;}
+
+ </style>

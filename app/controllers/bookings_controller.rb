@@ -1,84 +1,84 @@
 class BookingsController < ApplicationController
-  def order
-  	byebug
-  end
-  def bookingform
-    
-  end
-   def bookinglog startdate,enddate,roomtype_id,hotel_id
-	    bookinglog = Bookinglog.where(hotel_id: hotel_id.to_i).first
-	    booking = bookinglog.booking[roomtype_id.to_i]
-	    booking = booking.sort_by{|a| a[:start]}
-	    if startdate >= enddate
-   			return booking
-   		end
-   		if startdate < booking[0][:start]
-   			return booking
-   		end
-	    i = 0
-	    while 1
-	      if booking[i][:start] == startdate && booking[i][:end] == enddate
-	        
-	        booking[i][:frequency] = booking[i][:frequency] + 1
-	        break
+	def order
+		byebug
+	end
+	def bookingform
 
-	      elsif booking[i][:start] == startdate && booking[i][:end] > enddate
-	        
-	        oldfreq = booking[i][:frequency]
-	        olddate = booking[i][:end]
-	        booking[i][:end] = enddate
-	        booking[i][:frequency] = booking[i][:frequency] + 1
-	        newObj = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
-	        booking.insert(i+1,newObj)
-	        break
+	end
+	def bookinglog startdate,enddate,roomtype_id,hotel_id
+		bookinglog = Bookinglog.where(hotel_id: hotel_id.to_i).first
+		booking = bookinglog.booking[roomtype_id.to_i]
+		booking = booking.sort_by{|a| a[:start]}
+		if startdate >= enddate
+				return booking
+			end
+			if startdate < booking[0][:start]
+				return booking
+			end
+		i = 0
+		while 1
+		  if booking[i][:start] == startdate && booking[i][:end] == enddate
+		    
+		    booking[i][:frequency] = booking[i][:frequency] + 1
+		    break
 
-	      elsif booking[i][:start] == startdate && booking[i][:end] < enddate
+		  elsif booking[i][:start] == startdate && booking[i][:end] > enddate
+		    
+		    oldfreq = booking[i][:frequency]
+		    olddate = booking[i][:end]
+		    booking[i][:end] = enddate
+		    booking[i][:frequency] = booking[i][:frequency] + 1
+		    newObj = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
+		    booking.insert(i+1,newObj)
+		    break
 
-	        oldfreq = booking[i][:frequency]
-	        olddate = booking[i][:end]
-	        booking[i][:frequency] = booking[i][:frequency] + 1
-	        startdate = olddate
+		  elsif booking[i][:start] == startdate && booking[i][:end] < enddate
 
-	      elsif booking[i][:start] < startdate && booking[i][:end] > enddate
-	        
-	        olddate = booking[i][:end]
-	        oldfreq = booking[i][:frequency]
-	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
-	        newObj2 = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
-	        booking.insert(i+1,newObj1)
-	        i = i + 1
-	        booking.insert(i+1,newObj2)
-	        break
+		    oldfreq = booking[i][:frequency]
+		    olddate = booking[i][:end]
+		    booking[i][:frequency] = booking[i][:frequency] + 1
+		    startdate = olddate
 
-	      elsif booking[i][:start] < startdate && startdate < booking[i][:end] && booking[i][:end] == enddate
-	       
-	        olddate = booking[i][:end]
-	        oldfreq = booking[i][:frequency]
-	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
-	        booking.insert(i+1,newObj1)
-	        break
+		  elsif booking[i][:start] < startdate && booking[i][:end] > enddate
+		    
+		    olddate = booking[i][:end]
+		    oldfreq = booking[i][:frequency]
+		    booking[i][:end] = startdate
+		    newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
+		    newObj2 = {start: enddate,end: olddate,frequency: oldfreq,typename:booking[i][:typename],total:booking[i][:total]}
+		    booking.insert(i+1,newObj1)
+		    i = i + 1
+		    booking.insert(i+1,newObj2)
+		    break
 
-	      elsif booking[i][:start] < startdate && startdate < booking[i][:end] && booking[i][:end] < enddate
-	        
-	        olddate = booking[i][:end]
-	        oldfreq = booking[i][:frequency]
-	        booking[i][:end] = startdate
-	        newObj1 = {start: startdate,end: olddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
-	        booking.insert(i+1,newObj1)
-	        startdate = olddate
-	        i = i + 1
+		  elsif booking[i][:start] < startdate && startdate < booking[i][:end] && booking[i][:end] == enddate
+		   
+		    olddate = booking[i][:end]
+		    oldfreq = booking[i][:frequency]
+		    booking[i][:end] = startdate
+		    newObj1 = {start: startdate,end: enddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
+		    booking.insert(i+1,newObj1)
+		    break
 
-	      end
-	      i = i + 1
-	      if i == booking.length
-	        break
-	      end
-	    end
-	    return booking
-   end
-  def testing
+		  elsif booking[i][:start] < startdate && startdate < booking[i][:end] && booking[i][:end] < enddate
+		    
+		    olddate = booking[i][:end]
+		    oldfreq = booking[i][:frequency]
+		    booking[i][:end] = startdate
+		    newObj1 = {start: startdate,end: olddate,frequency: oldfreq + 1,typename:booking[i][:typename],total:booking[i][:total]}
+		    booking.insert(i+1,newObj1)
+		    startdate = olddate
+		    i = i + 1
+
+		  end
+		  i = i + 1
+		  if i == booking.length
+		    break
+		  end
+		end
+		return booking
+	end
+	def testing
 	    startdate = Date.new(params[:startdate].split('-')[0].to_i,params[:startdate].split('-')[1].to_i,params[:startdate].split('-')[2].to_i)
 	    enddate = Date.new(params[:enddate].split('-')[0].to_i,params[:enddate].split('-')[1].to_i,params[:enddate].split('-')[2].to_i)
 	    hotel_id = params[:hotel_id].to_i
@@ -92,5 +92,5 @@ class BookingsController < ApplicationController
 	    # book.booking[roomtype_id] = booking
 	    book.save
 	    return redirect_to '/bookings/bookingform'
-  end
+	end
 end

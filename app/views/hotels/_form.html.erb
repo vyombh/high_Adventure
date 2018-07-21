@@ -1136,11 +1136,34 @@
           </div>
         </div>
 
+        <div class="form form-horizontal">
+          <div class="col-sm-offset-2">
+            <h2>Tax Details</h2>
+          </div> 
+          <div class="field form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label 'Accommodation Tax' %><strong><sup>*</sup>:</strong>
+            </div>
+            <div class="col-sm-4">
+              <%= f.select(:tax, options_for_select([ ['No', false], ['Yes', true]]), {}, {:class => 'form-control'})  %>
+            </div>
+          </div>
+          
+          <div class="field form-group">
+            <div class="control-label col-sm-2">
+              <%= f.label 'Food Tax(Same)' %><strong><sup>*</sup>:</strong>
+            </div>
+            <div class="col-sm-4">
+              <%= f.select(:foodtaxsame, options_for_select([ ['Same as Accommodation', true], ['5%', false]]), {}, {:class => 'form-control'})  %>
+            </div>
+          </div>
+        </div>
+
         images: 
 
         <%= f.file_field :images, multiple: true %>
 
-
+        
         <br>
 
         <div class="col-sm-12 text-center" >
@@ -1152,9 +1175,37 @@
     </div>
   <% end %>
 <%else%>
-  THIS USER HAS HIS HOTEL
+
+
+      <div class="container">
+
+        <div class="modalfade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+      
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sorry! This user has already registered a property.</h4>
+              </div>
+              <div class="modal-body">
+                <p>You are not authorized to register more than one property.</p>
+              </div>
+
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+
+
+
+
 <%end%>
 <style>
+
+  .close {display: none;}
+
   @media only screen and (min-width:786px){
   .PosChkInOut {
   position: absolute;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180716100821) do
+ActiveRecord::Schema.define(version: 20180720064532) do
 
   create_table "bookinglogs", force: :cascade do |t|
     t.integer  "hotel_id"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20180716100821) do
     t.string   "gstno"
     t.string   "ifsccode"
     t.string   "panno"
+    t.boolean  "tax"
+    t.boolean  "foodtaxsame"
   end
 
   add_index "hotels", ["user_id"], name: "index_hotels_on_user_id"

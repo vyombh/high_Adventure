@@ -4,6 +4,8 @@ class Roomtype < ActiveRecord::Base
 	has_many :bookings, dependent: :destroy
 	validates :typename,presence: true
 	validates :rooms,presence: true
+	validates :infants,presence: true
+	validates :beds,presence: true
 	validates :baseadults,presence: true,inclusion: 0..10
 	validates :basechildren,presence: true,inclusion: 0..10
 	validates :maximumadults,presence: true ,inclusion: 0..10

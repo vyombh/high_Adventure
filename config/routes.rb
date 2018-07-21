@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/bookings/order'
   get'/room_papa/filters'
   get'/room_papa/hotel_info'
-  get'/room_papa/room_page'
   get '/hotels' => 'room_papa#index'
   devise_for :users
   get 'bookings/order'
