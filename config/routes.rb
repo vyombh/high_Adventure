@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :roomtypes
   resources :hotels,only:[:new,:create,:edit,:update,:destroy]
   get 'room_papa/index'
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'bookings/order'
   get'/pricings/new'
+  get'/pricings/show'
   post'/pricings/create'
   get'/pricings/edit'
   post'/pricings/update'

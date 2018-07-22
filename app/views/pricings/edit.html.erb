@@ -12,22 +12,22 @@
 
         <div class="field form-group">
           <label class="control-label col-sm-3">Start Date* :</label>
-          <div class="col-sm-4" ><input type="number" required = 'true' name="start" id = 'start' class="form-control"></div>
+          <div class="col-sm-4" ><input type="Date" required = 'true' name="start" id = 'start' class="form-control"></div>
         </div>
 
         <div class="field form-group">
           <label class="control-label col-sm-3">End Date* :</label>
-          <div class="col-sm-4" ><input type="number" required = 'true' name="end" id = 'end' class="form-control"></div>
+          <div class="col-sm-4" ><input type="Date" required = 'true' name="end" id = 'end' class="form-control"></div>
         </div>
 
 
         <div class="field form-group">
-          <label class="control-label col-sm-3">baseprice for single occupancy* :</label>
+          <label class="control-label col-sm-3">Base price for single occupancy* :</label>
           <div class="col-sm-4" ><input type="number" required = 'true' name="base_1" id = 'base_1' class="form-control"></div>
         </div>
 
         <div class="field form-group">
-          <label class="control-label col-sm-3">baseprice for double occupancy* :</label>
+          <label class="control-label col-sm-3">Base price for double occupancy* :</label>
           <div class="col-sm-4" ><input type="number" required = 'true' name="base_2" id = 'base_2' class="form-control"></div>
         </div>
 
@@ -40,7 +40,9 @@
           <label class="control-label col-sm-3">Extra child cost* :</label>
           <div class="col-sm-4" ><input type="number" required = 'true' name="extrachild" id = 'extrachild' class="form-control"></div>
         </div>
-
+             
+        <div class="col-sm-10 col-sm-offset-3"><font size="3" color="green"><sup>*</sup>Enter '0' corresponding to the meals you're providing for free</font></div>
+        
         <div class="field form-group">
           <label class="control-label col-sm-3">Adult Breakfast rate* :</label>
           <div class="col-sm-4" ><input type="number" required = 'true' name="adult_breakfast" id = 'adult_breakfast' class="form-control"></div>
@@ -87,17 +89,8 @@
 
 
       <%@pricing.price[params[:room_id].to_i].each do |p|%>
-        priceobj['published_price'] = <%=p[:price][:published_price]%>
-        priceobj['base_1'] = <%=p[:price][:base_1]%>
-        priceobj['base_2'] =<%=p[:price][:base_2]%>
-        priceobj['extraadult'] = <%=p[:price][:extraadult]%>
-        priceobj['extrachild'] = <%=p[:price][:extrachild]%>
-        priceobj['adult_breakfast'] = <%=p[:price][:adult_breakfast]%>
-        priceobj['adult_lunch'] = <%=p[:price][:adult_lunch]%>
-        priceobj['adult_dinner'] = <%=p[:price][:adult_dinner]%>
-        priceobj['child_breakfast'] = <%=p[:price][:child_breakfast]%>
-        priceobj['child_lunch'] = <%=p[:price][:child_lunch]%>
-        priceobj['child_dinner'] = <%=p[:price][:child_dinner]%>
+        priceobj = <%= p[:price].to_json.html_safe%>
+        console.log(priceobj)
 
         var day =(<%=p[:start].day%>);
         var month =(<%=p[:start].month%>);
@@ -110,30 +103,30 @@
         CategoryPrice.push({price: priceobj,start: StartDate,end: EndDate});
       <%end%>
 
-
+      var NewPriceObj
       var NewPrice={};
       function declare(){
-      	var NewPriceObj = { 
+        NewPriceObj = { 
 
                 'published_price': parseInt($('#published_price')[0].value),
                 'base_1': parseInt($('#base_1')[0].value),
-      					'base_2': parseInt($('#base_2')[0].value),
-      					'extraadult': parseInt($('#extraadult')[0].value),
-      					'extrachild': parseInt($('#extrachild')[0].value),
-      					'adult_breakfast': parseInt($('#adult_breakfast')[0].value),
-      					'adult_lunch': parseInt($('#adult_lunch')[0].value),
-      					'adult_dinner': parseInt($('#adult_dinner')[0].value),
-      					'child_breakfast': parseInt($('#child_breakfast')[0].value),
-      					'child_lunch': parseInt($('#child_lunch')[0].value),
-      					'child_dinner': parseInt($('#child_dinner')[0].value)
+                'base_2': parseInt($('#base_2')[0].value),
+                'extraadult': parseInt($('#extraadult')[0].value),
+                'extrachild': parseInt($('#extrachild')[0].value),
+                'adult_breakfast': parseInt($('#adult_breakfast')[0].value),
+                'adult_lunch': parseInt($('#adult_lunch')[0].value),
+                'adult_dinner': parseInt($('#adult_dinner')[0].value),
+                'child_breakfast': parseInt($('#child_breakfast')[0].value),
+                'child_lunch': parseInt($('#child_lunch')[0].value),
+                'child_dinner': parseInt($('#child_dinner')[0].value)
 
-      	}
+        }
 
        NewPrice={price: NewPriceObj,start: new Date($('#start')[0].value.split('-')[0],$('#start')[0].value.split('-')[1]-1,$('#start')[0].value.split('-')[2])
       ,end: new Date($('#end')[0].value.split('-')[0],$('#end')[0].value.split('-')[1]-1,$('#end')[0].value.split('-')[2])
       };
       }
-      	
+        
 
       var Price=CategoryPrice;
 
@@ -162,7 +155,7 @@
         }
         var NextPrevDate = new Date();
         if (StartBlock==EndBlock)
-        {	
+        { 
           if (Price[StartBlock].start.getTime()==StartDate.getTime())
           {
               if (Price[EndBlock].end.getTime()==EndDate.getTime())
@@ -274,39 +267,72 @@
                 AddPrice(EndBlock+1,Price.length-1);
               }
             }
-        	}
-        	console.log(ChangePrice);
-        	return ChangePrice;
+          }
+          console.log(ChangePrice);
+          return ChangePrice;
       }
 
       $('#submit_id').click(function(e){
         e.preventDefault();
         declare();
-        
-        $.ajax({
-            url: '/pricings/update',
-            type: 'post',
-            data: {
-                  price: SetRate(Price,NewPrice),
-                  hotel_id: <%=current_user.hotel.id%>,
-                  roomtype_id: <%=params[:room_id]%>
-                  },
-            progress:function(loadTime,status){
-                              console.log(loadTime);
-                             },
-            success: function (result,status,object) {
-                      console.log(result);
-                      console.log(status);
-                      window.location.href = "/roomtypes";
-                     },
-            error:function(result,status) {
-                      alert(result.responseText);
-                      console.log(status);
-                     }
+ 
+        start=new Date(Date.parse($('#start')[0].value));
 
-          });
-        ChangePrice=[];
-      });
+        end=new Date(Date.parse($('#end')[0].value));
+        
+          if(!isNaN(NewPriceObj.published_price)
+            && ($('#start')[0].value).length>0
+            && ($('#end')[0].value).length>0
+            && !isNaN(NewPriceObj.base_1)
+            && !isNaN(NewPriceObj.base_2)
+            && !isNaN(NewPriceObj.extraadult)
+            && !isNaN(NewPriceObj.extrachild)
+            && !isNaN(NewPriceObj.adult_breakfast)
+            && !isNaN(NewPriceObj.adult_lunch)
+            && !isNaN(NewPriceObj.adult_dinner)    
+            && !isNaN(NewPriceObj.child_breakfast)
+            && !isNaN(NewPriceObj.child_lunch)
+            && !isNaN(NewPriceObj.child_dinner)){
+
+                if(start<end){
+                  $.ajax({
+                      url: '/pricings/update',
+                      type: 'post',
+                      data: {
+                            price: SetRate(Price,NewPrice),
+                            hotel_id: <%=current_user.hotel.id%>,
+                            roomtype_id: <%=params[:room_id]%>
+                            },
+                      progress:function(loadTime,status){
+                                        console.log(loadTime);
+                                       },
+                      success: function (result,status,object) {
+                                console.log(result);
+                                console.log(status);
+                                window.location.href = "/roomtypes";
+                               },
+                      error:function(result,status) {
+                                alert(result.responseText);
+                                console.log(status);
+                               }
+
+                  });
+                  ChangePrice=[];
+                }
+                else {
+
+                  noty({text: 'Start date should be greater than end date', type: 'error', timeout: 4000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+                  progressBar: true});
+
+                  
+                }
+            
+          }
+          else{
+            noty({text: 'You have not filled complete details', type: 'error', timeout: 4000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+                  progressBar: true});
+          }
+        });
     </script>
   <%else%>
 

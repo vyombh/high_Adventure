@@ -756,6 +756,35 @@
       </div>
     </div>
   <% end %>
+
+<%else%>
+   <div class="container-fluid">
+
+        <div class="modalfade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+      
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">This user has not registered any property.</h4>
+              </div>
+              <div class="modal-body">
+                <p>Kindly register your property 
+                   fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%></p>
+              </div>
+
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+      <style type="text/css">
+        .close{
+          display: none;
+        }
+      </style>
+
 <% end %>
 <style>
 

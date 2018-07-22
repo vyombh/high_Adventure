@@ -1,428 +1,410 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Page 4</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row ">
-        <h2>Inventory</h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-2">
-          <div><kbd>Today : 06 Jun 2018</kbd></div>
-        </div>
-        <div class="col-sm-10">
-          <button class="btn btn-warning col-sm-3" onclick="PreviousTenDays()"><span class="glyphicon glyphicon-chevron-left"></span>Previous 10 days</button>
-          <button class="btn btn-info col-sm-3 pull-right" onclick="NextTenDays()">Next 10 days<span class="glyphicon glyphicon-chevron-right"></span></button>
-        </div>
-      </div>
-
-      <!-- use code -->
-      <div class="row" style="padding-top:20px">
-        <div class="col-sm-3">
-          <div class="AvailableRoom UseAvailableRoom col-sm-2">
-          </div>
-          <div class="col-sm-9" style="padding-top:5px">
-            Rooms Remaining
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="SoldOutRoom UseSoldOutRoom col-sm-2">
-          </div>
-          <div class="col-sm-9" style="padding-top:5px">
-            All Rooms Booked
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="UseRoomEmptyNumber col-sm-2">X
-          </div>
-          <div class="col-sm-9" style="padding-top:5px">
-            Rooms Booked
-          </div>
-        </div>
-      </div>
-
-      <!-- table -->
-      <div class="">
-        <div class="table-responsive TableForDates">
-          <table class="table table-bordered">
-            <thead>
-              <tr id="TopRow">
-              </tr>
-            </thead>
-            <tbody id="TableData">
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="container" style="display:none">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <td>Sun</td>
-            <td>Mon</td>
-            <td>Tue</td>
-            <td>Wed</td>
-            <td>Thurs</td>
-            <td>Fri</td>
-            <td>Sat</td>
-          </tr>
-        </thead>
-        <tbody id="MonthTable">
-          <tr>
-            <td class="BlockedRoom">
-              <div>
-                1
+<%if current_user.hotel %>
+  <%if current_user.hotel.bookinglog%>
+      <!DOCTYPE html>
+      <html lang="en" dir="ltr">
+        <head>
+          <meta charset="utf-8">
+          <title>Page 4</title>
+        </head>
+        <body>
+          <div class="container">
+            <div class="row ">
+              <h2>Inventory</h2>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <div><kbd>Today : <%=Date.today.strftime('%d %B %Y')%></kbd></div>
               </div>
-              <div class="text-center RoomEmptyNumber">
-              NA
+              <div class="col-sm-10">
+                <button class="btn btn-warning col-sm-3" onclick="PreviousTenDays()"><span class="glyphicon glyphicon-chevron-left"></span>Previous 10 days</button>
+                <button class="btn btn-info col-sm-3 pull-right" onclick="NextTenDays()">Next 10 days<span class="glyphicon glyphicon-chevron-right"></span></button>
               </div>
-            </td>
-            <td>
-              <div>
-                2
+            </div>
+
+            <!-- use code -->
+            <div class="row" style="padding-top:20px">
+              <div class="col-sm-3">
+                <div class="AvailableRoom UseAvailableRoom col-sm-2">
+                </div>
+                <div class="col-sm-9" style="padding-top:5px">
+                  Rooms Remaining
+                </div>
               </div>
-            </td>
-            <td>
-              <div>
-                3
+              <div class="col-sm-3">
+                <div class="SoldOutRoom UseSoldOutRoom col-sm-2">
+                </div>
+                <div class="col-sm-9" style="padding-top:5px">
+                  All Rooms Booked
+                </div>
               </div>
-            </td>
-            <td>
-              <div>
-                4
+              <div class="col-sm-3">
+                <div class="UseRoomEmptyNumber col-sm-2">X
+                </div>
+                <div class="col-sm-9" style="padding-top:5px">
+                  Rooms Booked
+                </div>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </body>
-</html>
+            </div>
+
+            <!-- table -->
+            <div class="">
+              <div class="table-responsive TableForDates">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr id="TopRow">
+                    </tr>
+                  </thead>
+                  <tbody id="TableData">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="container" style="display:none">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td>Sun</td>
+                  <td>Mon</td>
+                  <td>Tue</td>
+                  <td>Wed</td>
+                  <td>Thurs</td>
+                  <td>Fri</td>
+                  <td>Sat</td>
+                </tr>
+              </thead>
+              <tbody id="MonthTable">
+                <tr>
+                  <td class="BlockedRoom">
+                    <div>
+                      1
+                    </div>
+                    <div class="text-center RoomEmptyNumber">
+                    NA
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      2
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      3
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      4
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </body>
+      </html>
 
 
 
 
 
-<script>
+      <script>
 
 
-var TableData='';
-obj = <%= Bookinglog.where(hotel_id: current_user.hotel.id).first.booking.to_json.html_safe %>;
-var endincrement=10;
-var diff=0;
-var arr = Object.keys(obj);
-var TodayDate = new Date();
-var DateToShow = TodayDate.getTime();
-var RoomTypeData=[];
+          var TableData='';
+          obj = <%= Bookinglog.where(hotel_id: current_user.hotel.id).first.booking.to_json.html_safe %>;
+          var endincrement=10;
+          var diff=0;
+          var arr = Object.keys(obj);
+          var TodayDate = new Date();
+          var DateToShow = TodayDate.getTime();
+          var RoomTypeData=[];
 
-function CalMonthStr(x)
-{
-  if(x==1)
-  {
-    return "Jan";
-  }
-  else if(x==2)
-  {
-    return "Feb";
-  }
-  else if(x==3)
-  {
-    return "Mar";
-  }
-  else if(x==4)
-  {
-    return "Apr";
-  }
-  else if(x==5)
-  {
-    return "May";
-  }
-  else if(x==6)
-  {
-    return "Jun";
-  }
-  else if(x==7)
-  {
-    return "Jul";
-  }
-  else if(x==8)
-  {
-    return "Aug";
-  }
-  else if(x==9)
-  {
-    return "Sep";
-  }
-  else if(x==10)
-  {
-    return "Oct";
-  }
-  else if(x==11)
-  {
-    return "Nov";
-  }
-  else
-  {
-    return "Dec";
-  }
-}
-
-
-function NextTenDays(){
-  endincrement=10;
-  DateToShow=DateToShow+(10*24*60*60*1000);
-  AllData(DateToShow);
-}
-
-function PreviousTenDays(){
-  endincrement=10;
-  DateToShow=DateToShow-(10*24*60*60*1000);
-  AllData(DateToShow);
-}
-
-function AddTopRow(date){
-  var x=date;
-  x=date.getTime();
-  var TopRow='';
-  TopRow=TopRow+
-          '<th>'+
-          'RoomType'+
-          '</th>'
-  for (var i = x; i < (x+(10*24*60*60*1000)); i=i+(24*60*60*1000)) {
-    var day=new Date(i);
-    date=day.getDate();
-    month=day.getMonth()+1;
-    month=CalMonthStr(month);
-    TopRow=TopRow+
-    '<th>'+
-      '<div class="text-center DateNumber">'+
-      date+
-      '</div>'+
-      '<div class="text-center">'+
-      month+
-      '</div>'+
-    '</th>'
-  }
-  document.getElementById('TopRow').innerHTML=TopRow;
-}
+          function CalMonthStr(x)
+          {
+            if(x==1)
+            {
+              return "Jan";
+            }
+            else if(x==2)
+            {
+              return "Feb";
+            }
+            else if(x==3)
+            {
+              return "Mar";
+            }
+            else if(x==4)
+            {
+              return "Apr";
+            }
+            else if(x==5)
+            {
+              return "May";
+            }
+            else if(x==6)
+            {
+              return "Jun";
+            }
+            else if(x==7)
+            {
+              return "Jul";
+            }
+            else if(x==8)
+            {
+              return "Aug";
+            }
+            else if(x==9)
+            {
+              return "Sep";
+            }
+            else if(x==10)
+            {
+              return "Oct";
+            }
+            else if(x==11)
+            {
+              return "Nov";
+            }
+            else
+            {
+              return "Dec";
+            }
+          }
 
 
-function checkdateequal(date1,date2){
+          function NextTenDays(){
+            endincrement=10;
+            DateToShow=DateToShow+(10*24*60*60*1000);
+            AllData(DateToShow);
+          }
 
-	if(date1.getFullYear()==date2.getFullYear()){
-		if(date1.getMonth()==date2.getMonth()){
-			if(date1.getDate()==date2.getDate()){
-				return 'equal';
-			}
-			else if(date1.getDate()<date2.getDate()){
-				return 'lesser';
-			}
-			else{
-				return 'greater';
-			}
-		}
-		else if(date1.getMonth()<date2.getMonth()){
-			return 'lesser';
-		}
-		else{
-			return 'greater';
-		}
-	}
-	else if(date1.getFullYear()<date2.getFullYear()){
-		return 'lesser';
-	}
-	else{
-		return 'greater'
-	}
-}
+          function PreviousTenDays(){
+            endincrement=10;
+            DateToShow=DateToShow-(10*24*60*60*1000);
+            AllData(DateToShow);
+          }
 
-// function to calculate
-var RoomName=0;
-function search(from, obj, roomtype){
-  diff=0;
-
-  // console.log(RoomTypeData.length);
-  // TableData=TableData+'<tr>'+
-  //           '<td>'+
-  //           RoomTypeData[10]+
-  //           '</td>'
-console.log(obj)
-
-  TableData=TableData+'<tr>'+ '<td>'+
-                      obj[roomtype][0].typename +
-                      '  '+
-                      '<strong>'+
-                      '('+
-                      obj[roomtype][0].total+
-                      ')<strong/>'+
-                       '</td>'
-
-	found=false;
-	var j;
-	var incremented = false;
-
-	from = new Date(Date.parse(from))
-
-	for(var i=0;i<arr.length;i++)
-	{
-		parsed = parseInt(arr[i]);
-
-		if(parsed==roomtype){
-
-			s=new Date(Date.parse(obj[parsed][0].start))
-
-			if(checkdateequal(from,s)=='lesser'){
-
-				diff = Math.abs(from - s);
-			    diff = Math.ceil(diff / (1000 * 3600 * 24))-1;
-
-				if(diff<=10){
-
-					enddate=new Date(Date.parse(from));
-					enddate.setDate(enddate.getDate() + diff);
-				}
-				else{
-
-					enddate=new Date(Date.parse(from));
-					enddate.setDate(enddate.getDate() + 10);
-
-				}
-
-				for (var d = from; d <enddate;) {
-
-						// console.log(d + " NA");
-                  TableData=TableData+'<td class="BlockedRoom">'+
-                    '<div class="text-center RoomEmptyNumber">'+
-                    'NA'+
-                    '</div>'+
-                    '</td>'
-
-
-				    	f=1;
-				    	d.setDate(d.getDate() + f)
-
-					}
-
-				from=s;
-
-			}
-			if(checkdateequal(from,s)=='equal' || checkdateequal(from,s)=='greater'){
-				for(j=0;j<obj[parsed].length;j++)
-				{
-					start=new Date(Date.parse(obj[parsed][j].start));
-					end=new Date(Date.parse(obj[parsed][j].end))
-
-					if((checkdateequal(from,start)=='equal' || checkdateequal(from,start)=='greater') && checkdateequal(from,end)=='lesser'){
-
-						found=true;
-						break;
-					}
-				}
-			}
-
-			if(found==true){
-
-				to=new Date(Date.parse(from));
-				to.setDate(to.getDate() + endincrement-diff-1);
-
-				f=0;
-
-				for (var d = from; d <=to;) {
-
-				    start1=new Date(Date.parse(obj[parsed][j].start));
-				    end1 = new Date(Date.parse(obj[parsed][j].end))
-
-				    if((checkdateequal(d,start1)=='equal' || checkdateequal(d,start1)=='greater') && checkdateequal(d,end1)=='lesser'){
-				    	// console.log(d + ":" + obj[parsed][j].frequency) AvialableRoom
-              if(obj[roomtype][0].total<=obj[parsed][j].frequency)
-              {
-                console.log("0");
-                TableData=TableData+'<td class="FullRoom">'
-              }
-                
-              else
-              {
-                console.log("1");
-               TableData=TableData+'<td class="AvailableRoom">' 
-              }
-
-              
-                TableData=TableData+'<div class="text-center RoomEmptyNumber">'+
-                  obj[parsed][j].frequency+
+          function AddTopRow(date){
+            var x=date;
+            x=date.getTime();
+            var TopRow='';
+            TopRow=TopRow+
+                    '<th>'+
+                    'RoomType'+
+                    '</th>'
+            for (var i = x; i < (x+(10*24*60*60*1000)); i=i+(24*60*60*1000)) {
+              var day=new Date(i);
+              date=day.getDate();
+              month=day.getMonth()+1;
+              month=CalMonthStr(month);
+              TopRow=TopRow+
+              '<th>'+
+                '<div class="text-center DateNumber">'+
+                date+
                 '</div>'+
-                '</td>'
-				    }
-				    else{
-				    	j=j+1;
-				    	incremented=true;
-				    }
-
-				    if(incremented){
-						f=0;
-				    	incremented=false;
-				    	d.setDate(d.getDate() + f)
-					}
-				    else{
-				    	f=1;
-				    	d.setDate(d.getDate() + f)
-					}
-				}
-
-			}
-			break;
-		}
-
-	}
-  TableData=TableData+'</tr>';
-  document.getElementById('TableData').innerHTML=TableData;
-}
+                '<div class="text-center">'+
+                month+
+                '</div>'+
+              '</th>'
+            }
+            document.getElementById('TopRow').innerHTML=TopRow;
+          }
 
 
-function AllData(DateToShow){
-  TableData=' ';
-  var x=new Date(DateToShow);
-  var year = x.getFullYear();
-  var month = x.getMonth();
-  var date = x.getDate();
-  AddTopRow(new Date(year, month, date));
-  for (var i = 0; i < arr.length; i++) {
-    search(new Date(year, month, date),obj, arr[i]);
-  }
-}
-// setTimeout(AllData(DateToShow), 50000);
+          function checkdateequal(date1,date2){
 
-$(document).ready(function(){  
-    AllData(DateToShow);
-});
+          	if(date1.getFullYear()==date2.getFullYear()){
+          		if(date1.getMonth()==date2.getMonth()){
+          			if(date1.getDate()==date2.getDate()){
+          				return 'equal';
+          			}
+          			else if(date1.getDate()<date2.getDate()){
+          				return 'lesser';
+          			}
+          			else{
+          				return 'greater';
+          			}
+          		}
+          		else if(date1.getMonth()<date2.getMonth()){
+          			return 'lesser';
+          		}
+          		else{
+          			return 'greater';
+          		}
+          	}
+          	else if(date1.getFullYear()<date2.getFullYear()){
+          		return 'lesser';
+          	}
+          	else{
+          		return 'greater'
+          	}
+          }
+
+        // function to calculate
+          var RoomName=0;
+          function search(from, obj, roomtype){
+            diff=0;
+
+            // console.log(RoomTypeData.length);
+            // TableData=TableData+'<tr>'+
+            //           '<td>'+
+            //           RoomTypeData[10]+
+            //           '</td>'
+
+          TableData=TableData+'<tr>'+ '<td>'+
+                              obj[roomtype][0].typename +
+                              '  '+
+                              '<strong>'+
+                              '('+
+                              obj[roomtype][0].total+
+                              ')<strong/>'+
+                               '</td>'
+
+        	found=false;
+        	var j;
+        	var incremented = false;
+
+        	from = new Date(Date.parse(from))
+
+        	for(var i=0;i<arr.length;i++)
+        	{
+        		parsed = parseInt(arr[i]);
+
+        		if(parsed==roomtype){
+
+        			s=new Date(Date.parse(obj[parsed][0].start))
+
+        			if(checkdateequal(from,s)=='lesser'){
+
+        				diff = Math.abs(from - s);
+        			    diff = Math.ceil(diff / (1000 * 3600 * 24))-1;
+
+        				if(diff<=10){
+
+        					enddate=new Date(Date.parse(from));
+        					enddate.setDate(enddate.getDate() + diff);
+        				}
+        				else{
+
+        					enddate=new Date(Date.parse(from));
+        					enddate.setDate(enddate.getDate() + 10);
+
+        				}
+
+        				for (var d = from; d <enddate;) {
+
+        						// console.log(d + " NA");
+                          TableData=TableData+'<td class="BlockedRoom">'+
+                            '<div class="text-center RoomEmptyNumber">'+
+                            'NA'+
+                            '</div>'+
+                            '</td>'
+
+
+        				    	f=1;
+        				    	d.setDate(d.getDate() + f)
+
+        					}
+
+        				from=s;
+
+        			}
+        			if(checkdateequal(from,s)=='equal' || checkdateequal(from,s)=='greater'){
+        				for(j=0;j<obj[parsed].length;j++)
+        				{
+        					start=new Date(Date.parse(obj[parsed][j].start));
+        					end=new Date(Date.parse(obj[parsed][j].end))
+
+        					if((checkdateequal(from,start)=='equal' || checkdateequal(from,start)=='greater') && checkdateequal(from,end)=='lesser'){
+
+        						found=true;
+        						break;
+        					}
+        				}
+        			}
+
+        			if(found==true){
+
+        				to=new Date(Date.parse(from));
+        				to.setDate(to.getDate() + endincrement-diff-1);
+
+        				f=0;
+
+        				for (var d = from; d <=to;) {
+
+        				    start1=new Date(Date.parse(obj[parsed][j].start));
+        				    end1 = new Date(Date.parse(obj[parsed][j].end))
+
+        				    if((checkdateequal(d,start1)=='equal' || checkdateequal(d,start1)=='greater') && checkdateequal(d,end1)=='lesser'){
+        				    	// console.log(d + ":" + obj[parsed][j].frequency) AvialableRoom
+                      if(obj[roomtype][0].total<=obj[parsed][j].frequency)
+                      {
+                        console.log("0");
+                        TableData=TableData+'<td class="FullRoom">'
+                      }
+                        
+                      else
+                      {
+                        console.log("1");
+                       TableData=TableData+'<td class="AvailableRoom">' 
+                      }
+
+                      
+                        TableData=TableData+'<div class="text-center RoomEmptyNumber">'+
+                          obj[parsed][j].frequency+
+                        '</div>'+
+                        '</td>'
+        				    }
+        				    else{
+        				    	j=j+1;
+        				    	incremented=true;
+        				    }
+
+        				    if(incremented){
+        						f=0;
+        				    	incremented=false;
+        				    	d.setDate(d.getDate() + f)
+        					}
+        				    else{
+        				    	f=1;
+        				    	d.setDate(d.getDate() + f)
+        					}
+        				}
+
+        			}
+        			break;
+        		}
+
+        	}
+          TableData=TableData+'</tr>';
+          document.getElementById('TableData').innerHTML=TableData;
+          }
+
+
+          function AllData(DateToShow){
+            TableData=' ';
+            var x=new Date(DateToShow);
+            var year = x.getFullYear();
+            var month = x.getMonth();
+            var date = x.getDate();
+            AddTopRow(new Date(year, month, date));
+            for (var i = 0; i < arr.length; i++) {
+              search(new Date(year, month, date),obj, arr[i]);
+            }
+          }
+        // setTimeout(AllData(DateToShow), 50000);
+
+          $(document).ready(function(){  
+              AllData(DateToShow);
+          });
+
+      </script>
 
 
 
 
-// var MonthTable=' ';
-// var MonthDate= new Date();
-// function ShowMonth(){
-//   endincrement=30;
-//   MonthTable =' ';
-//   MonthTable = '<tr>'
-//   var datenumber =1;
-//   for (var i = 0; i <MonthDate.getDay(); i++) {
-//     MonthTable=MonthTable+ '<td class="BlockedRoom">'+
-//       '<div>'+
-//       '</div>'+
-//       '<div class="">'+
-//       '</div>'+
-//     '</td>'
-//   }
-//   search(new Date(year, month, date),obj, arr[i]);
-//   console.log(MonthTable);
-//   document.getElementById('MonthTable').innerHTML=MonthTable;
-// }
-
-</script>
 
 
 
@@ -430,58 +412,112 @@ $(document).ready(function(){
 
 
 
+      <style>
+        .TableForDates{
+        padding-top: 50px;
+        }
+        .AvailableRoom{
+        background-color:#336600;
+        color: white;
+        }
+        .BlockedRoom{
+          background-color:#CCCCCC;
+          color: white;
+        }
+        .FullRoom{
+          background-color:red;
+          color: white;
+        }
+        .SoldOutRoom{
+        background-color:red;
+        color: white;
+        }
+        .DateNumber{
+        font-size: 20px;
+        color: black;
+        }
+        .RoomEmptyNumber{
+        color: white;
+        font-size:17px;
+        font-weight: bold;
+        background: #484848;
+        border-radius: 20%;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 5px;
+        }
+        .UseAvailableRoom,.UseSoldOutRoom,.UseRoomEmptyNumber{
+        height: 30px;
+        width: 30px;
+        }
+        .UseRoomEmptyNumber{
+        height: 33px;
+        width: 50px;
+        color: white;
+        font-size:17px;
+        font-weight: bold;
+        background: #484848;
+        border-radius: 20%;
+        padding-left: 19px;
+        padding-top: 6px;
+        }
 
+    </style>
+  <%else%>
+      <div class="container-fluid">
 
+        <div class="modalfade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+      
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">This user has not created any room category.</h4>
+              </div>
+              <div class="modal-body">
+                <p>Kindly create aleast one room category 
+                   <%=link_to "click here",new_roomtype_path,method: :get%></p>
+              </div>
 
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+      <style type="text/css">
+        .close{
+          display: none;
+        }
+      </style>
+  <%end%>
+<%else%>
 
-<style>
-.TableForDates{
-padding-top: 50px;
-}
-.AvailableRoom{
-background-color:#336600;
-color: white;
-}
-.BlockedRoom{
-  background-color:#CCCCCC;
-  color: white;
-}
-.FullRoom{
-  background-color:red;
-  color: white;
-}
-.SoldOutRoom{
-background-color:red;
-color: white;
-}
-.DateNumber{
-font-size: 20px;
-color: black;
-}
-.RoomEmptyNumber{
-color: white;
-font-size:17px;
-font-weight: bold;
-background: #484848;
-border-radius: 20%;
-margin-left: 15px;
-margin-right: 15px;
-padding: 5px;
-}
-.UseAvailableRoom,.UseSoldOutRoom,.UseRoomEmptyNumber{
-height: 30px;
-width: 30px;
-}
-.UseRoomEmptyNumber{
-height: 33px;
-width: 50px;
-color: white;
-font-size:17px;
-font-weight: bold;
-background: #484848;
-border-radius: 20%;
-padding-left: 19px;
-padding-top: 6px;
-}
+      <div class="container-fluid">
 
-</style>
+        <div class="modalfade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+      
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">This user has not registered any property.</h4>
+              </div>
+              <div class="modal-body">
+                <p>Kindly register your property 
+                   fill the <%=link_to "Profile Details",new_hotel_path(id: current_user.id),method: :get%></p>
+              </div>
+
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+      <style type="text/css">
+        .close{
+          display: none;
+        }
+      </style>
+
+<%end%>

@@ -1,822 +1,847 @@
 <!-- filter  -->
 <div class="row" id="NavbarThree">
-  <div class="navbar-header" id="" style="margin: 0px; padding: 0px;">
-    <div type="button" class="navbar-toggle btn btn-block" data-toggle="collapse" data-target="#NavbarThreeBlock" style="background:orange;margin:-1px;color:white;font-size:1.4em;">
-      Quick Book
-    </div>
-  </div>
-  <nav class=" navbar-default NavbarThree collapse navbar-collapse" id="NavbarThreeBlock">
-    <div class="container" id="ContainerOrRow">
-      <ul class="nav navbar-nav NavbarStyle">
-        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3 FontSize">
-          <div class="form">
-            <div class="input-group ">
-            <span class="input-group-addon EdgesSharp"><i id="DestinationSymbol" class="glyphicon glyphicon-map-marker"></i></span>
-            <input id="Destination" type="text" class="form-control EdgesSharp input-lg FontForInput" placeholder="Destination">
-            </div>
-          </div>
-        </li>
-        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4 FontSize">
-          <div class="form">
-            <div class="input-group">
-              <span class="input-group-addon EdgesSharp"><i class="glyphicon glyphicon-calendar"></i></span>
-              <input class="form-control EdgesSharp input-lg FontForInput" id="Calendar"type="text" name="datefilter" value="" onkeydown="return false" placeholder="Check-In - Check-Out" />
-            </div>
-          </div>
-        </li>
-        <div class="hidden-xs hidden-lg" style="padding-top: 20px">&nbsp</div>
-        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-          <div style="display: flex;" class="form">
-            <div class="col-xs-2" style="height:45px;max-width:39px;border: solid 1px #CCCCCC; border-right:none;background-color:#EEEEEE">
-             <i class="fa fa-bed"style="position:absolute;left:5px;font-size:22px;top: 10px;color: #545253;"></i>
-             </div>
-            <input id="RACShow" onkeydown="return false" type="text" class="col-xs-10 form-control EdgesSharp" style="height:45px;" placeholder="Rooms:0 Adults:0 Child:0">
-          </div>
-          <div class="drpdwn drpdwnhe"style="display:none">
-            <div class="" id="DropdownBlockRAC">
-              <div class="col-sm-12" style="background:white">
-                <div class="row" id="TotalRoom" style="padding-left:5px;padding-right:5px">
-                </div>
-                <div class="row" style="padding-left:5px;padding-right:5px">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <h5>
-                        Room Details
-                      </h5>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-8">
-                      Adults
-                    </div>
-                    <div class="col-sm-4">
-                      <select class="form-control control-label input-sm EdgesSharp" id="NoOfAdult">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row" style="padding-top:10px;padding-bottom:10px;">
-                    <div class="col-sm-8">
-                      Children
-                    </div>
-                    <div class="col-sm-4">
-                      <select class="form-control control-label input-sm EdgesSharp" id="NoOfChild">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row" style="padding-bottom:5px;" id="ChildAgeCol">
-                  </div>
-                </div>
-                <div class="row" style="border-top:solid 1px #CCCCCC;padding-top:10px;padding-left:5px;padding-right:5px;padding-bottom:5px">
-                  <div class="row">
-                    <div class="col-sm-6 pull-left">
-                      <button type="button" name="button" class="btn btn-success btn-block btn-sm EdgesSharp" id="AddRoom">Add Room</button>
-                    </div>
-                    <div class="col-sm-4 pull-right">
-                      <button type="button" name="button" class="btn btn-primary btn-block btn-sm EdgesSharp" id="DoneRoom"> Done</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
-          <div class="form">
-            <button class="btn btn-primary btn-block EdgesSharp btn-lg" type="button" name="button" id="searchbar">Search</button>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+	<div class="navbar-header" id="" style="margin: 0px; padding: 0px;">
+		<div type="button" class="navbar-toggle btn btn-block" data-toggle="collapse" data-target="#NavbarThreeBlock" style="background:orange;margin:-1px;color:white;font-size:1.4em;">
+		  Quick Book
+		</div>
+	</div>
+	<nav class=" navbar-default NavbarThree collapse navbar-collapse" id="NavbarThreeBlock">
+		<div class="container" id="ContainerOrRow">
+		  <ul class="nav navbar-nav NavbarStyle">
+		    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3 FontSize">
+		      <div class="form">
+		        <div class="input-group ">
+		        <span class="input-group-addon EdgesSharp"><i id="DestinationSymbol" class="glyphicon glyphicon-map-marker"></i></span>
+		        <input id="Destination" type="text" class="form-control EdgesSharp input-lg FontForInput" placeholder="Destination">
+		        </div>
+		      </div>
+		    </li>
+		    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4 FontSize">
+		      <div class="form">
+		        <div class="input-group">
+		          <span class="input-group-addon EdgesSharp"><i class="glyphicon glyphicon-calendar"></i></span>
+		          <input class="form-control EdgesSharp input-lg FontForInput" id="Calendar"type="text" name="datefilter" value="" onkeydown="return false" placeholder="Check-In - Check-Out" />
+		        </div>
+		      </div>
+		    </li>
+		    <div class="hidden-xs hidden-lg" style="padding-top: 20px">&nbsp</div>
+		    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+		      <div style="display: flex;" class="form">
+		        <div class="col-xs-2" style="height:45px;max-width:39px;border: solid 1px #CCCCCC; border-right:none;background-color:#EEEEEE">
+		         <i class="fa fa-bed"style="position:absolute;left:5px;font-size:22px;top: 10px;color: #545253;"></i>
+		         </div>
+		        <input id="RACShow" onkeydown="return false" type="text" class="col-xs-10 form-control EdgesSharp" style="height:45px;" placeholder="Rooms:0 Adults:0 Child:0">
+		      </div>
+		      <div class="drpdwn drpdwnhe"style="display:none">
+		        <div class="" id="DropdownBlockRAC">
+		          <div class="col-sm-12" style="background:white">
+		            <div class="row" id="TotalRoom" style="padding-left:5px;padding-right:5px">
+		            </div>
+		            <div class="row" style="padding-left:5px;padding-right:5px">
+		              <div class="row">
+		                <div class="col-sm-12">
+		                  <h5>
+		                    Room Details
+		                  </h5>
+		                </div>
+		              </div>
+		              <div class="row">
+		                <div class="col-sm-8">
+		                  Adults
+		                </div>
+		                <div class="col-sm-4">
+		                  <select class="form-control control-label input-sm EdgesSharp" id="NoOfAdult">
+		                    <option value="1">1</option>
+		                    <option value="2">2</option>
+		                    <option value="3">3</option>
+		                    <option value="4">4</option>
+		                    <option value="5">5</option>
+		                    <option value="6">6</option>
+		                  </select>
+		                </div>
+		              </div>
+		              <div class="row" style="padding-top:10px;padding-bottom:10px;">
+		                <div class="col-sm-8">
+		                  Children
+		                </div>
+		                <div class="col-sm-4">
+		                  <select class="form-control control-label input-sm EdgesSharp" id="NoOfChild">
+		                    <option value="0">0</option>
+		                    <option value="1">1</option>
+		                    <option value="2">2</option>
+		                    <option value="3">3</option>
+		                    <option value="4">4</option>
+		                  </select>
+		                </div>
+		              </div>
+		              <div class="row" style="padding-bottom:5px;" id="ChildAgeCol">
+		              </div>
+		            </div>
+		            <div class="row" style="border-top:solid 1px #CCCCCC;padding-top:10px;padding-left:5px;padding-right:5px;padding-bottom:5px">
+		              <div class="row">
+		                <div class="col-sm-6 pull-left">
+		                  <button type="button" name="button" class="btn btn-success btn-block btn-sm EdgesSharp" id="AddRoom">Add Room</button>
+		                </div>
+		                <div class="col-sm-4 pull-right">
+		                  <button type="button" name="button" class="btn btn-primary btn-block btn-sm EdgesSharp" id="DoneRoom"> Done</button>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </li>
+		    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+		      <div class="form">
+		        <button class="btn btn-primary btn-block EdgesSharp btn-lg" type="button" name="button" id="searchbar">Search</button>
+		      </div>
+		    </li>
+		  </ul>
+		</div>
+	</nav>
 </div>
 <div class="container" style="background-color: white;">
-  <div class="navbar-header" style="margin-top: 3px;">
-      <div type="button" class="navbar-toggle btn btn-block" id="FilterOption" data-toggle="collapse" data-target="#filters" style="margin:-1px;color:white;font-size:1.4em;background-color: #006dcc">
-        Filters
-      </div>
-  </div>
-<div class="col-sm-3">
-	<div class="navbar-collapse collapse" id="filters" style="padding: 0px;margin: 0px;border: solid 2px orange;position: relative;">
-	<!-- pricing -->
-	<form action = "/room_papa/filters">
-		<div class="" data-role="rangeslider">
-			<label for="Price">Price</label>
-			<input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
-			<label for="price-max">Price:</label>
-      <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-		</div>
-		<div align="center" class="btn-primary smMainFilter">
-			Pricing
-			min: <input type="number" id = "min_price" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000">
-			max: <input type="number" id = "max_price" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">
-		</div>
+	<div class="navbar-header" style="margin-top: 3px;">
+	  <div type="button" class="navbar-toggle btn btn-block" id="FilterOption" data-toggle="collapse" data-target="#filters" style="margin:-1px;color:white;font-size:1.4em;background-color: #006dcc">
+	    Filters
+	  </div>
+	</div>
+	<div class="col-sm-3">
+		<div class="navbar-collapse collapse" id="filters" style="padding: 0px;margin: 0px;border: solid 2px orange;position: relative;">
+			<form action = "/room_papa/filters">
+				<div class="" data-role="rangeslider">
+					<label for="Price">Price</label>
+					<input type="range" name="price-min" id="price-min" value="200" min="0" max="10000">
+					<label for="price-max">Price:</label>
+			  <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+				</div>
+				<div align="center" class="btn-primary smMainFilter">
+					Pricing
+					min: <input type="number" id = "min_price" name="min_price" value="<%=params[:min_price]%>" min="0" max="100000">
+					max: <input type="number" id = "max_price" name="max_price" value="<%=params[:max_price]%>" min="0" max="100000">
+				</div>
 
-		<div align="center" class="btn-primary smMainFilter">
-			Star Rating
-			<input type="number" id = "rating" name="rating" value = "<%=params[:rating]%>" min = 0 max = 7 required = 'true'><br>
-		</div>
+				<div align="center" class="btn-primary smMainFilter">
+					Star Rating
+					<input type="number" id = "rating" name="rating" value = "<%=params[:rating]%>" min = 0 max = 7 required = 'true'><br>
+				</div>
 
-		<div align="center" class="btn-primary medMainFilter
-		">Hotel Facilities</div>
+				<div align="center" class="btn-primary medMainFilter
+				">Hotel Facilities</div>
 
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Bar</span>
-			<span>
-			<%if params[:bar] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "bar" name="bar" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "bar" name="bar"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Gym</span>
-			<span>
-			<%if params[:gym] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "gym" name="gym" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "gym" name="gym"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Lift</span>
-			<span>
-			<%if params[:lift] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "lift" name="lift" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "lift" name="lift"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Parking</span>
-			<span>
-			<%if params[:parking] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "parking" name="parking" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "parking" name="parking"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Restaurant</span>
-			<span>
-			<%if params[:restaurant] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "restaurant" name="restaurant" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "restaurant" name="restaurant"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Spa</span>
-			<span>
-			<%if params[:spa] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "spa" name="spa" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "spa" name="spa"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Swimming Pool</span>
-			<span>
-			<%if params[:swimmingpool] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "swimmingpool" name="swimmingpool" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "swimmingpool" name="swimmingpool"><br>
-				<%end%>
-			</span>
-		</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Bar</span>
+					<span>
+					<%if params[:bar] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "bar" name="bar" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "bar" name="bar"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Gym</span>
+					<span>
+					<%if params[:gym] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "gym" name="gym" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "gym" name="gym"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Lift</span>
+					<span>
+					<%if params[:lift] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "lift" name="lift" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "lift" name="lift"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Parking</span>
+					<span>
+					<%if params[:parking] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "parking" name="parking" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "parking" name="parking"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Restaurant</span>
+					<span>
+					<%if params[:restaurant] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "restaurant" name="restaurant" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "restaurant" name="restaurant"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Spa</span>
+					<span>
+					<%if params[:spa] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "spa" name="spa" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "spa" name="spa"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Swimming Pool</span>
+					<span>
+					<%if params[:swimmingpool] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "swimmingpool" name="swimmingpool" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "swimmingpool" name="swimmingpool"><br>
+						<%end%>
+					</span>
+				</div>
 
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Barbecue</span>
-			<span>
-			<%if params[:swimmingpool] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "barbecue" name="barbecue" checked="true"><br>
-			<%else%>
-				<input class="boxwidth" type="checkbox"  id = "barbecue" name="barbecue"><br>
-				<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Coffee Machine</span>
-			<span>
-			<%if params[:coffeemachine] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "coffeemachine" name="coffeemachine" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "coffeemachine" name="coffeemachine"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Dining Area</span>
-			<span>
-			<%if params[:diningarea] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "diningarea" name="diningarea" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "diningarea" name="diningarea"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Dining Table</span>
-			<span>
-			<%if params[:diningtable] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "diningtable" name="diningtable" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "diningtable" name="diningtable"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">High Chair</span>
-			<span>
-			<%if params[:highchair] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "highchair" name="highchair" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "highchair" name="highchair"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Kitchenette</span>
-			<span>
-			<%if params[:kitchenette] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "kitchenette" name="kitchenette" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "kitchenette" name="kitchenette"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Microwave</span>
-			<span>
-			<%if params[:microwave] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "microwave" name="microwave" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "microwave" name="microwave"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Outdoor Dining Area</span>
-			<span>
-			<%if params[:outdoordiningarea] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "outdoordiningarea" name="outdoordiningarea" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "outdoordiningarea" name="outdoordiningarea"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Outdoor Furniture</span>
-			<span>
-			<%if params[:outdoorfurniture] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "outdoorfurniture" name="outdoorfurniture" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "outdoorfurniture" name="outdoorfurniture"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Refrigerator</span>
-			<span>
-			<%if params[:refrigerator] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "refrigerator" name="refrigerator" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "refrigerator" name="refrigerator"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Stove Top</span>
-			<span>
-			<%if params[:stovetop] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "stovetop" name="stovetop" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "stovetop" name="stovetop"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Tea Coffee Machine</span>
-			<span>
-			<%if params[:teacoffeemachine] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "teacoffeemachine" name="teacoffeemachine" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "teacoffeemachine" name="teacoffeemachine"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10" class="col-sm-10 col-md-10 col-xs-10">Toaster</span>
-			<span>
-			<%if params[:toaster] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "toaster" name="toaster" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "toaster" name="toaster"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Elevator</span>
-			<span>
-			<%if params[:elevator] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "elevator" name="elevator" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "elevator" name="elevator"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Staircase Only</span>
-			<span>
-			<%if params[:staircaseonly] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "staircaseonly" name="staircaseonly" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "staircaseonly" name="staircaseonly"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Grab Rails Toilet</span>
-			<span>
-			<%if params[:grabrailstoilet] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "grabrailstoilet" name="grabrailstoilet" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "grabrailstoilet" name="grabrailstoilet"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Ground Floor</span>
-			<span>
-			<%if params[:groundfloor] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "groundfloor" name="groundfloor" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "groundfloor" name="groundfloor"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Wheelchair</span>
-			<span>
-			<%if params[:wheelchair] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "wheelchair" name="wheelchair" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "wheelchair" name="wheelchair"><br>
-			<%end%>
-			</span>
-		</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Barbecue</span>
+					<span>
+					<%if params[:barbecue] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "barbecue" name="barbecue" checked="true"><br>
+					<%else%>
+						<input class="boxwidth" type="checkbox"  id = "barbecue" name="barbecue"><br>
+						<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Coffee Machine</span>
+					<span>
+					<%if params[:coffeemachine] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "coffeemachine" name="coffeemachine" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "coffeemachine" name="coffeemachine"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Dining Area</span>
+					<span>
+					<%if params[:diningarea] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "diningarea" name="diningarea" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "diningarea" name="diningarea"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Dining Table</span>
+					<span>
+					<%if params[:diningtable] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "diningtable" name="diningtable" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "diningtable" name="diningtable"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">High Chair</span>
+					<span>
+					<%if params[:highchair] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "highchair" name="highchair" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "highchair" name="highchair"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Kitchenette</span>
+					<span>
+					<%if params[:kitchenette] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "kitchenette" name="kitchenette" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "kitchenette" name="kitchenette"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Microwave</span>
+					<span>
+					<%if params[:microwave] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "microwave" name="microwave" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "microwave" name="microwave"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Outdoor Dining Area</span>
+					<span>
+					<%if params[:outdoordiningarea] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "outdoordiningarea" name="outdoordiningarea" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "outdoordiningarea" name="outdoordiningarea"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Outdoor Furniture</span>
+					<span>
+					<%if params[:outdoorfurniture] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "outdoorfurniture" name="outdoorfurniture" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "outdoorfurniture" name="outdoorfurniture"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Refrigerator</span>
+					<span>
+					<%if params[:refrigerator] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "refrigerator" name="refrigerator" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "refrigerator" name="refrigerator"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Stove Top</span>
+					<span>
+					<%if params[:stovetop] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "stovetop" name="stovetop" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "stovetop" name="stovetop"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Tea Coffee Machine</span>
+					<span>
+					<%if params[:teacoffeemachine] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "teacoffeemachine" name="teacoffeemachine" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "teacoffeemachine" name="teacoffeemachine"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10" class="col-sm-10 col-md-10 col-xs-10">Toaster</span>
+					<span>
+					<%if params[:toaster] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "toaster" name="toaster" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "toaster" name="toaster"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Elevator</span>
+					<span>
+					<%if params[:elevator] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "elevator" name="elevator" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "elevator" name="elevator"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Staircase Only</span>
+					<span>
+					<%if params[:staircaseonly] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "staircaseonly" name="staircaseonly" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "staircaseonly" name="staircaseonly"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Grab Rails Toilet</span>
+					<span>
+					<%if params[:grabrailstoilet] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "grabrailstoilet" name="grabrailstoilet" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "grabrailstoilet" name="grabrailstoilet"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Ground Floor</span>
+					<span>
+					<%if params[:groundfloor] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "groundfloor" name="groundfloor" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "groundfloor" name="groundfloor"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Wheelchair</span>
+					<span>
+					<%if params[:wheelchair] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "wheelchair" name="wheelchair" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "wheelchair" name="wheelchair"><br>
+					<%end%>
+					</span>
+				</div>
 
-		<div align="center" class="btn-primary medMainFilter
-		">Room Facilities</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Clothes Racks</span>
-			<span>
-			<%if params[:clothesracks] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "clothesracks" name="clothesracks" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "clothesracks" name="clothesracks"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Drying Racking</span>
-			<span>
-			<%if params[:dryingracking] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "dryingracking" name="dryingracking" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "dryingracking" name="dryingracking"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Fold Up Bed</span>
-			<span>
-			<%if params[:foldupbed] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "foldupbed" name="foldupbed" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "foldupbed" name="foldupbed"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Sofa Bed</span>
-			<span>
-			<%if params[:sofabed] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "sofabed" name="sofabed" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "sofabed" name="sofabed"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Wardrobe</span>
-			<span>
-			<%if params[:wardrobe] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "wardrobe" name="wardrobe" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "wardrobe" name="wardrobe"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Carpeted</span>
-			<span>
-			<%if params[:carpeted] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "carpeted" name="carpeted" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "carpeted" name="carpeted"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Walking Closet</span>
-			<span>
-			<%if params[:walkingcloset] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "walkingcloset" name="walkingcloset" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "walkingcloset" name="walkingcloset"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Extra Long Beds</span>
-			<span>
-			<%if params[:extralongbeds] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "extralongbeds" name="extralongbeds" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "extralongbeds" name="extralongbeds"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Fire Place</span>
-			<span>
-			<%if params[:fireplace] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "fireplace" name="fireplace" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "fireplace" name="fireplace"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Heater</span>
-			<span>
-			<%if params[:heater] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "heater" name="heater" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "heater" name="heater"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Inter Connecting Rooms</span>
-			<span>
-			<%if params[:interconnectingrooms] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "interconnectingrooms" name="interconnectingrooms" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "interconnectingrooms" name="interconnectingrooms"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Iron</span>
-			<span>
-			<%if params[:iron] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "iron" name="iron" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "iron" name="iron"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Desk</span>
-			<span>
-			<%if params[:desk] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "desk" name="desk" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "desk" name="desk"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">WiFi</span>
-			<span>
-			<%if params[:wifi] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "wifi" name="wifi" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "wifi" name="wifi"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Smoking</span>
-			<span>
-			<%if params[:smoking] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "smoking" name="smoking" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "smoking" name="smoking"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">TV</span>
-			<span>
-			<%if params[:tv] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "tv" name="tv" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "tv" name="tv"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Bathroom</span>
-			<span>
-			<%if params[:bathroom] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "bathroom" name="bathroom" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "bathroom" name="bathroom"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Toilet Paper</span>
-			<span>
-			<%if params[:toiletpaper] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "toiletpaper" name="toiletpaper" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "toiletpaper" name="toiletpaper"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Bath Tub</span>
-			<span>
-			<%if params[:bathtub] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "bathtub" name="bathtub" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "bathtub" name="bathtub"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Shower</span>
-			<span>
-			<%if params[:shower] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "shower" name="shower" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "shower" name="shower"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Bath Robe</span>
-			<span>
-			<%if params[:bathrobe] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "bathrobe" name="bathrobe" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "bathrobe" name="bathrobe"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Free Toiletries</span>
-			<span>
-			<%if params[:freetoiletries] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "freetoiletries" name="freetoiletries" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "freetoiletries" name="freetoiletries"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Hair Dryer</span>
-			<span>
-			<%if params[:hairdryer] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "hairdryer" name="hairdryer" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "hairdryer" name="hairdryer"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Spa Tub</span>
-			<span>
-			<%if params[:spatub] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "spatub" name="spatub" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "spatub" name="spatub"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Shared Bathroom</span>
-			<span>
-			<%if params[:sharedbathroom] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "sharedbathroom" name="sharedbathroom" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "sharedbathroom" name="sharedbathroom"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Slippers</span>
-			<span>
-			<%if params[:slippers] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "slippers" name="slippers" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "slippers" name="slippers"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Toilets</span>
-			<span>
-			<%if params[:toilets] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "toilets" name="toilets" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "toilets" name="toilets"><br>
-			<%end%>
-			</span>
-		</div>
-		<div class="btn-primary smMainFilter">
-			<span class="col-sm-10 col-md-10 col-xs-10">Geyser</span>
-			<span>
-			<%if params[:geyser] == 'true'%>
-				<input class="boxwidth" type="checkbox" id = "geyser" name="geyser" checked="true"><br>
-		 	<%else%>
-				<input class="boxwidth" type="checkbox" id = "geyser" name="geyser"><br>
-			<%end%>
-			</span>
-		</div>
-		<button class="col-sm-12 col-xs-12 col-md-12" id='submit_filter' style="background: orange;position:absolute;bottom: 0px;height: 30px;border: none;color: white;font-size: 1.2em;">
-			Apply Filter
-		</button>
-	</form>
+				<div align="center" class="btn-primary medMainFilter
+				">Room Facilities</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Clothes Racks</span>
+					<span>
+					<%if params[:clothesracks] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "clothesracks" name="clothesracks" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "clothesracks" name="clothesracks"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Drying Racking</span>
+					<span>
+					<%if params[:dryingracking] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "dryingracking" name="dryingracking" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "dryingracking" name="dryingracking"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Fold Up Bed</span>
+					<span>
+					<%if params[:foldupbed] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "foldupbed" name="foldupbed" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "foldupbed" name="foldupbed"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Sofa Bed</span>
+					<span>
+					<%if params[:sofabed] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "sofabed" name="sofabed" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "sofabed" name="sofabed"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Wardrobe</span>
+					<span>
+					<%if params[:wardrobe] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "wardrobe" name="wardrobe" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "wardrobe" name="wardrobe"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Carpeted</span>
+					<span>
+					<%if params[:carpeted] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "carpeted" name="carpeted" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "carpeted" name="carpeted"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Walking Closet</span>
+					<span>
+					<%if params[:walkingcloset] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "walkingcloset" name="walkingcloset" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "walkingcloset" name="walkingcloset"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Extra Long Beds</span>
+					<span>
+					<%if params[:extralongbeds] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "extralongbeds" name="extralongbeds" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "extralongbeds" name="extralongbeds"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Fire Place</span>
+					<span>
+					<%if params[:fireplace] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "fireplace" name="fireplace" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "fireplace" name="fireplace"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Heater</span>
+					<span>
+					<%if params[:heater] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "heater" name="heater" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "heater" name="heater"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Inter Connecting Rooms</span>
+					<span>
+					<%if params[:interconnectingrooms] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "interconnectingrooms" name="interconnectingrooms" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "interconnectingrooms" name="interconnectingrooms"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Iron</span>
+					<span>
+					<%if params[:iron] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "iron" name="iron" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "iron" name="iron"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Desk</span>
+					<span>
+					<%if params[:desk] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "desk" name="desk" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "desk" name="desk"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">WiFi</span>
+					<span>
+					<%if params[:wifi] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "wifi" name="wifi" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "wifi" name="wifi"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Smoking</span>
+					<span>
+					<%if params[:smoking] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "smoking" name="smoking" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "smoking" name="smoking"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">TV</span>
+					<span>
+					<%if params[:tv] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "tv" name="tv" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "tv" name="tv"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Bathroom</span>
+					<span>
+					<%if params[:bathroom] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "bathroom" name="bathroom" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "bathroom" name="bathroom"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Toilet Paper</span>
+					<span>
+					<%if params[:toiletpaper] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "toiletpaper" name="toiletpaper" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "toiletpaper" name="toiletpaper"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Bath Tub</span>
+					<span>
+					<%if params[:bathtub] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "bathtub" name="bathtub" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "bathtub" name="bathtub"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Shower</span>
+					<span>
+					<%if params[:shower] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "shower" name="shower" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "shower" name="shower"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Bath Robe</span>
+					<span>
+					<%if params[:bathrobe] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "bathrobe" name="bathrobe" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "bathrobe" name="bathrobe"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Free Toiletries</span>
+					<span>
+					<%if params[:freetoiletries] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "freetoiletries" name="freetoiletries" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "freetoiletries" name="freetoiletries"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Hair Dryer</span>
+					<span>
+					<%if params[:hairdryer] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "hairdryer" name="hairdryer" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "hairdryer" name="hairdryer"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Spa Tub</span>
+					<span>
+					<%if params[:spatub] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "spatub" name="spatub" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "spatub" name="spatub"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Shared Bathroom</span>
+					<span>
+					<%if params[:sharedbathroom] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "sharedbathroom" name="sharedbathroom" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "sharedbathroom" name="sharedbathroom"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Slippers</span>
+					<span>
+					<%if params[:slippers] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "slippers" name="slippers" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "slippers" name="slippers"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Toilets</span>
+					<span>
+					<%if params[:toilets] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "toilets" name="toilets" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "toilets" name="toilets"><br>
+					<%end%>
+					</span>
+				</div>
+				<div class="btn-primary smMainFilter">
+					<span class="col-sm-10 col-md-10 col-xs-10">Geyser</span>
+					<span>
+					<%if params[:geyser] == 'true'%>
+						<input class="boxwidth" type="checkbox" id = "geyser" name="geyser" checked="true"><br>
+				 	<%else%>
+						<input class="boxwidth" type="checkbox" id = "geyser" name="geyser"><br>
+					<%end%>
+					</span>
+				</div>
+				<button class="col-sm-12 col-xs-12 col-md-12" id='submit_filter' style="background: orange;position:absolute;bottom: 0px;height: 30px;border: none;color: white;font-size: 1.2em;">
+					Apply Filter
+				</button>
+			</form>
 
-</div>
-</div>
+		</div>
+	</div>
 
-
-<%if @rooms.length>0%>
+	<%if @rooms.length>0%>
 		<%@rooms.each do |perHotelRoom|%>
 			<%hotel_id = Roomtype.find_by_id(perHotelRoom.first[:id]).hotel_id%>
 			<%hotel = Hotel.find_by_id(hotel_id)%>
 			<div style="border: 1px solid black;margin-bottom: 10px" class="col-sm-9 Hotel">
-			<div class="col-sm-4" style="background:white">
-			<% if hotel.images.any?%>
-				<%= image_tag(hotel.images[0].url,:class=>'HotelImage') %>
-			<%end%>
-			</div>
-	<div class="col-sm-8" style="background:white">
-				<div class="row">
-					<div class="NameRating row" >
-						<div class="Name col-sm-10">
-							<strong><h3><%=link_to hotel.hotelname.downcase.titleize , room_papa_hotel_info_path(id: hotel.id),target: '_blank',:class=>'BlackText'%></h3></strong>
-						</div>
-						<div class="Rating col-sm-1 pull-right">
-							<%=hotel.rating%>
-						</div>
-					</div>
-					<div class="col-sm-6" >
-						<div class="row">
-							<div class="Address1">
-							<%=hotel.buildingname.downcase.capitalize%> ,
-							<%=hotel.streetname.downcase.capitalize%>
-							</div>
-							<div class="Address2">
-							<%=hotel.city.downcase.capitalize%> ,
-							<%=hotel.state.downcase.capitalize%> -
-							<%=hotel.zipcode%>
-							</div>
-							<div class="Landmark">
-							<strong>Landmark </strong><%=hotel.landmark.downcase.capitalize%>
-							</div>
-						</div>
-					</div>
-
-					<!-- <%=hotel.country.downcase.capitalize%> -->
-					<div class="Price col-sm-3 pull-right">
-						<%total = 0%>
-						<%perHotelRoom = perHotelRoom.group_by{|a| a[:id]}%>
-						<!-- <div class="row">
-							<div class="col-sm-12">
-								<div class="col-sm-4">
-									<div class="row">
-										<span class="pull-left">Type</span>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="row">
-										<span>Room/s</span>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="row">
-										<span class="pull-right"><%=hotel.currency%></span>
-									</div>
-								</div>
-							</div>
-						</div> -->
-						<%perHotelRoom.each do |r|%>
-								<%room = Roomtype.find_by_id(r[0])%>
-								<%price = 0%>
-								<%r[1].each do |room|%>
-										<%if room[:requiredAdults] + room[:requiredChildren] < room[:capacity]%>
-											<%price = room[:price][:base_1]+price%>
-										<%elsif room[:requiredAdults] + room[:requiredChildren] == room[:capacity] %>
-											<% price = room[:price][:base_2] + price %>
-										<%elsif room[:requiredAdults] + room[:requiredChildren] > room[:capacity] %>
-											<% price = room[:price][:base_2]+price%>
-
-										<% if room[:requiredAdults]-room[:baseadults]>0 %>
-												<%price = room[:price][:extraadult]*(room[:requiredAdults]-room[:baseadults]) + price%>
-										<%end %>
-										<% if room[:requiredChildren]-room[:basechildren]>0 %>
-											<%price = room[:price][:extrachild]*(room[:requiredChildren]-room[:basechildren]) + price %>
-										<%end%>
-								<%end%>
-						<%end%>
-						<%total = total + price%>
-
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="col-sm-1">
-									<div class="row">
-										<span><%=r[1].length%></span>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="row">
-										<span class=""><%=room.typename.downcase.capitalize%></span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<%end%>
-						<!-- <div class="row">
-							<div class="col-sm-12" style="border-top:solid 1px black">
-								<div class="col-sm-4">
-									<div class="row">
-										<b>TOTAL</b>
-									</div>
-								</div>
-
-								<div class="col-sm-4 col-sm-offset-4">
-									<div class="row">
-										<span class="pull-right" style="font-size:17px"><b><%=total%></b></span>
-									</div>
-								</div>
-							</div>
-						</div> -->
-					</div>
+				<div class="col-sm-4" style="background:white">
+					<% if hotel.images.any?%>
+						<%= image_tag(hotel.images[0].url,:class=>'HotelImage') %>
+					<%end%>
 				</div>
-				<div class="row">
+				<div class="col-sm-8" style="background:white">
 					<div class="row">
-						<div class="col-sm-8">
-							facilites
-						</div>
-						<div class="col-sm-4" style="padding:20px 0px 10px 0px;margin-right:-20px;">
-							<div class="col-sm-6">
-							<span id="Currency" class="Currency" ><%=hotel.currency%> : </span>
-							<span id="TotalPrice" class="TotalPrice" ><%=total%></span>
+						<div class="NameRating row" >
+							<div class="Name col-sm-10">
+								<strong><h3><%=link_to hotel.hotelname.downcase.titleize , room_papa_hotel_info_path(id: hotel.id),target: '_blank',:class=>'BlackText'%></h3></strong>
 							</div>
-							<div class="pull-right" style="padding-right:10px">
-								<form action="/bookings/order">
-									<input type="hidden" name="room_object" value="<%=perHotelRoom%>">
-									<input type="hidden" name="checkin_date" value="<%=params[:checkin]%>">
-									<input type="hidden" name="checkout_date" value="<%=params[:checkout]%>">
-									<input type="submit" value="Book" class="btn btn-default" style="background:gold">
-								</form>
+							<div class="Rating col-sm-1 pull-right">
+								<%=hotel.rating%>
+							</div>
+						</div>
+						<div class="col-sm-6" >
+							<div class="row">
+								<div class="Address1">
+								<%=hotel.buildingname.downcase.capitalize%> ,
+								<%=hotel.streetname.downcase.capitalize%>
+								</div>
+								<div class="Address2">
+								<%=hotel.city.downcase.capitalize%> ,
+								<%=hotel.state.downcase.capitalize%> -
+								<%=hotel.zipcode%>
+								</div>
+								<div class="Landmark">
+								<strong>Landmark </strong><%=hotel.landmark.downcase.capitalize%>
+								</div>
+							</div>
+						</div>
+
+						<!-- <%=hotel.country.downcase.capitalize%> -->
+						<div class="Price col-sm-3 pull-right">
+							<%total = 0%>
+							<%perHotelRoom = perHotelRoom.group_by{|a| a[:id]}%>
+							<!-- <div class="row">
+								<div class="col-sm-12">
+									<div class="col-sm-4">
+										<div class="row">
+											<span class="pull-left">Type</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<span>Room/s</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<span class="pull-right"><%=hotel.currency%></span>
+										</div>
+									</div>
+								</div>
+							</div> -->
+							<%perHotelRoom.each do |r|%>
+									<%room = Roomtype.find_by_id(r[0])%>
+									<%price = 0%>
+									<%r[1].each do |room|%>
+											<%if room[:requiredAdults] + room[:requiredChildren] < room[:capacity]%>
+												<%price = room[:price][:base_1]+price%>
+											<%elsif room[:requiredAdults] + room[:requiredChildren] == room[:capacity] %>
+												<% price = room[:price][:base_2] + price %>
+											<%elsif room[:requiredAdults] + room[:requiredChildren] > room[:capacity] %>
+												<% price = room[:price][:base_2]+price%>
+
+											<% if room[:requiredAdults]-room[:baseadults]>0 %>
+													<%price = room[:price][:extraadult]*(room[:requiredAdults]-room[:baseadults]) + price%>
+											<%end %>
+											<% if room[:requiredChildren]-room[:basechildren]>0 %>
+												<%price = room[:price][:extrachild]*(room[:requiredChildren]-room[:basechildren]) + price %>
+											<%end%>
+									<%end%>
+							<%end%>
+							<%total = total + price%>
+
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="col-sm-1">
+										<div class="row">
+											<span><%=r[1].length%></span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<span class=""><%=room.typename.downcase.capitalize%></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<%end%>
+							<!-- <div class="row">
+								<div class="col-sm-12" style="border-top:solid 1px black">
+									<div class="col-sm-4">
+										<div class="row">
+											<b>TOTAL</b>
+										</div>
+									</div>
+
+									<div class="col-sm-4 col-sm-offset-4">
+										<div class="row">
+											<span class="pull-right" style="font-size:17px"><b><%=total%></b></span>
+										</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+					<div class="row">
+						<div class="row">
+							<div class="col-sm-8">
+								facilites
+							</div>
+							<div class="col-sm-4" style="padding:20px 0px 10px 0px;margin-right:-20px;">
+								<div class="col-sm-6">
+								<span id="Currency" class="Currency" ><%=hotel.currency%> : </span>
+								<span id="TotalPrice" class="TotalPrice" ><%=total%></span>
+								</div>
+								<div class="pull-right" style="padding-right:10px">
+									<%=link_to 'Book', url_for(action: 'order',controller: 'bookings',clothesracks:	params[:clothesracks],	dryingracking: params[:dryingracking], foldupbed: params[:foldupbed], sofabed: params[:sofabed], wardrobe: params[:wardrobe], carpeted: params[:carpeted], walkingcloset: params[:walkingcloset], extralongbeds: params[:extralongbeds], fireplace: params[:fireplace], heater: params[:heater], interconnectingrooms: params[:interconnectingrooms], iron: params[:iron], desk: params[:desk], wifi: params[:wifi], smoking: params[:smoking], tv: params[:tv], bathroom: params[:bathroom], toiletpaper: params[:toiletpaper], bathtub: params[:bathtub], shower: params[:shower], bathrobe: params[:bathrobe], freetoiletries: params[:freetoiletries], hairdryer: params[:hairdryer], spatub: params[:spatub], sharedbathroom: params[:sharedbathroom], slippers: params[:slippers], toilets: params[:toilets], geyser: params[:geyser],hotel_id: hotel.id,checkin: params[:checkin],checkout: params[:checkout],room_object: perHotelRoom),class: 'btn btn-default button-color'%>
+
+									
+
+
+
+
+
+
+
+
+
+								</div>
+
 							</div>
 						</div>
 					</div>
 				</div>
-		</div>
-	</div>
-<%end%>
-<%else%>
-NO CASE MATCH
-<%end%>
-</div>
+			</div>
+		<%end%>
+	<%else%>
 
+		<div class="container" > 
+
+		  <div class="modalfade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">No Case Match</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>Kindly search again!!</p>
+		        </div>
+
+		      </div>
+		     
+		    </div>
+		  </div> 
+	 	  
+	 	</div>
+	<%end%>
+
+</div>
 
 
 
@@ -824,8 +849,22 @@ NO CASE MATCH
 
 
 <style type="text/css">
-	.color{
-		background: green;
+
+	.button-color{
+		background: gold;
+		color: black;
+	}
+	a:hover.button-color{
+		background: gold;
+		color: black;
+	}
+	a:visited.button-color{
+		background: gold;
+		color: black;
+	}
+	a:active.button-color{
+		background: gold;
+		color: black;
 	}
 	.Rating{
 		font-size: 25px;
@@ -961,10 +1000,8 @@ NO CASE MATCH
 						city:'<%=params[:city]%>',
 						data_value: <%=raw params[:data_value].to_json %>,
 						checkin: checkin,
-						checkout: checkout,
-						breakfast: $('#breakfast')[0].value,
-						dinner: $('#dinner')[0].value,
-						lunch: $('#lunch')[0].value
+						checkout: checkout
+						
 					},
 				progress:function(loadTime,status){
                           console.log(loadTime);
@@ -981,4 +1018,6 @@ NO CASE MATCH
 			});
 		});
 	});
+
+	
 </script>

@@ -27,51 +27,52 @@
   
 </head>
 <body class="parallax"  onscroll="NavbarTwoAttachOnTop()">
-<% if notice %>
+  <% if notice %>
 
-<script type="text/javascript">
-  noty({text: '<%= notice %>', type: 'success', timeout: 1000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
-progressBar: true});
-</script>
-<% end%>
+    <script type="text/javascript">
+      noty({text: '<%= notice %>', type: 'success', timeout: 1000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+        progressBar: true});
+    </script>
+  <% end%>
 
-<% if  alert %>
-<script type="text/javascript">
-  noty({text: '<%=alert %>', type: 'error',timeout: 1000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
-progressBar: true});
-</script>
-<% end%>
+  <% if  alert %>
+    <script type="text/javascript">
+      noty({text: '<%=alert %>', type: 'error',timeout: 1000, theme: 'defaultTheme',maxVisible: 5,template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+    progressBar: true});
+    </script>
+  <% end%>
 
-<div class="row" style="background:#003680">
-  <nav class="navbar navbar-default" style="margin-bottom: 0px ! important;background:#003680;border-style:none">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" onclick="ChangeHamburgerIcon()">
-          <span class="icon-bar" id="bar1"></span>
-          <span class="icon-bar" id="bar2"></span>
-          <span class="icon-bar" id="bar3"></span>
-        </button>
-        <a class="navbar-brand" style="color:white" href="/">RoomPapa</a>
+  <div class="row" style="background:#003680">
+    <nav class="navbar navbar-default" style="margin-bottom: 0px ! important;background:#003680;border-style:none">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" onclick="ChangeHamburgerIcon()">
+            <span class="icon-bar" id="bar1"></span>
+            <span class="icon-bar" id="bar2"></span>
+            <span class="icon-bar" id="bar3"></span>
+          </button>
+          <a class="navbar-brand" style="color:white" href="/">RoomPapa</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <%if current_user%>
+          <ul class="nav navbar-nav navbar-right" style="color:white">
+            <li><%=current_user.email%></li>
+            <li><%=link_to "profile", room_papa_index_path,method: :get%></li>
+            <li><%=link_to "inventory", hotels_inventory_path,method: :get%></li>
+            <li><%=link_to "add rooms", new_roomtype_path,method: :get%></li>
+            <li><%=link_to "rooms", roomtypes_path,method: :get%></li>
+            <li> <%= link_to "Sign Out",destroy_user_session_path,method: :delete ,data: {confirm:"Are you sure?"}%></li>
+          </ul>
+          <%else%>
+          <ul class="nav navbar-nav navbar-right" style="color:white">
+            <li style="display:flex"><span class="glyphicon glyphicon-user" style="padding-top:17px; margin-right:-11px;color:white"></span><%=link_to "Sign up", new_user_registration_path,method: :get%></li>
+            <li style="display:flex"><span class="glyphicon glyphicon-log-in" style="padding-top:17px; margin-right:-11px;color:white"></span><%= link_to "Login",new_user_session_path,method: :get%></li>
+          </ul>
+          <%end%>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <%if current_user%>
-        <ul class="nav navbar-nav navbar-right" style="color:white">
-          <li><%=current_user.email%></li>
-          <li><%=link_to "profile", room_papa_index_path,method: :get%></li>
-          <li><%=link_to "add rooms", new_roomtype_path,method: :get%></li>
-          <li><%=link_to "rooms", roomtypes_path,method: :get%></li>
-          <li> <%= link_to "Sign Out",destroy_user_session_path,method: :delete ,data: {confirm:"Are you sure?"}%></li>
-        </ul>
-        <%else%>
-        <ul class="nav navbar-nav navbar-right" style="color:white">
-          <li style="display:flex"><span class="glyphicon glyphicon-user" style="padding-top:17px; margin-right:-11px;color:white"></span><%=link_to "Sign up", new_user_registration_path,method: :get%></li>
-          <li style="display:flex"><span class="glyphicon glyphicon-log-in" style="padding-top:17px; margin-right:-11px;color:white"></span><%= link_to "Login",new_user_session_path,method: :get%></li>
-        </ul>
-        <%end%>
-      </div>
-    </div>
-  </nav>
-</div>
+    </nav>
+  </div>
 
 <%= yield %>
 

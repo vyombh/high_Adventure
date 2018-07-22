@@ -91,18 +91,18 @@ class PricingsController < ApplicationController
         end
 
     end
-    # respond_to do |format|
-    #   if @pricing.update(pricing_params)
-
-    #     format.html { redirect_to '/roomtypes', notice: 'Pricing was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @pricing }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @pricing.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
-   
+   def show
+    @pricing = nil
+    if current_user.hotel && current_user.hotel.roomtypes.any? && current_user.hotel.pricing
+      @pricing = current_user.hotel.pricing.price
+      keys = @pricing.keys
+      @room_names = [];
+      keys.each do |key|
+        @room_names.push(Roomtype.find(key).typename);
+      end
+    end
+  end
  
 
 end
